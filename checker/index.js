@@ -11,9 +11,9 @@ const getComponents = (filename) => {
 }
 
 const getSpringBootVersion = (components) => {
-    const springBoot = components.filter(component => component.group == 'org.springframework.boot' && component.name == 'spring-boot');
+    const springBoot = components.filter(component => component.group === 'org.springframework.boot' && component.name === 'spring-boot');
     const springBootVersion = springBoot[0].version;
-    console.log('getSpringBootVersion', springBootVersion);
+    // console.log('getSpringBootVersion', springBootVersion);
     return springBootVersion;
 }
 
@@ -23,11 +23,25 @@ const getDefaultSpringBootComponents = (filename) => {
     return components;
 }
 
-const retrieveSimilarPackages = (bomPackages, springBootPackages) => {
+const retrieveSimilarPackages = (bomFile) => {
+    const components = getComponents(bomFile);
+    const springBootVersion = getSpringBootVersion(components);
+    console.log('springBootVersion', springBootVersion);
+    const defaultComponents = getDefaultSpringBootComponents(`../versions/${springBootVersion}.json`)
 
+    const matchingPackages = components.filter(bomPackage =>
+        defaultComponents.some(bootPackage =>
+            bomPackage.group === bootPackage.group &&
+            bomPackage.name === bootPackage.name &&
+            bomPackage.version !== bootPackage.version
+        )
+    )
+
+    // bom_3.1.9.json line 1139 overwritten
+    console.log('matchingPackages', matchingPackages);
+    console.log('components size', components.length);
+    console.log('defaultComponents size', defaultComponents.length);
+    console.log('matchingPackages size', matchingPackages.length);
 }
 
-const components = getComponents('../samples/bom_3.1.9.json');
-getSpringBootVersion(components);
-
-const defaultComponents = getDefaultSpringBootComponents('../versions/3.1.9.json')
+retrieveSimilarPackages('../samples/bom_3.1.9.json');
