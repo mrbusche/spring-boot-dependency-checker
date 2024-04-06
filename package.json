@@ -17,5 +17,8 @@
     "tabWidth": 4,
     "semi": true,
     "singleQuote": true
+  },
+  "dependencies": {
+    "node-html-parser": "^6.1.13"
   }
 }
