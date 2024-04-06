@@ -23,7 +23,7 @@ sbVersions.forEach(sbVersion =>
                         })
                 )
                 console.log(versions);
-                writeFileSync(`./${sbVersion}.json`, JSON.stringify(versions));
+                writeFileSync(`../versions/${sbVersion}.json`, JSON.stringify(versions, null,  2));
                 break;
             // status "Not Found"
             case 404:

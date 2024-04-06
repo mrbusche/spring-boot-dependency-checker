@@ -82,317 +82,317 @@
   {
     "group": "com.fasterxml.jackson.core",
     "name": "jackson-annotations",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.core",
     "name": "jackson-core",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.core",
     "name": "jackson-databind",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.dataformat",
     "name": "jackson-dataformat-avro",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.dataformat",
     "name": "jackson-dataformat-cbor",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.dataformat",
     "name": "jackson-dataformat-csv",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.dataformat",
     "name": "jackson-dataformat-ion",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.dataformat",
     "name": "jackson-dataformat-properties",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.dataformat",
     "name": "jackson-dataformat-protobuf",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.dataformat",
     "name": "jackson-dataformat-smile",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.dataformat",
     "name": "jackson-dataformat-toml",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.dataformat",
     "name": "jackson-dataformat-xml",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.dataformat",
     "name": "jackson-dataformat-yaml",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.datatype",
     "name": "jackson-datatype-eclipse-collections",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.datatype",
     "name": "jackson-datatype-guava",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.datatype",
     "name": "jackson-datatype-hibernate4",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.datatype",
     "name": "jackson-datatype-hibernate5",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.datatype",
     "name": "jackson-datatype-hibernate5-jakarta",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.datatype",
     "name": "jackson-datatype-hibernate6",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.datatype",
     "name": "jackson-datatype-hppc",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.datatype",
     "name": "jackson-datatype-jakarta-jsonp",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.datatype",
     "name": "jackson-datatype-jaxrs",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.datatype",
     "name": "jackson-datatype-jdk8",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.datatype",
     "name": "jackson-datatype-joda",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.datatype",
     "name": "jackson-datatype-joda-money",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.datatype",
     "name": "jackson-datatype-json-org",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.datatype",
     "name": "jackson-datatype-jsr310",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.datatype",
     "name": "jackson-datatype-jsr353",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.datatype",
     "name": "jackson-datatype-pcollections",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.jakarta.rs",
     "name": "jackson-jakarta-rs-base",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.jakarta.rs",
     "name": "jackson-jakarta-rs-cbor-provider",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.jakarta.rs",
     "name": "jackson-jakarta-rs-json-provider",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.jakarta.rs",
     "name": "jackson-jakarta-rs-smile-provider",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.jakarta.rs",
     "name": "jackson-jakarta-rs-xml-provider",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.jakarta.rs",
     "name": "jackson-jakarta-rs-yaml-provider",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.jaxrs",
     "name": "jackson-jaxrs-base",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.jaxrs",
     "name": "jackson-jaxrs-cbor-provider",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.jaxrs",
     "name": "jackson-jaxrs-json-provider",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.jaxrs",
     "name": "jackson-jaxrs-smile-provider",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.jaxrs",
     "name": "jackson-jaxrs-xml-provider",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.jaxrs",
     "name": "jackson-jaxrs-yaml-provider",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.jr",
     "name": "jackson-jr-all",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.jr",
     "name": "jackson-jr-annotation-support",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.jr",
     "name": "jackson-jr-objects",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.jr",
     "name": "jackson-jr-retrofit2",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.jr",
     "name": "jackson-jr-stree",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.module",
     "name": "jackson-module-afterburner",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.module",
     "name": "jackson-module-blackbird",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.module",
     "name": "jackson-module-guice",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.module",
     "name": "jackson-module-jakarta-xmlbind-annotations",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.module",
     "name": "jackson-module-jaxb-annotations",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.module",
     "name": "jackson-module-jsonSchema",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.module",
     "name": "jackson-module-jsonSchema-jakarta",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.module",
     "name": "jackson-module-kotlin",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.module",
     "name": "jackson-module-mrbean",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.module",
     "name": "jackson-module-no-ctor-deser",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.module",
     "name": "jackson-module-osgi",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.module",
     "name": "jackson-module-parameter-names",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.module",
     "name": "jackson-module-paranamer",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.module",
     "name": "jackson-module-scala_2.11",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.module",
     "name": "jackson-module-scala_2.12",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.module",
     "name": "jackson-module-scala_2.13",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.fasterxml.jackson.module",
     "name": "jackson-module-scala_3",
-    "version": "2.15.4"
+    "version": "2.15.3"
   },
   {
     "group": "com.github.ben-manes.caffeine",
@@ -452,12 +452,12 @@
   {
     "group": "com.jayway.jsonpath",
     "name": "json-path",
-    "version": "2.9.0"
+    "version": "2.8.0"
   },
   {
     "group": "com.jayway.jsonpath",
     "name": "json-path-assert",
-    "version": "2.9.0"
+    "version": "2.8.0"
   },
   {
     "group": "com.microsoft.sqlserver",
@@ -857,172 +857,172 @@
   {
     "group": "io.dropwizard.metrics",
     "name": "metrics-annotation",
-    "version": "4.2.25"
+    "version": "4.2.23"
   },
   {
     "group": "io.dropwizard.metrics",
     "name": "metrics-caffeine",
-    "version": "4.2.25"
+    "version": "4.2.23"
   },
   {
     "group": "io.dropwizard.metrics",
     "name": "metrics-caffeine3",
-    "version": "4.2.25"
+    "version": "4.2.23"
   },
   {
     "group": "io.dropwizard.metrics",
     "name": "metrics-collectd",
-    "version": "4.2.25"
+    "version": "4.2.23"
   },
   {
     "group": "io.dropwizard.metrics",
     "name": "metrics-core",
-    "version": "4.2.25"
+    "version": "4.2.23"
   },
   {
     "group": "io.dropwizard.metrics",
     "name": "metrics-ehcache",
-    "version": "4.2.25"
+    "version": "4.2.23"
   },
   {
     "group": "io.dropwizard.metrics",
     "name": "metrics-graphite",
-    "version": "4.2.25"
+    "version": "4.2.23"
   },
   {
     "group": "io.dropwizard.metrics",
     "name": "metrics-healthchecks",
-    "version": "4.2.25"
+    "version": "4.2.23"
   },
   {
     "group": "io.dropwizard.metrics",
     "name": "metrics-httpasyncclient",
-    "version": "4.2.25"
+    "version": "4.2.23"
   },
   {
     "group": "io.dropwizard.metrics",
     "name": "metrics-httpclient",
-    "version": "4.2.25"
+    "version": "4.2.23"
   },
   {
     "group": "io.dropwizard.metrics",
     "name": "metrics-httpclient5",
-    "version": "4.2.25"
+    "version": "4.2.23"
   },
   {
     "group": "io.dropwizard.metrics",
     "name": "metrics-jakarta-servlet",
-    "version": "4.2.25"
+    "version": "4.2.23"
   },
   {
     "group": "io.dropwizard.metrics",
     "name": "metrics-jakarta-servlet6",
-    "version": "4.2.25"
+    "version": "4.2.23"
   },
   {
     "group": "io.dropwizard.metrics",
     "name": "metrics-jakarta-servlets",
-    "version": "4.2.25"
+    "version": "4.2.23"
   },
   {
     "group": "io.dropwizard.metrics",
     "name": "metrics-jcache",
-    "version": "4.2.25"
+    "version": "4.2.23"
   },
   {
     "group": "io.dropwizard.metrics",
     "name": "metrics-jdbi",
-    "version": "4.2.25"
+    "version": "4.2.23"
   },
   {
     "group": "io.dropwizard.metrics",
     "name": "metrics-jdbi3",
-    "version": "4.2.25"
+    "version": "4.2.23"
   },
   {
     "group": "io.dropwizard.metrics",
     "name": "metrics-jersey2",
-    "version": "4.2.25"
+    "version": "4.2.23"
   },
   {
     "group": "io.dropwizard.metrics",
     "name": "metrics-jersey3",
-    "version": "4.2.25"
+    "version": "4.2.23"
   },
   {
     "group": "io.dropwizard.metrics",
     "name": "metrics-jersey31",
-    "version": "4.2.25"
+    "version": "4.2.23"
   },
   {
     "group": "io.dropwizard.metrics",
     "name": "metrics-jetty10",
-    "version": "4.2.25"
+    "version": "4.2.23"
   },
   {
     "group": "io.dropwizard.metrics",
     "name": "metrics-jetty11",
-    "version": "4.2.25"
+    "version": "4.2.23"
   },
   {
     "group": "io.dropwizard.metrics",
     "name": "metrics-jetty12",
-    "version": "4.2.25"
+    "version": "4.2.23"
   },
   {
     "group": "io.dropwizard.metrics",
     "name": "metrics-jetty12-ee10",
-    "version": "4.2.25"
+    "version": "4.2.23"
   },
   {
     "group": "io.dropwizard.metrics",
     "name": "metrics-jetty9",
-    "version": "4.2.25"
+    "version": "4.2.23"
   },
   {
     "group": "io.dropwizard.metrics",
     "name": "metrics-jmx",
-    "version": "4.2.25"
+    "version": "4.2.23"
   },
   {
     "group": "io.dropwizard.metrics",
     "name": "metrics-json",
-    "version": "4.2.25"
+    "version": "4.2.23"
   },
   {
     "group": "io.dropwizard.metrics",
     "name": "metrics-jvm",
-    "version": "4.2.25"
+    "version": "4.2.23"
   },
   {
     "group": "io.dropwizard.metrics",
     "name": "metrics-log4j2",
-    "version": "4.2.25"
+    "version": "4.2.23"
   },
   {
     "group": "io.dropwizard.metrics",
     "name": "metrics-logback",
-    "version": "4.2.25"
+    "version": "4.2.23"
   },
   {
     "group": "io.dropwizard.metrics",
     "name": "metrics-logback13",
-    "version": "4.2.25"
+    "version": "4.2.23"
   },
   {
     "group": "io.dropwizard.metrics",
     "name": "metrics-logback14",
-    "version": "4.2.25"
+    "version": "4.2.23"
   },
   {
     "group": "io.dropwizard.metrics",
     "name": "metrics-servlet",
-    "version": "4.2.25"
+    "version": "4.2.23"
   },
   {
     "group": "io.dropwizard.metrics",
     "name": "metrics-servlets",
-    "version": "4.2.25"
+    "version": "4.2.23"
   },
   {
     "group": "io.lettuce",
@@ -1032,302 +1032,302 @@
   {
     "group": "io.micrometer",
     "name": "benchmarks",
-    "version": "1.1.10"
+    "version": "1.1.9"
   },
   {
     "group": "io.micrometer",
     "name": "micrometer-commons",
-    "version": "1.11.9"
+    "version": "1.11.8"
   },
   {
     "group": "io.micrometer",
     "name": "micrometer-core",
-    "version": "1.11.9"
+    "version": "1.11.8"
   },
   {
     "group": "io.micrometer",
     "name": "micrometer-jetty11",
-    "version": "1.11.9"
+    "version": "1.11.8"
   },
   {
     "group": "io.micrometer",
     "name": "micrometer-observation",
-    "version": "1.11.9"
+    "version": "1.11.8"
   },
   {
     "group": "io.micrometer",
     "name": "micrometer-observation-test",
-    "version": "1.11.9"
+    "version": "1.11.8"
   },
   {
     "group": "io.micrometer",
     "name": "micrometer-registry-appoptics",
-    "version": "1.11.9"
+    "version": "1.11.8"
   },
   {
     "group": "io.micrometer",
     "name": "micrometer-registry-atlas",
-    "version": "1.11.9"
+    "version": "1.11.8"
   },
   {
     "group": "io.micrometer",
     "name": "micrometer-registry-azure-monitor",
-    "version": "1.11.9"
+    "version": "1.11.8"
   },
   {
     "group": "io.micrometer",
     "name": "micrometer-registry-cloudwatch",
-    "version": "1.11.9"
+    "version": "1.11.8"
   },
   {
     "group": "io.micrometer",
     "name": "micrometer-registry-cloudwatch2",
-    "version": "1.11.9"
+    "version": "1.11.8"
   },
   {
     "group": "io.micrometer",
     "name": "micrometer-registry-datadog",
-    "version": "1.11.9"
+    "version": "1.11.8"
   },
   {
     "group": "io.micrometer",
     "name": "micrometer-registry-dynatrace",
-    "version": "1.11.9"
+    "version": "1.11.8"
   },
   {
     "group": "io.micrometer",
     "name": "micrometer-registry-elastic",
-    "version": "1.11.9"
+    "version": "1.11.8"
   },
   {
     "group": "io.micrometer",
     "name": "micrometer-registry-ganglia",
-    "version": "1.11.9"
+    "version": "1.11.8"
   },
   {
     "group": "io.micrometer",
     "name": "micrometer-registry-graphite",
-    "version": "1.11.9"
+    "version": "1.11.8"
   },
   {
     "group": "io.micrometer",
     "name": "micrometer-registry-health",
-    "version": "1.11.9"
+    "version": "1.11.8"
   },
   {
     "group": "io.micrometer",
     "name": "micrometer-registry-humio",
-    "version": "1.11.9"
+    "version": "1.11.8"
   },
   {
     "group": "io.micrometer",
     "name": "micrometer-registry-influx",
-    "version": "1.11.9"
+    "version": "1.11.8"
   },
   {
     "group": "io.micrometer",
     "name": "micrometer-registry-jmx",
-    "version": "1.11.9"
+    "version": "1.11.8"
   },
   {
     "group": "io.micrometer",
     "name": "micrometer-registry-kairos",
-    "version": "1.11.9"
+    "version": "1.11.8"
   },
   {
     "group": "io.micrometer",
     "name": "micrometer-registry-new-relic",
-    "version": "1.11.9"
+    "version": "1.11.8"
   },
   {
     "group": "io.micrometer",
     "name": "micrometer-registry-opentsdb",
-    "version": "1.11.9"
+    "version": "1.11.8"
   },
   {
     "group": "io.micrometer",
     "name": "micrometer-registry-otlp",
-    "version": "1.11.9"
+    "version": "1.11.8"
   },
   {
     "group": "io.micrometer",
     "name": "micrometer-registry-prometheus",
-    "version": "1.11.9"
+    "version": "1.11.8"
   },
   {
     "group": "io.micrometer",
     "name": "micrometer-registry-signalfx",
-    "version": "1.11.9"
+    "version": "1.11.8"
   },
   {
     "group": "io.micrometer",
     "name": "micrometer-registry-stackdriver",
-    "version": "1.11.9"
+    "version": "1.11.8"
   },
   {
     "group": "io.micrometer",
     "name": "micrometer-registry-statsd",
-    "version": "1.11.9"
+    "version": "1.11.8"
   },
   {
     "group": "io.micrometer",
     "name": "micrometer-registry-wavefront",
-    "version": "1.11.9"
+    "version": "1.11.8"
   },
   {
     "group": "io.micrometer",
     "name": "micrometer-test",
-    "version": "1.11.9"
+    "version": "1.11.8"
   },
   {
     "group": "io.micrometer",
     "name": "micrometer-tracing",
-    "version": "1.1.10"
+    "version": "1.1.9"
   },
   {
     "group": "io.micrometer",
     "name": "micrometer-tracing-bridge-brave",
-    "version": "1.1.10"
+    "version": "1.1.9"
   },
   {
     "group": "io.micrometer",
     "name": "micrometer-tracing-bridge-otel",
-    "version": "1.1.10"
+    "version": "1.1.9"
   },
   {
     "group": "io.micrometer",
     "name": "micrometer-tracing-integration-test",
-    "version": "1.1.10"
+    "version": "1.1.9"
   },
   {
     "group": "io.micrometer",
     "name": "micrometer-tracing-reporter-wavefront",
-    "version": "1.1.10"
+    "version": "1.1.9"
   },
   {
     "group": "io.micrometer",
     "name": "micrometer-tracing-test",
-    "version": "1.1.10"
+    "version": "1.1.9"
   },
   {
     "group": "io.netty",
     "name": "netty-all",
-    "version": "4.1.107.Final"
+    "version": "4.1.105.Final"
   },
   {
     "group": "io.netty",
     "name": "netty-buffer",
-    "version": "4.1.107.Final"
+    "version": "4.1.105.Final"
   },
   {
     "group": "io.netty",
     "name": "netty-codec",
-    "version": "4.1.107.Final"
+    "version": "4.1.105.Final"
   },
   {
     "group": "io.netty",
     "name": "netty-codec-dns",
-    "version": "4.1.107.Final"
+    "version": "4.1.105.Final"
   },
   {
     "group": "io.netty",
     "name": "netty-codec-haproxy",
-    "version": "4.1.107.Final"
+    "version": "4.1.105.Final"
   },
   {
     "group": "io.netty",
     "name": "netty-codec-http",
-    "version": "4.1.107.Final"
+    "version": "4.1.105.Final"
   },
   {
     "group": "io.netty",
     "name": "netty-codec-http2",
-    "version": "4.1.107.Final"
+    "version": "4.1.105.Final"
   },
   {
     "group": "io.netty",
     "name": "netty-codec-memcache",
-    "version": "4.1.107.Final"
+    "version": "4.1.105.Final"
   },
   {
     "group": "io.netty",
     "name": "netty-codec-mqtt",
-    "version": "4.1.107.Final"
+    "version": "4.1.105.Final"
   },
   {
     "group": "io.netty",
     "name": "netty-codec-redis",
-    "version": "4.1.107.Final"
+    "version": "4.1.105.Final"
   },
   {
     "group": "io.netty",
     "name": "netty-codec-smtp",
-    "version": "4.1.107.Final"
+    "version": "4.1.105.Final"
   },
   {
     "group": "io.netty",
     "name": "netty-codec-socks",
-    "version": "4.1.107.Final"
+    "version": "4.1.105.Final"
   },
   {
     "group": "io.netty",
     "name": "netty-codec-stomp",
-    "version": "4.1.107.Final"
+    "version": "4.1.105.Final"
   },
   {
     "group": "io.netty",
     "name": "netty-codec-xml",
-    "version": "4.1.107.Final"
+    "version": "4.1.105.Final"
   },
   {
     "group": "io.netty",
     "name": "netty-common",
-    "version": "4.1.107.Final"
+    "version": "4.1.105.Final"
   },
   {
     "group": "io.netty",
     "name": "netty-dev-tools",
-    "version": "4.1.107.Final"
+    "version": "4.1.105.Final"
   },
   {
     "group": "io.netty",
     "name": "netty-example",
-    "version": "4.1.107.Final"
+    "version": "4.1.105.Final"
   },
   {
     "group": "io.netty",
     "name": "netty-handler",
-    "version": "4.1.107.Final"
+    "version": "4.1.105.Final"
   },
   {
     "group": "io.netty",
     "name": "netty-handler-proxy",
-    "version": "4.1.107.Final"
+    "version": "4.1.105.Final"
   },
   {
     "group": "io.netty",
     "name": "netty-handler-ssl-ocsp",
-    "version": "4.1.107.Final"
+    "version": "4.1.105.Final"
   },
   {
     "group": "io.netty",
     "name": "netty-resolver",
-    "version": "4.1.107.Final"
+    "version": "4.1.105.Final"
   },
   {
     "group": "io.netty",
     "name": "netty-resolver-dns",
-    "version": "4.1.107.Final"
+    "version": "4.1.105.Final"
   },
   {
     "group": "io.netty",
     "name": "netty-resolver-dns-classes-macos",
-    "version": "4.1.107.Final"
+    "version": "4.1.105.Final"
   },
   {
     "group": "io.netty",
     "name": "netty-resolver-dns-native-macos",
-    "version": "4.1.107.Final"
+    "version": "4.1.105.Final"
   },
   {
     "group": "io.netty",
@@ -1347,47 +1347,47 @@
   {
     "group": "io.netty",
     "name": "netty-transport",
-    "version": "4.1.107.Final"
+    "version": "4.1.105.Final"
   },
   {
     "group": "io.netty",
     "name": "netty-transport-classes-epoll",
-    "version": "4.1.107.Final"
+    "version": "4.1.105.Final"
   },
   {
     "group": "io.netty",
     "name": "netty-transport-classes-kqueue",
-    "version": "4.1.107.Final"
+    "version": "4.1.105.Final"
   },
   {
     "group": "io.netty",
     "name": "netty-transport-native-epoll",
-    "version": "4.1.107.Final"
+    "version": "4.1.105.Final"
   },
   {
     "group": "io.netty",
     "name": "netty-transport-native-kqueue",
-    "version": "4.1.107.Final"
+    "version": "4.1.105.Final"
   },
   {
     "group": "io.netty",
     "name": "netty-transport-native-unix-common",
-    "version": "4.1.107.Final"
+    "version": "4.1.105.Final"
   },
   {
     "group": "io.netty",
     "name": "netty-transport-rxtx",
-    "version": "4.1.107.Final"
+    "version": "4.1.105.Final"
   },
   {
     "group": "io.netty",
     "name": "netty-transport-sctp",
-    "version": "4.1.107.Final"
+    "version": "4.1.105.Final"
   },
   {
     "group": "io.netty",
     "name": "netty-transport-udt",
-    "version": "4.1.107.Final"
+    "version": "4.1.105.Final"
   },
   {
     "group": "io.opentelemetry",
@@ -1552,7 +1552,7 @@
   {
     "group": "io.projectreactor.kafka",
     "name": "reactor-kafka",
-    "version": "1.3.23"
+    "version": "1.3.22"
   },
   {
     "group": "io.projectreactor.kotlin",
@@ -1562,22 +1562,22 @@
   {
     "group": "io.projectreactor.netty",
     "name": "reactor-netty",
-    "version": "1.1.16"
+    "version": "1.1.15"
   },
   {
     "group": "io.projectreactor.netty",
     "name": "reactor-netty-core",
-    "version": "1.1.16"
+    "version": "1.1.15"
   },
   {
     "group": "io.projectreactor.netty",
     "name": "reactor-netty-http",
-    "version": "1.1.16"
+    "version": "1.1.15"
   },
   {
     "group": "io.projectreactor.netty",
     "name": "reactor-netty-http-brave",
-    "version": "1.1.16"
+    "version": "1.1.15"
   },
   {
     "group": "io.prometheus",
@@ -1822,17 +1822,17 @@
   {
     "group": "io.undertow",
     "name": "undertow-core",
-    "version": "2.3.12.Final"
+    "version": "2.3.10.Final"
   },
   {
     "group": "io.undertow",
     "name": "undertow-servlet",
-    "version": "2.3.12.Final"
+    "version": "2.3.10.Final"
   },
   {
     "group": "io.undertow",
     "name": "undertow-websockets-jsr",
-    "version": "2.3.12.Final"
+    "version": "2.3.10.Final"
   },
   {
     "group": "io.zipkin.brave",
@@ -2197,12 +2197,12 @@
   {
     "group": "net.bytebuddy",
     "name": "byte-buddy",
-    "version": "1.14.12"
+    "version": "1.14.11"
   },
   {
     "group": "net.bytebuddy",
     "name": "byte-buddy-agent",
-    "version": "1.14.12"
+    "version": "1.14.11"
   },
   {
     "group": "net.minidev",
@@ -2467,152 +2467,152 @@
   {
     "group": "org.apache.groovy",
     "name": "groovy",
-    "version": "4.0.18"
+    "version": "4.0.17"
   },
   {
     "group": "org.apache.groovy",
     "name": "groovy-ant",
-    "version": "4.0.18"
+    "version": "4.0.17"
   },
   {
     "group": "org.apache.groovy",
     "name": "groovy-astbuilder",
-    "version": "4.0.18"
+    "version": "4.0.17"
   },
   {
     "group": "org.apache.groovy",
     "name": "groovy-cli-commons",
-    "version": "4.0.18"
+    "version": "4.0.17"
   },
   {
     "group": "org.apache.groovy",
     "name": "groovy-cli-picocli",
-    "version": "4.0.18"
+    "version": "4.0.17"
   },
   {
     "group": "org.apache.groovy",
     "name": "groovy-console",
-    "version": "4.0.18"
+    "version": "4.0.17"
   },
   {
     "group": "org.apache.groovy",
     "name": "groovy-contracts",
-    "version": "4.0.18"
+    "version": "4.0.17"
   },
   {
     "group": "org.apache.groovy",
     "name": "groovy-datetime",
-    "version": "4.0.18"
+    "version": "4.0.17"
   },
   {
     "group": "org.apache.groovy",
     "name": "groovy-dateutil",
-    "version": "4.0.18"
+    "version": "4.0.17"
   },
   {
     "group": "org.apache.groovy",
     "name": "groovy-docgenerator",
-    "version": "4.0.18"
+    "version": "4.0.17"
   },
   {
     "group": "org.apache.groovy",
     "name": "groovy-ginq",
-    "version": "4.0.18"
+    "version": "4.0.17"
   },
   {
     "group": "org.apache.groovy",
     "name": "groovy-groovydoc",
-    "version": "4.0.18"
+    "version": "4.0.17"
   },
   {
     "group": "org.apache.groovy",
     "name": "groovy-groovysh",
-    "version": "4.0.18"
+    "version": "4.0.17"
   },
   {
     "group": "org.apache.groovy",
     "name": "groovy-jmx",
-    "version": "4.0.18"
+    "version": "4.0.17"
   },
   {
     "group": "org.apache.groovy",
     "name": "groovy-json",
-    "version": "4.0.18"
+    "version": "4.0.17"
   },
   {
     "group": "org.apache.groovy",
     "name": "groovy-jsr223",
-    "version": "4.0.18"
+    "version": "4.0.17"
   },
   {
     "group": "org.apache.groovy",
     "name": "groovy-macro",
-    "version": "4.0.18"
+    "version": "4.0.17"
   },
   {
     "group": "org.apache.groovy",
     "name": "groovy-macro-library",
-    "version": "4.0.18"
+    "version": "4.0.17"
   },
   {
     "group": "org.apache.groovy",
     "name": "groovy-nio",
-    "version": "4.0.18"
+    "version": "4.0.17"
   },
   {
     "group": "org.apache.groovy",
     "name": "groovy-servlet",
-    "version": "4.0.18"
+    "version": "4.0.17"
   },
   {
     "group": "org.apache.groovy",
     "name": "groovy-sql",
-    "version": "4.0.18"
+    "version": "4.0.17"
   },
   {
     "group": "org.apache.groovy",
     "name": "groovy-swing",
-    "version": "4.0.18"
+    "version": "4.0.17"
   },
   {
     "group": "org.apache.groovy",
     "name": "groovy-templates",
-    "version": "4.0.18"
+    "version": "4.0.17"
   },
   {
     "group": "org.apache.groovy",
     "name": "groovy-test",
-    "version": "4.0.18"
+    "version": "4.0.17"
   },
   {
     "group": "org.apache.groovy",
     "name": "groovy-test-junit5",
-    "version": "4.0.18"
+    "version": "4.0.17"
   },
   {
     "group": "org.apache.groovy",
     "name": "groovy-testng",
-    "version": "4.0.18"
+    "version": "4.0.17"
   },
   {
     "group": "org.apache.groovy",
     "name": "groovy-toml",
-    "version": "4.0.18"
+    "version": "4.0.17"
   },
   {
     "group": "org.apache.groovy",
     "name": "groovy-typecheckers",
-    "version": "4.0.18"
+    "version": "4.0.17"
   },
   {
     "group": "org.apache.groovy",
     "name": "groovy-xml",
-    "version": "4.0.18"
+    "version": "4.0.17"
   },
   {
     "group": "org.apache.groovy",
     "name": "groovy-yaml",
-    "version": "4.0.18"
+    "version": "4.0.17"
   },
   {
     "group": "org.apache.httpcomponents",
@@ -2957,37 +2957,37 @@
   {
     "group": "org.apache.tomcat",
     "name": "tomcat-annotations-api",
-    "version": "10.1.19"
+    "version": "10.1.18"
   },
   {
     "group": "org.apache.tomcat",
     "name": "tomcat-jdbc",
-    "version": "10.1.19"
+    "version": "10.1.18"
   },
   {
     "group": "org.apache.tomcat",
     "name": "tomcat-jsp-api",
-    "version": "10.1.19"
+    "version": "10.1.18"
   },
   {
     "group": "org.apache.tomcat.embed",
     "name": "tomcat-embed-core",
-    "version": "10.1.19"
+    "version": "10.1.18"
   },
   {
     "group": "org.apache.tomcat.embed",
     "name": "tomcat-embed-el",
-    "version": "10.1.19"
+    "version": "10.1.18"
   },
   {
     "group": "org.apache.tomcat.embed",
     "name": "tomcat-embed-jasper",
-    "version": "10.1.19"
+    "version": "10.1.18"
   },
   {
     "group": "org.apache.tomcat.embed",
     "name": "tomcat-embed-websocket",
-    "version": "10.1.19"
+    "version": "10.1.18"
   },
   {
     "group": "org.aspectj",
@@ -3067,17 +3067,17 @@
   {
     "group": "org.codehaus.janino",
     "name": "commons-compiler",
-    "version": "3.1.12"
+    "version": "3.1.11"
   },
   {
     "group": "org.codehaus.janino",
     "name": "commons-compiler-jdk",
-    "version": "3.1.12"
+    "version": "3.1.11"
   },
   {
     "group": "org.codehaus.janino",
     "name": "janino",
-    "version": "3.1.12"
+    "version": "3.1.11"
   },
   {
     "group": "org.eclipse",
@@ -3137,407 +3137,407 @@
   {
     "group": "org.eclipse.jetty",
     "name": "apache-jsp",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty",
     "name": "glassfish-jstl",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty",
     "name": "infinispan-common",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty",
     "name": "infinispan-embedded-query",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty",
     "name": "infinispan-remote-query",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty",
     "name": "jetty-alpn-client",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty",
     "name": "jetty-alpn-conscrypt-client",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty",
     "name": "jetty-alpn-conscrypt-server",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty",
     "name": "jetty-alpn-java-client",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty",
     "name": "jetty-alpn-java-server",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty",
     "name": "jetty-alpn-server",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty",
     "name": "jetty-annotations",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty",
     "name": "jetty-ant",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty",
     "name": "jetty-cdi",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty",
     "name": "jetty-client",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty",
     "name": "jetty-deploy",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty",
     "name": "jetty-hazelcast",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty",
     "name": "jetty-home",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty",
     "name": "jetty-http",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty",
     "name": "jetty-http-spi",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty",
     "name": "jetty-io",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty",
     "name": "jetty-jaas",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty",
     "name": "jetty-jaspi",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty",
     "name": "jetty-jmx",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty",
     "name": "jetty-jndi",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty",
     "name": "jetty-keystore",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty",
     "name": "jetty-nosql",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty",
     "name": "jetty-openid",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty",
     "name": "jetty-plus",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty",
     "name": "jetty-proxy",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty",
     "name": "jetty-quickstart",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty",
     "name": "jetty-reactive-httpclient",
-    "version": "3.0.12"
+    "version": "3.0.11"
   },
   {
     "group": "org.eclipse.jetty",
     "name": "jetty-rewrite",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty",
     "name": "jetty-security",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty",
     "name": "jetty-server",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty",
     "name": "jetty-servlet",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty",
     "name": "jetty-servlets",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty",
     "name": "jetty-slf4j-impl",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty",
     "name": "jetty-unixdomain-server",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty",
     "name": "jetty-unixsocket-client",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty",
     "name": "jetty-unixsocket-common",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty",
     "name": "jetty-unixsocket-server",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty",
     "name": "jetty-util",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty",
     "name": "jetty-util-ajax",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty",
     "name": "jetty-webapp",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty",
     "name": "jetty-xml",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty.fcgi",
     "name": "fcgi-client",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty.fcgi",
     "name": "fcgi-server",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty.gcloud",
     "name": "jetty-gcloud-session-manager",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty.http2",
     "name": "http2-client",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty.http2",
     "name": "http2-common",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty.http2",
     "name": "http2-hpack",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty.http2",
     "name": "http2-http-client-transport",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty.http2",
     "name": "http2-server",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty.http3",
     "name": "http3-client",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty.http3",
     "name": "http3-common",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty.http3",
     "name": "http3-http-client-transport",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty.http3",
     "name": "http3-qpack",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty.http3",
     "name": "http3-server",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty.memcached",
     "name": "jetty-memcached-sessions",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty.osgi",
     "name": "jetty-httpservice",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty.osgi",
     "name": "jetty-osgi-alpn",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty.osgi",
     "name": "jetty-osgi-boot",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty.osgi",
     "name": "jetty-osgi-boot-jsp",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty.osgi",
     "name": "jetty-osgi-boot-warurl",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty.quic",
     "name": "quic-client",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty.quic",
     "name": "quic-common",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty.quic",
     "name": "quic-quiche-common",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty.quic",
     "name": "quic-quiche-jna",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty.quic",
     "name": "quic-server",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty.websocket",
     "name": "websocket-core-client",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty.websocket",
     "name": "websocket-core-common",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty.websocket",
     "name": "websocket-core-server",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty.websocket",
     "name": "websocket-jakarta-client",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty.websocket",
     "name": "websocket-jakarta-common",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty.websocket",
     "name": "websocket-jakarta-server",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty.websocket",
     "name": "websocket-jetty-api",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty.websocket",
     "name": "websocket-jetty-client",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty.websocket",
     "name": "websocket-jetty-common",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty.websocket",
     "name": "websocket-jetty-server",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.eclipse.jetty.websocket",
     "name": "websocket-servlet",
-    "version": "11.0.20"
+    "version": "11.0.19"
   },
   {
     "group": "org.ehcache",
@@ -4037,77 +4037,77 @@
   {
     "group": "org.hibernate.orm",
     "name": "hibernate-agroal",
-    "version": "6.2.22.Final"
+    "version": "6.2.20.Final"
   },
   {
     "group": "org.hibernate.orm",
     "name": "hibernate-ant",
-    "version": "6.2.22.Final"
+    "version": "6.2.20.Final"
   },
   {
     "group": "org.hibernate.orm",
     "name": "hibernate-c3p0",
-    "version": "6.2.22.Final"
+    "version": "6.2.20.Final"
   },
   {
     "group": "org.hibernate.orm",
     "name": "hibernate-community-dialects",
-    "version": "6.2.22.Final"
+    "version": "6.2.20.Final"
   },
   {
     "group": "org.hibernate.orm",
     "name": "hibernate-core",
-    "version": "6.2.22.Final"
+    "version": "6.2.20.Final"
   },
   {
     "group": "org.hibernate.orm",
     "name": "hibernate-envers",
-    "version": "6.2.22.Final"
+    "version": "6.2.20.Final"
   },
   {
     "group": "org.hibernate.orm",
     "name": "hibernate-graalvm",
-    "version": "6.2.22.Final"
+    "version": "6.2.20.Final"
   },
   {
     "group": "org.hibernate.orm",
     "name": "hibernate-hikaricp",
-    "version": "6.2.22.Final"
+    "version": "6.2.20.Final"
   },
   {
     "group": "org.hibernate.orm",
     "name": "hibernate-jcache",
-    "version": "6.2.22.Final"
+    "version": "6.2.20.Final"
   },
   {
     "group": "org.hibernate.orm",
     "name": "hibernate-jpamodelgen",
-    "version": "6.2.22.Final"
+    "version": "6.2.20.Final"
   },
   {
     "group": "org.hibernate.orm",
     "name": "hibernate-micrometer",
-    "version": "6.2.22.Final"
+    "version": "6.2.20.Final"
   },
   {
     "group": "org.hibernate.orm",
     "name": "hibernate-proxool",
-    "version": "6.2.22.Final"
+    "version": "6.2.20.Final"
   },
   {
     "group": "org.hibernate.orm",
     "name": "hibernate-spatial",
-    "version": "6.2.22.Final"
+    "version": "6.2.20.Final"
   },
   {
     "group": "org.hibernate.orm",
     "name": "hibernate-testing",
-    "version": "6.2.22.Final"
+    "version": "6.2.20.Final"
   },
   {
     "group": "org.hibernate.orm",
     "name": "hibernate-vibur",
-    "version": "6.2.22.Final"
+    "version": "6.2.20.Final"
   },
   {
     "group": "org.hibernate.validator",
@@ -4127,407 +4127,427 @@
   {
     "group": "org.infinispan",
     "name": "infinispan-anchored-keys",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-api",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-cachestore-jdbc",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-cachestore-jdbc-common",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-cachestore-jdbc-common-jakarta",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-cachestore-jdbc-jakarta",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-cachestore-remote",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-cachestore-rocksdb",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-cachestore-sql",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-cdi-common",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-cdi-common-jakarta",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-cdi-embedded",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-cdi-embedded-jakarta",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-cdi-remote",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-cdi-remote-jakarta",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-checkstyle",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-cli-client",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-cli-client-jakarta",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-client-hotrod",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-client-hotrod-jakarta",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-client-rest",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-client-rest-jakarta",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-cloudevents-integration",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-clustered-counter",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-clustered-lock",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-commons",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-commons-jakarta",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-commons-test",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-component-annotations",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-component-processor",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-console",
-    "version": "14.0.15.Final"
+    "version": "14.0.13.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-core",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-core-jakarta",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-extended-statistics",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-hibernate-cache-commons",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-hibernate-cache-spi",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-hibernate-cache-v60",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-hibernate-cache-v62",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-hotrod",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-hotrod-jakarta",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-jboss-marshalling",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-jcache",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-jcache-commons",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-jcache-remote",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-key-value-store-client",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
+  },
+  {
+    "group": "org.infinispan",
+    "name": "infinispan-marshaller-kryo",
+    "version": "14.0.21.Final"
+  },
+  {
+    "group": "org.infinispan",
+    "name": "infinispan-marshaller-kryo-bundle",
+    "version": "14.0.21.Final"
+  },
+  {
+    "group": "org.infinispan",
+    "name": "infinispan-marshaller-protostuff",
+    "version": "14.0.21.Final"
+  },
+  {
+    "group": "org.infinispan",
+    "name": "infinispan-marshaller-protostuff-bundle",
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-multimap",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-multimap-jakarta",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-objectfilter",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-query",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-query-core",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-query-dsl",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-query-jakarta",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-remote-query-client",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-remote-query-server",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-scripting",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-server-core",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-server-hotrod",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-server-hotrod-jakarta",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-server-memcached",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-server-resp",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-server-rest",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-server-router",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-server-runtime",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-server-testdriver-core",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-server-testdriver-core-jakarta",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-server-testdriver-junit4",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-server-testdriver-junit5",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-spring-boot-starter-embedded",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-spring-boot-starter-remote",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-spring-boot3-starter-embedded",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-spring-boot3-starter-remote",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-spring5-common",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-spring5-embedded",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-spring5-remote",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-spring6-common",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-spring6-embedded",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-spring6-remote",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-tasks",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-tasks-api",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-tools",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan",
     "name": "infinispan-tools-jakarta",
-    "version": "14.0.24.Final"
+    "version": "14.0.21.Final"
   },
   {
     "group": "org.infinispan.protostream",
@@ -4767,22 +4787,22 @@
   {
     "group": "org.jooq",
     "name": "jooq",
-    "version": "3.18.11"
+    "version": "3.18.9"
   },
   {
     "group": "org.jooq",
     "name": "jooq-codegen",
-    "version": "3.18.11"
+    "version": "3.18.9"
   },
   {
     "group": "org.jooq",
     "name": "jooq-kotlin",
-    "version": "3.18.11"
+    "version": "3.18.9"
   },
   {
     "group": "org.jooq",
     "name": "jooq-meta",
-    "version": "3.18.11"
+    "version": "3.18.9"
   },
   {
     "group": "org.junit.jupiter",
@@ -4967,12 +4987,12 @@
   {
     "group": "org.neo4j.driver",
     "name": "neo4j-java-driver",
-    "version": "5.17.0"
+    "version": "5.15.0"
   },
   {
     "group": "org.postgresql",
     "name": "postgresql",
-    "version": "42.6.1"
+    "version": "42.6.0"
   },
   {
     "group": "org.postgresql",
@@ -5122,662 +5142,662 @@
   {
     "group": "org.slf4j",
     "name": "jcl-over-slf4j",
-    "version": "2.0.12"
+    "version": "2.0.11"
   },
   {
     "group": "org.slf4j",
     "name": "jul-to-slf4j",
-    "version": "2.0.12"
+    "version": "2.0.11"
   },
   {
     "group": "org.slf4j",
     "name": "log4j-over-slf4j",
-    "version": "2.0.12"
+    "version": "2.0.11"
   },
   {
     "group": "org.slf4j",
     "name": "slf4j-api",
-    "version": "2.0.12"
+    "version": "2.0.11"
   },
   {
     "group": "org.slf4j",
     "name": "slf4j-ext",
-    "version": "2.0.12"
+    "version": "2.0.11"
   },
   {
     "group": "org.slf4j",
     "name": "slf4j-jdk-platform-logging",
-    "version": "2.0.12"
+    "version": "2.0.11"
   },
   {
     "group": "org.slf4j",
     "name": "slf4j-jdk14",
-    "version": "2.0.12"
+    "version": "2.0.11"
   },
   {
     "group": "org.slf4j",
     "name": "slf4j-log4j12",
-    "version": "2.0.12"
+    "version": "2.0.11"
   },
   {
     "group": "org.slf4j",
     "name": "slf4j-nop",
-    "version": "2.0.12"
+    "version": "2.0.11"
   },
   {
     "group": "org.slf4j",
     "name": "slf4j-reload4j",
-    "version": "2.0.12"
+    "version": "2.0.11"
   },
   {
     "group": "org.slf4j",
     "name": "slf4j-simple",
-    "version": "2.0.12"
+    "version": "2.0.11"
   },
   {
     "group": "org.springframework",
     "name": "spring-aop",
-    "version": "6.0.17"
+    "version": "6.0.16"
   },
   {
     "group": "org.springframework",
     "name": "spring-aspects",
-    "version": "6.0.17"
+    "version": "6.0.16"
   },
   {
     "group": "org.springframework",
     "name": "spring-beans",
-    "version": "6.0.17"
+    "version": "6.0.16"
   },
   {
     "group": "org.springframework",
     "name": "spring-context",
-    "version": "6.0.17"
+    "version": "6.0.16"
   },
   {
     "group": "org.springframework",
     "name": "spring-context-indexer",
-    "version": "6.0.17"
+    "version": "6.0.16"
   },
   {
     "group": "org.springframework",
     "name": "spring-context-support",
-    "version": "6.0.17"
+    "version": "6.0.16"
   },
   {
     "group": "org.springframework",
     "name": "spring-core",
-    "version": "6.0.17"
+    "version": "6.0.16"
   },
   {
     "group": "org.springframework",
     "name": "spring-core-test",
-    "version": "6.0.17"
+    "version": "6.0.16"
   },
   {
     "group": "org.springframework",
     "name": "spring-expression",
-    "version": "6.0.17"
+    "version": "6.0.16"
   },
   {
     "group": "org.springframework",
     "name": "spring-instrument",
-    "version": "6.0.17"
+    "version": "6.0.16"
   },
   {
     "group": "org.springframework",
     "name": "spring-jcl",
-    "version": "6.0.17"
+    "version": "6.0.16"
   },
   {
     "group": "org.springframework",
     "name": "spring-jdbc",
-    "version": "6.0.17"
+    "version": "6.0.16"
   },
   {
     "group": "org.springframework",
     "name": "spring-jms",
-    "version": "6.0.17"
+    "version": "6.0.16"
   },
   {
     "group": "org.springframework",
     "name": "spring-messaging",
-    "version": "6.0.17"
+    "version": "6.0.16"
   },
   {
     "group": "org.springframework",
     "name": "spring-orm",
-    "version": "6.0.17"
+    "version": "6.0.16"
   },
   {
     "group": "org.springframework",
     "name": "spring-oxm",
-    "version": "6.0.17"
+    "version": "6.0.16"
   },
   {
     "group": "org.springframework",
     "name": "spring-r2dbc",
-    "version": "6.0.17"
+    "version": "6.0.16"
   },
   {
     "group": "org.springframework",
     "name": "spring-test",
-    "version": "6.0.17"
+    "version": "6.0.16"
   },
   {
     "group": "org.springframework",
     "name": "spring-tx",
-    "version": "6.0.17"
+    "version": "6.0.16"
   },
   {
     "group": "org.springframework",
     "name": "spring-web",
-    "version": "6.0.17"
+    "version": "6.0.16"
   },
   {
     "group": "org.springframework",
     "name": "spring-webflux",
-    "version": "6.0.17"
+    "version": "6.0.16"
   },
   {
     "group": "org.springframework",
     "name": "spring-webmvc",
-    "version": "6.0.17"
+    "version": "6.0.16"
   },
   {
     "group": "org.springframework",
     "name": "spring-websocket",
-    "version": "6.0.17"
+    "version": "6.0.16"
   },
   {
     "group": "org.springframework.amqp",
     "name": "spring-amqp",
-    "version": "3.0.11"
+    "version": "3.0.10"
   },
   {
     "group": "org.springframework.amqp",
     "name": "spring-rabbit",
-    "version": "3.0.11"
+    "version": "3.0.10"
   },
   {
     "group": "org.springframework.amqp",
     "name": "spring-rabbit-junit",
-    "version": "3.0.11"
+    "version": "3.0.10"
   },
   {
     "group": "org.springframework.amqp",
     "name": "spring-rabbit-stream",
-    "version": "3.0.11"
+    "version": "3.0.10"
   },
   {
     "group": "org.springframework.amqp",
     "name": "spring-rabbit-test",
-    "version": "3.0.11"
+    "version": "3.0.10"
   },
   {
     "group": "org.springframework.batch",
     "name": "spring-batch-core",
-    "version": "5.0.5"
+    "version": "5.0.4"
   },
   {
     "group": "org.springframework.batch",
     "name": "spring-batch-infrastructure",
-    "version": "5.0.5"
+    "version": "5.0.4"
   },
   {
     "group": "org.springframework.batch",
     "name": "spring-batch-integration",
-    "version": "5.0.5"
+    "version": "5.0.4"
   },
   {
     "group": "org.springframework.batch",
     "name": "spring-batch-test",
-    "version": "5.0.5"
+    "version": "5.0.4"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-actuator",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-actuator-autoconfigure",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-autoconfigure",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-autoconfigure-processor",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-buildpack-platform",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-configuration-metadata",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-configuration-processor",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-devtools",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-docker-compose",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-jarmode-layertools",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-loader",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-loader-tools",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-properties-migrator",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-starter",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-starter-activemq",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-starter-actuator",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-starter-amqp",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-starter-aop",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-starter-artemis",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-starter-batch",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-starter-cache",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-starter-data-cassandra",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-starter-data-cassandra-reactive",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-starter-data-couchbase",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-starter-data-couchbase-reactive",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-starter-data-elasticsearch",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-starter-data-jdbc",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-starter-data-jpa",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-starter-data-ldap",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-starter-data-mongodb",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-starter-data-mongodb-reactive",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-starter-data-neo4j",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-starter-data-r2dbc",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-starter-data-redis",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-starter-data-redis-reactive",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-starter-data-rest",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-starter-freemarker",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-starter-graphql",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-starter-groovy-templates",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-starter-hateoas",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-starter-integration",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-starter-jdbc",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-starter-jersey",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-starter-jetty",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-starter-jooq",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-starter-json",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-starter-log4j2",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-starter-logging",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-starter-mail",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-starter-mustache",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-starter-oauth2-authorization-server",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-starter-oauth2-client",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-starter-oauth2-resource-server",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-starter-quartz",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-starter-reactor-netty",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-starter-rsocket",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-starter-security",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-starter-test",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-starter-thymeleaf",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-starter-tomcat",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-starter-undertow",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-starter-validation",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-starter-web",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-starter-web-services",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-starter-webflux",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-starter-websocket",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-test",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-test-autoconfigure",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.boot",
     "name": "spring-boot-testcontainers",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.data",
     "name": "spring-data-cassandra",
-    "version": "4.1.9"
+    "version": "4.1.8"
   },
   {
     "group": "org.springframework.data",
     "name": "spring-data-commons",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.data",
     "name": "spring-data-couchbase",
-    "version": "5.1.9"
+    "version": "5.1.8"
   },
   {
     "group": "org.springframework.data",
     "name": "spring-data-elasticsearch",
-    "version": "5.1.9"
+    "version": "5.1.8"
   },
   {
     "group": "org.springframework.data",
     "name": "spring-data-envers",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.data",
     "name": "spring-data-jdbc",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.data",
     "name": "spring-data-jpa",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.data",
     "name": "spring-data-keyvalue",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.data",
     "name": "spring-data-ldap",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.data",
     "name": "spring-data-mongodb",
-    "version": "4.1.9"
+    "version": "4.1.8"
   },
   {
     "group": "org.springframework.data",
     "name": "spring-data-neo4j",
-    "version": "7.1.9"
+    "version": "7.1.8"
   },
   {
     "group": "org.springframework.data",
     "name": "spring-data-r2dbc",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.data",
     "name": "spring-data-redis",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.data",
     "name": "spring-data-relational",
-    "version": "3.1.9"
+    "version": "3.1.8"
   },
   {
     "group": "org.springframework.data",
     "name": "spring-data-rest-core",
-    "version": "4.1.9"
+    "version": "4.1.8"
   },
   {
     "group": "org.springframework.data",
     "name": "spring-data-rest-hal-explorer",
-    "version": "4.1.9"
+    "version": "4.1.8"
   },
   {
     "group": "org.springframework.data",
     "name": "spring-data-rest-webmvc",
-    "version": "4.1.9"
+    "version": "4.1.8"
   },
   {
     "group": "org.springframework.graphql",
     "name": "spring-graphql",
-    "version": "1.2.5"
+    "version": "1.2.4"
   },
   {
     "group": "org.springframework.graphql",
     "name": "spring-graphql-test",
-    "version": "1.2.5"
+    "version": "1.2.4"
   },
   {
     "group": "org.springframework.hateoas",
@@ -5787,237 +5807,237 @@
   {
     "group": "org.springframework.integration",
     "name": "spring-integration-amqp",
-    "version": "6.1.6"
+    "version": "6.1.5"
   },
   {
     "group": "org.springframework.integration",
     "name": "spring-integration-camel",
-    "version": "6.1.6"
+    "version": "6.1.5"
   },
   {
     "group": "org.springframework.integration",
     "name": "spring-integration-cassandra",
-    "version": "6.1.6"
+    "version": "6.1.5"
   },
   {
     "group": "org.springframework.integration",
     "name": "spring-integration-core",
-    "version": "6.1.6"
+    "version": "6.1.5"
   },
   {
     "group": "org.springframework.integration",
     "name": "spring-integration-event",
-    "version": "6.1.6"
+    "version": "6.1.5"
   },
   {
     "group": "org.springframework.integration",
     "name": "spring-integration-feed",
-    "version": "6.1.6"
+    "version": "6.1.5"
   },
   {
     "group": "org.springframework.integration",
     "name": "spring-integration-file",
-    "version": "6.1.6"
+    "version": "6.1.5"
   },
   {
     "group": "org.springframework.integration",
     "name": "spring-integration-ftp",
-    "version": "6.1.6"
+    "version": "6.1.5"
   },
   {
     "group": "org.springframework.integration",
     "name": "spring-integration-graphql",
-    "version": "6.1.6"
+    "version": "6.1.5"
   },
   {
     "group": "org.springframework.integration",
     "name": "spring-integration-groovy",
-    "version": "6.1.6"
+    "version": "6.1.5"
   },
   {
     "group": "org.springframework.integration",
     "name": "spring-integration-hazelcast",
-    "version": "6.1.6"
+    "version": "6.1.5"
   },
   {
     "group": "org.springframework.integration",
     "name": "spring-integration-http",
-    "version": "6.1.6"
+    "version": "6.1.5"
   },
   {
     "group": "org.springframework.integration",
     "name": "spring-integration-ip",
-    "version": "6.1.6"
+    "version": "6.1.5"
   },
   {
     "group": "org.springframework.integration",
     "name": "spring-integration-jdbc",
-    "version": "6.1.6"
+    "version": "6.1.5"
   },
   {
     "group": "org.springframework.integration",
     "name": "spring-integration-jms",
-    "version": "6.1.6"
+    "version": "6.1.5"
   },
   {
     "group": "org.springframework.integration",
     "name": "spring-integration-jmx",
-    "version": "6.1.6"
+    "version": "6.1.5"
   },
   {
     "group": "org.springframework.integration",
     "name": "spring-integration-jpa",
-    "version": "6.1.6"
+    "version": "6.1.5"
   },
   {
     "group": "org.springframework.integration",
     "name": "spring-integration-kafka",
-    "version": "6.1.6"
+    "version": "6.1.5"
   },
   {
     "group": "org.springframework.integration",
     "name": "spring-integration-mail",
-    "version": "6.1.6"
+    "version": "6.1.5"
   },
   {
     "group": "org.springframework.integration",
     "name": "spring-integration-mongodb",
-    "version": "6.1.6"
+    "version": "6.1.5"
   },
   {
     "group": "org.springframework.integration",
     "name": "spring-integration-mqtt",
-    "version": "6.1.6"
+    "version": "6.1.5"
   },
   {
     "group": "org.springframework.integration",
     "name": "spring-integration-r2dbc",
-    "version": "6.1.6"
+    "version": "6.1.5"
   },
   {
     "group": "org.springframework.integration",
     "name": "spring-integration-redis",
-    "version": "6.1.6"
+    "version": "6.1.5"
   },
   {
     "group": "org.springframework.integration",
     "name": "spring-integration-rsocket",
-    "version": "6.1.6"
+    "version": "6.1.5"
   },
   {
     "group": "org.springframework.integration",
     "name": "spring-integration-scripting",
-    "version": "6.1.6"
+    "version": "6.1.5"
   },
   {
     "group": "org.springframework.integration",
     "name": "spring-integration-security",
-    "version": "6.1.6"
+    "version": "6.1.5"
   },
   {
     "group": "org.springframework.integration",
     "name": "spring-integration-sftp",
-    "version": "6.1.6"
+    "version": "6.1.5"
   },
   {
     "group": "org.springframework.integration",
     "name": "spring-integration-smb",
-    "version": "6.1.6"
+    "version": "6.1.5"
   },
   {
     "group": "org.springframework.integration",
     "name": "spring-integration-stomp",
-    "version": "6.1.6"
+    "version": "6.1.5"
   },
   {
     "group": "org.springframework.integration",
     "name": "spring-integration-stream",
-    "version": "6.1.6"
+    "version": "6.1.5"
   },
   {
     "group": "org.springframework.integration",
     "name": "spring-integration-syslog",
-    "version": "6.1.6"
+    "version": "6.1.5"
   },
   {
     "group": "org.springframework.integration",
     "name": "spring-integration-test",
-    "version": "6.1.6"
+    "version": "6.1.5"
   },
   {
     "group": "org.springframework.integration",
     "name": "spring-integration-test-support",
-    "version": "6.1.6"
+    "version": "6.1.5"
   },
   {
     "group": "org.springframework.integration",
     "name": "spring-integration-webflux",
-    "version": "6.1.6"
+    "version": "6.1.5"
   },
   {
     "group": "org.springframework.integration",
     "name": "spring-integration-websocket",
-    "version": "6.1.6"
+    "version": "6.1.5"
   },
   {
     "group": "org.springframework.integration",
     "name": "spring-integration-ws",
-    "version": "6.1.6"
+    "version": "6.1.5"
   },
   {
     "group": "org.springframework.integration",
     "name": "spring-integration-xml",
-    "version": "6.1.6"
+    "version": "6.1.5"
   },
   {
     "group": "org.springframework.integration",
     "name": "spring-integration-xmpp",
-    "version": "6.1.6"
+    "version": "6.1.5"
   },
   {
     "group": "org.springframework.integration",
     "name": "spring-integration-zeromq",
-    "version": "6.1.6"
+    "version": "6.1.5"
   },
   {
     "group": "org.springframework.integration",
     "name": "spring-integration-zip",
-    "version": "6.1.6"
+    "version": "6.1.5"
   },
   {
     "group": "org.springframework.integration",
     "name": "spring-integration-zookeeper",
-    "version": "6.1.6"
+    "version": "6.1.5"
   },
   {
     "group": "org.springframework.kafka",
     "name": "spring-kafka",
-    "version": "3.0.14"
+    "version": "3.0.13"
   },
   {
     "group": "org.springframework.kafka",
     "name": "spring-kafka-test",
-    "version": "3.0.14"
+    "version": "3.0.13"
   },
   {
     "group": "org.springframework.ldap",
     "name": "spring-ldap-core",
-    "version": "3.1.4"
+    "version": "3.1.3"
   },
   {
     "group": "org.springframework.ldap",
     "name": "spring-ldap-ldif-core",
-    "version": "3.1.4"
+    "version": "3.1.3"
   },
   {
     "group": "org.springframework.ldap",
     "name": "spring-ldap-odm",
-    "version": "3.1.4"
+    "version": "3.1.3"
   },
   {
     "group": "org.springframework.ldap",
     "name": "spring-ldap-test",
-    "version": "3.1.4"
+    "version": "3.1.3"
   },
   {
     "group": "org.springframework.restdocs",
@@ -6052,97 +6072,97 @@
   {
     "group": "org.springframework.security",
     "name": "spring-security-acl",
-    "version": "6.1.7"
+    "version": "6.1.6"
   },
   {
     "group": "org.springframework.security",
     "name": "spring-security-aspects",
-    "version": "6.1.7"
+    "version": "6.1.6"
   },
   {
     "group": "org.springframework.security",
     "name": "spring-security-cas",
-    "version": "6.1.7"
+    "version": "6.1.6"
   },
   {
     "group": "org.springframework.security",
     "name": "spring-security-config",
-    "version": "6.1.7"
+    "version": "6.1.6"
   },
   {
     "group": "org.springframework.security",
     "name": "spring-security-core",
-    "version": "6.1.7"
+    "version": "6.1.6"
   },
   {
     "group": "org.springframework.security",
     "name": "spring-security-crypto",
-    "version": "6.1.7"
+    "version": "6.1.6"
   },
   {
     "group": "org.springframework.security",
     "name": "spring-security-data",
-    "version": "6.1.7"
+    "version": "6.1.6"
   },
   {
     "group": "org.springframework.security",
     "name": "spring-security-ldap",
-    "version": "6.1.7"
+    "version": "6.1.6"
   },
   {
     "group": "org.springframework.security",
     "name": "spring-security-messaging",
-    "version": "6.1.7"
+    "version": "6.1.6"
   },
   {
     "group": "org.springframework.security",
     "name": "spring-security-oauth2-authorization-server",
-    "version": "1.1.5"
+    "version": "1.1.4"
   },
   {
     "group": "org.springframework.security",
     "name": "spring-security-oauth2-client",
-    "version": "6.1.7"
+    "version": "6.1.6"
   },
   {
     "group": "org.springframework.security",
     "name": "spring-security-oauth2-core",
-    "version": "6.1.7"
+    "version": "6.1.6"
   },
   {
     "group": "org.springframework.security",
     "name": "spring-security-oauth2-jose",
-    "version": "6.1.7"
+    "version": "6.1.6"
   },
   {
     "group": "org.springframework.security",
     "name": "spring-security-oauth2-resource-server",
-    "version": "6.1.7"
+    "version": "6.1.6"
   },
   {
     "group": "org.springframework.security",
     "name": "spring-security-rsocket",
-    "version": "6.1.7"
+    "version": "6.1.6"
   },
   {
     "group": "org.springframework.security",
     "name": "spring-security-saml2-service-provider",
-    "version": "6.1.7"
+    "version": "6.1.6"
   },
   {
     "group": "org.springframework.security",
     "name": "spring-security-taglibs",
-    "version": "6.1.7"
+    "version": "6.1.6"
   },
   {
     "group": "org.springframework.security",
     "name": "spring-security-test",
-    "version": "6.1.7"
+    "version": "6.1.6"
   },
   {
     "group": "org.springframework.security",
     "name": "spring-security-web",
-    "version": "6.1.7"
+    "version": "6.1.6"
   },
   {
     "group": "org.springframework.session",
