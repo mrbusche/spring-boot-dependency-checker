@@ -1,5 +1,5 @@
-const { parse } = require('node-html-parser');
-const { existsSync, readFileSync, writeFileSync } = require('fs');
+const {parse} = require('node-html-parser');
+const {existsSync, readFileSync, writeFileSync} = require('fs');
 const path = '.cache';
 
 const getJsonFromFile = async (filename) => {
@@ -14,10 +14,11 @@ const getComponents = async (filename) => {
 
 const getSpringBootVersion = async (components) => {
     let springBoot = components.filter(component => component.group === 'org.springframework.boot' && component.name === 'spring-boot');
-    console.log('springBoot', springBoot);
     if (springBoot.length === 0) {
         springBoot = components.filter(component => component.name === 'spring-boot');
-        console.log('springBoot', springBoot);
+    }
+    if (springBoot.length === 0) {
+        throw new Error("no spring boot version found");
     }
     return springBoot[0].version;
 }
@@ -34,22 +35,13 @@ const retrieveSimilarPackages = async (bomFile) => {
     const defaultComponents = await getDefaultSpringBootComponents(springBootVersion);
 
     const mismatchedPackages = [];
-    components.forEach(bomPackage =>
-        defaultComponents.forEach(bootPackage => {
-            if (bomPackage.group === bootPackage.group &&
-                bomPackage.name === bootPackage.name &&
-                bomPackage.version !== undefined &&
-                bomPackage.version !== bootPackage.version) {
-                mismatchedPackages.push({
-                    group: bomPackage.group,
-                    name: bomPackage.name,
-                    bomVersion: bomPackage.version,
-                    bootVersion: bootPackage.version
-                })
-            }
+    components.forEach(bomPackage => defaultComponents.forEach(bootPackage => {
+        if (bomPackage.group === bootPackage.group && bomPackage.name === bootPackage.name && bomPackage.version !== undefined && bomPackage.version !== bootPackage.version) {
+            mismatchedPackages.push({
+                group: bomPackage.group, name: bomPackage.name, bomVersion: bomPackage.version, bootVersion: bootPackage.version
+            })
         }
-        )
-    )
+    }))
     console.log(mismatchedPackages);
 
     console.log('components size', components.length);
@@ -79,15 +71,10 @@ const downloadSpringDefaultVersions = async (sbVersion) => {
             const parsedTemplate = parse(template)
             const tableBody = parsedTemplate.querySelector('table tbody');
 
-            tableBody.childNodes.forEach(child =>
-                // there's a header row we should skip
-                child.childNodes.length === 0 ? '' :
-                    versions.push({
-                        group: child.childNodes[1].rawText,
-                        name: child.childNodes[3].rawText,
-                        version: child.childNodes[5].rawText,
-                    })
-            )
+            tableBody.childNodes.forEach(child => // there's a header row we should skip
+                child.childNodes.length === 0 ? '' : versions.push({
+                    group: child.childNodes[1].rawText, name: child.childNodes[3].rawText, version: child.childNodes[5].rawText,
+                }))
             console.log(versions.length);
             await writeFileSync(`${path}/${sbVersion}.json`, JSON.stringify(versions, null, 2));
             break;
