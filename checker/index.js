@@ -1,5 +1,5 @@
-const {parse} = require('node-html-parser');
-const {existsSync, readFileSync, writeFileSync} = require('fs');
+const { parse } = require('node-html-parser');
+const { existsSync, readFileSync, writeFileSync } = require('fs');
 const path = '.cache';
 
 const getJsonFromFile = async (filename) => {
@@ -31,17 +31,17 @@ const retrieveSimilarPackages = async (bomFile) => {
     const mismatchedPackages = [];
     components.forEach(bomPackage =>
         defaultComponents.forEach(bootPackage => {
-                if (bomPackage.group === bootPackage.group &&
-                    bomPackage.name === bootPackage.name &&
-                    bomPackage.version !== bootPackage.version) {
-                    mismatchedPackages.push({
-                        group: bomPackage.group,
-                        name: bomPackage.name,
-                        bomVersion: bomPackage.version,
-                        bookVersion: bootPackage.version
-                    })
-                }
+            if (bomPackage.group === bootPackage.group &&
+                bomPackage.name === bootPackage.name &&
+                bomPackage.version !== bootPackage.version) {
+                mismatchedPackages.push({
+                    group: bomPackage.group,
+                    name: bomPackage.name,
+                    bomVersion: bomPackage.version,
+                    bookVersion: bootPackage.version
+                })
             }
+        }
         )
     )
     console.log(mismatchedPackages);
