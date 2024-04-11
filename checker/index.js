@@ -13,7 +13,12 @@ const getComponents = async (filename) => {
 }
 
 const getSpringBootVersion = async (components) => {
-    const springBoot = components.filter(component => component.group === 'org.springframework.boot' && component.name === 'spring-boot');
+    let springBoot = components.filter(component => component.group === 'org.springframework.boot' && component.name === 'spring-boot');
+    console.log('springBoot', springBoot);
+    if (springBoot.length === 0) {
+        springBoot = components.filter(component => component.name === 'spring-boot');
+        console.log('springBoot', springBoot);
+    }
     return springBoot[0].version;
 }
 
@@ -38,7 +43,7 @@ const retrieveSimilarPackages = async (bomFile) => {
                     group: bomPackage.group,
                     name: bomPackage.name,
                     bomVersion: bomPackage.version,
-                    bookVersion: bootPackage.version
+                    bootVersion: bootPackage.version
                 })
             }
         }
