@@ -1,6 +1,6 @@
 const {parse} = require('node-html-parser');
-const {existsSync, readFileSync, writeFileSync} = require('fs');
-const path = '.cache';
+const {existsSync, mkdirSync, readFileSync, writeFileSync} = require('fs');
+const cachePath = '.cache';
 
 const getJsonFromFile = async (filename) => {
     const data = readFileSync(filename, 'utf8');
@@ -25,7 +25,7 @@ const getSpringBootVersion = async (components) => {
 
 const getDefaultSpringBootComponents = async (filename) => {
     await getSpringDefaultVersions(filename)
-    return getJsonFromFile(`${path}/${filename}.json`);
+    return getJsonFromFile(`${cachePath}/${filename}.json`);
 }
 
 const retrieveSimilarPackages = async (bomFile) => {
@@ -38,11 +38,14 @@ const retrieveSimilarPackages = async (bomFile) => {
     components.forEach(bomPackage => defaultComponents.forEach(bootPackage => {
         if (bomPackage.group === bootPackage.group && bomPackage.name === bootPackage.name && bomPackage.version !== undefined && bomPackage.version !== bootPackage.version) {
             mismatchedPackages.push({
-                group: bomPackage.group, name: bomPackage.name, bomVersion: bomPackage.version, bootVersion: bootPackage.version
+                group: bomPackage.group,
+                name: bomPackage.name,
+                bomVersion: bomPackage.version,
+                bootVersion: bootPackage.version
             })
         }
     }))
-    console.log(mismatchedPackages);
+    console.log('mismatchedPackages', mismatchedPackages);
 
     console.log('components size', components.length);
     console.log('defaultComponents size', defaultComponents.length);
@@ -51,13 +54,14 @@ const retrieveSimilarPackages = async (bomFile) => {
 
 const getSpringDefaultVersions = async (sbVersion) => {
     try {
-        if (!existsSync(`${path}/${sbVersion}.json`)) {
+        await ensureDirExists();
+        if (!existsSync(`${cachePath}/${sbVersion}.json`)) {
             await downloadSpringDefaultVersions(sbVersion);
         } else {
             console.log('file already exists');
         }
     } catch (err) {
-        console.log('err', err)
+        console.error('err retrieving spring default versions', err)
     }
 }
 
@@ -73,16 +77,24 @@ const downloadSpringDefaultVersions = async (sbVersion) => {
 
             tableBody.childNodes.forEach(child => // there's a header row we should skip
                 child.childNodes.length === 0 ? '' : versions.push({
-                    group: child.childNodes[1].rawText, name: child.childNodes[3].rawText, version: child.childNodes[5].rawText,
+                    group: child.childNodes[1].rawText,
+                    name: child.childNodes[3].rawText,
+                    version: child.childNodes[5].rawText,
                 }))
             console.log(versions.length);
-            await writeFileSync(`${path}/${sbVersion}.json`, JSON.stringify(versions, null, 2));
+            await writeFileSync(`${cachePath}/${sbVersion}.json`, JSON.stringify(versions, null, 2));
             break;
         }
         // status "Not Found"
         case 404:
             console.log('Not Found');
             break;
+    }
+}
+
+const ensureDirExists = async () => {
+    if (!existsSync(cachePath)) {
+        mkdirSync(cachePath);
     }
 }
 
