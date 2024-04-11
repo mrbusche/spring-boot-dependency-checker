@@ -96,6 +96,6 @@ const downloadSpringDefaultVersions = async (sbVersion) => {
 
 (async () => {
     const start = Date.now()
-    await retrieveSimilarPackages('../samples/bom_3.1.9.json');
+    await retrieveSimilarPackages(process.argv[2]);
     console.log(`Process took ${Date.now() - start} ms`);
 })();
