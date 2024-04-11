@@ -38,6 +38,7 @@ const retrieveSimilarPackages = async (bomFile) => {
         defaultComponents.forEach(bootPackage => {
             if (bomPackage.group === bootPackage.group &&
                 bomPackage.name === bootPackage.name &&
+                bomPackage.version !== undefined &&
                 bomPackage.version !== bootPackage.version) {
                 mismatchedPackages.push({
                     group: bomPackage.group,
@@ -51,7 +52,6 @@ const retrieveSimilarPackages = async (bomFile) => {
     )
     console.log(mismatchedPackages);
 
-    // bom_3.1.9.json line 1139 overwritten
     console.log('components size', components.length);
     console.log('defaultComponents size', defaultComponents.length);
     console.log('matchingPackages size', mismatchedPackages.length);
