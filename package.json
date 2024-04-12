@@ -4,6 +4,7 @@
   "description": "Spring Boot Dependency Tracker",
   "main": "index.js",
   "scripts": {
+    "prettier:fix": "prettier write .",
     "test": "test"
   },
   "author": "Matt Busche <mrbusche@gmail.com>",
@@ -20,5 +21,10 @@
   },
   "dependencies": {
     "node-html-parser": "^6.1.13"
-  }
+  },
+  "devDependencies": {
+    "mocha": "^10.4.0",
+    "prettier": "^3.2.5"
+  },
+  "type": "module"
 }

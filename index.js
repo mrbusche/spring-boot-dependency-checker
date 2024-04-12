@@ -1,32 +1,33 @@
-const {parse} = require('node-html-parser');
-const {existsSync, mkdirSync, readFileSync, writeFileSync} = require('fs');
+import parse from 'node-html-parser';
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
+
 const cachePath = '.cache';
 
 const getJsonFromFile = async (filename) => {
     const data = readFileSync(filename, 'utf8');
     return JSON.parse(data);
-}
+};
 
 const getComponents = async (filename) => {
-    const parsedData = await getJsonFromFile(filename)
+    const parsedData = await getJsonFromFile(filename);
     return parsedData.components;
-}
+};
 
-const getSpringBootVersion = async (components) => {
+export const getSpringBootVersion = async (components) => {
     let springBoot = components.filter(component => component.group === 'org.springframework.boot' && component.name === 'spring-boot');
     if (springBoot.length === 0) {
         springBoot = components.filter(component => component.name === 'spring-boot');
     }
     if (springBoot.length === 0) {
-        throw new Error("no spring boot version found");
+        throw new Error('no spring boot version found');
     }
     return springBoot[0].version;
-}
+};
 
 const getDefaultSpringBootComponents = async (filename) => {
-    await getSpringDefaultVersions(filename)
+    await getSpringDefaultVersions(filename);
     return getJsonFromFile(`${cachePath}/${filename}.json`);
-}
+};
 
 const retrieveSimilarPackages = async (bomFile) => {
     const components = await getComponents(bomFile);
@@ -41,16 +42,16 @@ const retrieveSimilarPackages = async (bomFile) => {
                 group: bomPackage.group,
                 name: bomPackage.name,
                 bomVersion: bomPackage.version,
-                bootVersion: bootPackage.version
-            })
+                bootVersion: bootPackage.version,
+            });
         }
-    }))
+    }));
     console.log('mismatchedPackages', mismatchedPackages);
 
     console.log('components size', components.length);
     console.log('defaultComponents size', defaultComponents.length);
     console.log('matchingPackages size', mismatchedPackages.length);
-}
+};
 
 const getSpringDefaultVersions = async (sbVersion) => {
     try {
@@ -61,9 +62,9 @@ const getSpringDefaultVersions = async (sbVersion) => {
             console.log('file already exists');
         }
     } catch (err) {
-        console.error('err retrieving spring default versions', err)
+        console.error('error retrieving spring default versions', err);
     }
-}
+};
 
 const downloadSpringDefaultVersions = async (sbVersion) => {
     const response = await fetch(`https://docs.spring.io/spring-boot/docs/${sbVersion}/reference/html/dependency-versions.html`);
@@ -72,7 +73,7 @@ const downloadSpringDefaultVersions = async (sbVersion) => {
         // status "OK"
         case 200: {
             const template = await response.text();
-            const parsedTemplate = parse(template)
+            const parsedTemplate = parse(template);
             const tableBody = parsedTemplate.querySelector('table tbody');
 
             tableBody.childNodes.forEach(child => // there's a header row we should skip
@@ -80,7 +81,7 @@ const downloadSpringDefaultVersions = async (sbVersion) => {
                     group: child.childNodes[1].rawText,
                     name: child.childNodes[3].rawText,
                     version: child.childNodes[5].rawText,
-                }))
+                }));
             console.log(versions.length);
             await writeFileSync(`${cachePath}/${sbVersion}.json`, JSON.stringify(versions, null, 2));
             break;
@@ -90,16 +91,16 @@ const downloadSpringDefaultVersions = async (sbVersion) => {
             console.log('Not Found');
             break;
     }
-}
+};
 
 const ensureDirExists = async () => {
     if (!existsSync(cachePath)) {
         mkdirSync(cachePath);
     }
-}
+};
 
 (async () => {
-    const start = Date.now()
+    const start = Date.now();
     await retrieveSimilarPackages(process.argv[2]);
     console.log(`Process took ${Date.now() - start} ms`);
 })();
