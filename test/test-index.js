@@ -1,4 +1,4 @@
-import assert from 'node:assert';
+import { rejects, strictEqual } from 'node:assert';
 import { getSpringBootVersion } from '../index.js';
 
 describe('test getSpringBootVersion', () => {
@@ -7,7 +7,7 @@ describe('test getSpringBootVersion', () => {
             'group': 'org.springframework.boot', 'name': 'spring-boot', 'version': '3.1.9',
         }];
         const springBootVersion = await getSpringBootVersion(components);
-        assert.strictEqual(springBootVersion, '3.1.9');
+        strictEqual(springBootVersion, '3.1.9');
     });
 
     it('should get spring boot with only name and version', async () => {
@@ -15,13 +15,13 @@ describe('test getSpringBootVersion', () => {
             'name': 'spring-boot', 'version': '3.1.1',
         }];
         const springBootVersion = await getSpringBootVersion(components);
-        assert.strictEqual(springBootVersion, '3.1.1');
+        strictEqual(springBootVersion, '3.1.1');
     });
 
-    it('should throw an error when spring boot versio is not found', async () => {
+    it('should throw an error when spring boot version is not found', async () => {
         const components = [{}];
         // const springBootVersion = await getSpringBootVersion(components);
-        await assert.rejects(async () => {
+        await rejects(async () => {
             await getSpringBootVersion(components);
         }, Error('no spring boot version found'));
     });
