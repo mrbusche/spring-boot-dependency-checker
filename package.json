@@ -26,5 +26,8 @@
     "mocha": "10.4.0",
     "prettier": "3.2.5"
   },
-  "type": "module"
+  "type": "module",
+  "bin": {
+    "spring-boot-checker": "./bin/spring-boot-dependency-checker"
+  }
 }
