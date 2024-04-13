@@ -1,4 +1,4 @@
-import parse from 'node-html-parser';
+import { parse } from 'node-html-parser';
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
 
 const cachePath = '.cache';
@@ -14,14 +14,14 @@ const getComponents = async (filename) => {
 };
 
 export const getSpringBootVersion = async (components) => {
-    let springBoot = components.filter(component => component.group === 'org.springframework.boot' && component.name === 'spring-boot');
-    if (springBoot.length === 0) {
-        springBoot = components.filter(component => component.name === 'spring-boot');
+    let springBoot = components.find(component => component.group === 'org.springframework.boot' && component.name === 'spring-boot');
+    if (springBoot === undefined) {
+        springBoot = components.find(component => component.name === 'spring-boot');
     }
-    if (springBoot.length === 0) {
+    if (springBoot === undefined) {
         throw new Error('no spring boot version found');
     }
-    return springBoot[0].version;
+    return springBoot.version;
 };
 
 const getDefaultSpringBootComponents = async (filename) => {
@@ -38,19 +38,17 @@ const retrieveSimilarPackages = async (bomFile) => {
     const mismatchedPackages = [];
     components.forEach(bomPackage => defaultComponents.forEach(bootPackage => {
         if (bomPackage.group === bootPackage.group && bomPackage.name === bootPackage.name && bomPackage.version !== undefined && bomPackage.version !== bootPackage.version) {
-            mismatchedPackages.push({
-                group: bomPackage.group,
-                name: bomPackage.name,
-                bomVersion: bomPackage.version,
-                bootVersion: bootPackage.version,
-            });
+            const existingMatches = mismatchedPackages.find(mismatchedPackage => mismatchedPackage.group === bomPackage.group && mismatchedPackage.name === bomPackage.name && mismatchedPackage.bomVersion === bomPackage.version && mismatchedPackage.bootVersion === bootPackage.version);
+            if (!existingMatches) {
+                mismatchedPackages.push(new Package(bomPackage.group, bomPackage.name, bomPackage.version, bootPackage.version));
+            }
         }
     }));
-    console.log('mismatchedPackages', mismatchedPackages);
 
-    console.log('components size', components.length);
-    console.log('defaultComponents size', defaultComponents.length);
-    console.log('matchingPackages size', mismatchedPackages.length);
+    console.log('mismatchedPackages', mismatchedPackages);
+    // console.log('components size', components.length);
+    // console.log('defaultComponents size', defaultComponents.length);
+    // console.log('matchingPackages size', mismatchedPackages.length);
 };
 
 const getSpringDefaultVersions = async (sbVersion) => {
@@ -98,6 +96,16 @@ const ensureDirExists = async () => {
         mkdirSync(cachePath);
     }
 };
+
+class Package {
+    constructor(group, name, bomVersion, bootVersion) {
+        this.group = group;
+        this.name = name;
+        this.bomVersion = bomVersion;
+        this.bootVersion = bootVersion;
+
+    }
+}
 
 (async () => {
     const start = Date.now();
