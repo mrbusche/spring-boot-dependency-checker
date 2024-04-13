@@ -29,7 +29,7 @@ const getDefaultSpringBootComponents = async (filename) => {
     return getJsonFromFile(`${cachePath}/${filename}.json`);
 };
 
-const retrieveSimilarPackages = async (bomFile) => {
+export const retrieveSimilarPackages = async (bomFile) => {
     const components = await getComponents(bomFile);
     const springBootVersion = await getSpringBootVersion(components);
     console.log('springBootVersion', springBootVersion);
@@ -107,8 +107,8 @@ class Package {
     }
 }
 
-(async () => {
-    const start = Date.now();
-    await retrieveSimilarPackages(process.argv[2]);
-    console.log(`Process took ${Date.now() - start} ms`);
-})();
+// (async () => {
+//     const start = Date.now();
+//     await retrieveSimilarPackages(process.argv[2]);
+//     console.log(`Process took ${Date.now() - start} ms`);
+// })();
