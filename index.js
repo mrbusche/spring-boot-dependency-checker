@@ -3,12 +3,12 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
 
 const cachePath = '.cache';
 
-const getJsonFromFile = async (filename) => {
+export const getJsonFromFile = async (filename) => {
     const data = readFileSync(filename, 'utf8');
     return JSON.parse(data);
 };
 
-const getComponents = async (filename) => {
+export const getComponents = async (filename) => {
     const parsedData = await getJsonFromFile(filename);
     return parsedData.components;
 };
@@ -19,7 +19,7 @@ export const getSpringBootVersion = async (components) => {
         springBoot = components.find(component => component.name === 'spring-boot');
     }
     if (springBoot === undefined) {
-        throw new Error('no spring boot version found');
+        throw new Error('No Spring Boot version found');
     }
     return springBoot.version;
 };
@@ -32,7 +32,7 @@ const getDefaultSpringBootComponents = async (filename) => {
 export const retrieveSimilarPackages = async (bomFile) => {
     const components = await getComponents(bomFile);
     const springBootVersion = await getSpringBootVersion(components);
-    console.log('springBootVersion', springBootVersion);
+    console.log('Detected Spring Boot Version', springBootVersion);
     const defaultComponents = await getDefaultSpringBootComponents(springBootVersion);
 
     const mismatchedPackages = [];
@@ -46,9 +46,6 @@ export const retrieveSimilarPackages = async (bomFile) => {
     }));
 
     console.log('mismatchedPackages', mismatchedPackages);
-    // console.log('components size', components.length);
-    // console.log('defaultComponents size', defaultComponents.length);
-    // console.log('matchingPackages size', mismatchedPackages.length);
 };
 
 const getSpringDefaultVersions = async (sbVersion) => {
@@ -57,10 +54,10 @@ const getSpringDefaultVersions = async (sbVersion) => {
         if (!existsSync(`${cachePath}/${sbVersion}.json`)) {
             await downloadSpringDefaultVersions(sbVersion);
         } else {
-            console.log('file already exists');
+            console.log('Spring Boot default versions file already exists in cache.');
         }
     } catch (err) {
-        console.error('error retrieving spring default versions', err);
+        console.error('Error retrieving spring default versions', err);
     }
 };
 
