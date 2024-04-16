@@ -5,4 +5,5 @@ A small utility that finds manually overridden dependencies in an SBOM for a Spr
 ## Usage
 
 `npm install -g spring-boot-dependency-checker`
+
 `spring-boot-dependency-checker location/to/sbom.json`
