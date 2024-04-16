@@ -1,7 +1,7 @@
 {
-  "name": "spring-boot-dependency-tracker",
+  "name": "spring-boot-dependency-checker",
   "version": "0.0.1",
-  "description": "Spring Boot Dependency Tracker",
+  "description": "Spring Boot Dependency Checker",
   "main": "index.js",
   "scripts": {
     "prettier:fix": "prettier write .",
@@ -11,7 +11,7 @@
   "license": "\tGPL-3.0-or-later",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mrbusche/spring-boot-dependency-tracker.git"
+    "url": "git+https://github.com/mrbusche/spring-boot-dependency-checker.git"
   },
   "prettier": {
     "trailingComma": "all",
@@ -28,7 +28,7 @@
   },
   "type": "module",
   "bin": {
-    "spring-boot-checker": "bin/spring-boot-dependency-checker"
+    "spring-boot-dependency-checker": "bin/spring-boot-dependency-checker"
   },
   "keywords": [
     "spring boot",
