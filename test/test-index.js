@@ -1,4 +1,4 @@
-import { rejects, strictEqual } from 'node:assert';
+import { strictEqual } from 'node:assert';
 import { writeFileSync } from 'fs';
 import { unlink } from 'node:fs';
 import { getComponents, getJsonFromFile, getSpringBootVersion } from '../index.js';
@@ -60,11 +60,9 @@ describe('test getSpringBootVersion', () => {
         strictEqual(springBootVersion, '3.1.1');
     });
 
-    it('should throw an error when spring boot version is not found', async () => {
+    it('should return empty string when spring boot version is not found', async () => {
         const components = [{}];
-        // const springBootVersion = await getSpringBootVersion(components);
-        await rejects(async () => {
-            await getSpringBootVersion(components);
-        }, Error('No Spring Boot version found'));
+        const springBootVersion = await getSpringBootVersion(components);
+        strictEqual(springBootVersion, '');
     });
 });

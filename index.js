@@ -17,9 +17,10 @@ export const getSpringBootVersion = async (components) => {
     let springBoot = components.find(component => component.group === 'org.springframework.boot' && component.name === 'spring-boot');
     if (springBoot === undefined) {
         springBoot = components.find(component => component.name === 'spring-boot');
-    }
-    if (springBoot === undefined) {
-        throw new Error('No Spring Boot version found');
+        if (springBoot === undefined) {
+            console.log('No Spring Boot version found');
+            return '';
+        }
     }
     return springBoot.version;
 };
@@ -32,20 +33,22 @@ const getDefaultSpringBootComponents = async (filename) => {
 export const retrieveSimilarPackages = async (bomFile) => {
     const components = await getComponents(bomFile);
     const springBootVersion = await getSpringBootVersion(components);
-    console.log('Detected Spring Boot Version', springBootVersion);
-    const defaultComponents = await getDefaultSpringBootComponents(springBootVersion);
+    if (springBootVersion) {
+        console.log('Detected Spring Boot Version', springBootVersion);
+        const defaultComponents = await getDefaultSpringBootComponents(springBootVersion);
 
-    const mismatchedPackages = [];
-    components.forEach(bomPackage => defaultComponents.forEach(bootPackage => {
-        if (bomPackage.group === bootPackage.group && bomPackage.name === bootPackage.name && bomPackage.version !== undefined && bomPackage.version !== bootPackage.version) {
-            const existingMatches = mismatchedPackages.find(mismatchedPackage => mismatchedPackage.group === bomPackage.group && mismatchedPackage.name === bomPackage.name && mismatchedPackage.bomVersion === bomPackage.version && mismatchedPackage.bootVersion === bootPackage.version);
-            if (!existingMatches) {
-                mismatchedPackages.push(new Package(bomPackage.group, bomPackage.name, bomPackage.version, bootPackage.version));
+        const mismatchedPackages = [];
+        components.forEach(bomPackage => defaultComponents.forEach(bootPackage => {
+            if (bomPackage.group === bootPackage.group && bomPackage.name === bootPackage.name && bomPackage.version !== undefined && bomPackage.version !== bootPackage.version) {
+                const existingMatches = mismatchedPackages.find(mismatchedPackage => mismatchedPackage.group === bomPackage.group && mismatchedPackage.name === bomPackage.name && mismatchedPackage.bomVersion === bomPackage.version && mismatchedPackage.bootVersion === bootPackage.version);
+                if (!existingMatches) {
+                    mismatchedPackages.push(new Package(bomPackage.group, bomPackage.name, bomPackage.version, bootPackage.version));
+                }
             }
-        }
-    }));
+        }));
 
-    console.log('mismatchedPackages', mismatchedPackages);
+        console.log('mismatchedPackages', mismatchedPackages);
+    }
 };
 
 const getSpringDefaultVersions = async (sbVersion) => {
