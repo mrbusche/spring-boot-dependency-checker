@@ -10,8 +10,8 @@ describe('test file reading', () => {
         const testFile = {
             components: [{
                 'name': 'spring-boot', 'version': '3.1.1',
-            }]
-        }
+            }],
+        };
         await writeFileSync(filename, JSON.stringify(testFile, null, 2));
 
         const jsonData = await getJsonFromFile(filename);
@@ -21,12 +21,12 @@ describe('test file reading', () => {
         strictEqual(jsonData.components[0].version, '3.1.1');
     });
 
-    it('should retrieve components', async () => {
+    it('should retrieve components when they exist', async () => {
         const testFile = {
             components: [{
                 'name': 'new-name', 'version': '7.1.19',
-            }]
-        }
+            }],
+        };
         await writeFileSync(filename, JSON.stringify(testFile, null, 2));
 
         const jsonData = await getComponents(filename);
@@ -36,11 +36,24 @@ describe('test file reading', () => {
         strictEqual(jsonData[0].version, '7.1.19');
     });
 
+    it('should gracefully exit when components do not exist', async () => {
+        const testFile = {
+            bananas: [{
+                'name': 'new-name', 'version': '7.1.19',
+            }],
+        };
+        await writeFileSync(filename, JSON.stringify(testFile, null, 2));
+
+        const jsonData = await getComponents(filename);
+
+        strictEqual(jsonData, undefined);
+    });
+
     after(() => {
         unlink(filename, (err) => {
             if (err) throw err;
         });
-    })
+    });
 });
 
 describe('test getSpringBootVersion', () => {
