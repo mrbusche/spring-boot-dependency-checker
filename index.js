@@ -47,7 +47,7 @@ export const retrieveSimilarPackages = async (bomFile) => {
             }
         }));
 
-        console.log('mismatchedPackages', mismatchedPackages);
+        console.log('Mismatched Packages', mismatchedPackages);
     }
 };
 
