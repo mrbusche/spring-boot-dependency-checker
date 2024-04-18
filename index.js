@@ -4,8 +4,12 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
 const cachePath = '.cache';
 
 export const getJsonFromFile = async (filename) => {
-    const data = readFileSync(filename, 'utf8');
-    return JSON.parse(data);
+    try {
+        const data = readFileSync(filename, 'utf8');
+        return JSON.parse(data);
+    } catch (err) {
+        return [];
+    }
 };
 
 export const getComponents = async (filename) => {
@@ -37,17 +41,22 @@ export const retrieveSimilarPackages = async (bomFile) => {
         console.log('Detected Spring Boot Version', springBootVersion);
         const defaultComponents = await getDefaultSpringBootComponents(springBootVersion);
 
-        const mismatchedPackages = [];
-        components.forEach(bomPackage => defaultComponents.forEach(bootPackage => {
-            if (bomPackage.group === bootPackage.group && bomPackage.name === bootPackage.name && bomPackage.version !== undefined && bomPackage.version !== bootPackage.version) {
-                const existingMatches = mismatchedPackages.find(mismatchedPackage => mismatchedPackage.group === bomPackage.group && mismatchedPackage.name === bomPackage.name && mismatchedPackage.bomVersion === bomPackage.version && mismatchedPackage.bootVersion === bootPackage.version);
-                if (!existingMatches) {
-                    mismatchedPackages.push(new Package(bomPackage.group, bomPackage.name, bomPackage.version, bootPackage.version));
+        if (defaultComponents.length) {
+            const mismatchedPackages = [];
+            components.forEach(bomPackage => defaultComponents.forEach(bootPackage => {
+                if (bomPackage.group === bootPackage.group && bomPackage.name === bootPackage.name && bomPackage.version !== undefined && bomPackage.version !== bootPackage.version) {
+                    const existingMatches = mismatchedPackages.find(mismatchedPackage => mismatchedPackage.group === bomPackage.group && mismatchedPackage.name === bomPackage.name && mismatchedPackage.bomVersion === bomPackage.version && mismatchedPackage.bootVersion === bootPackage.version);
+                    if (!existingMatches) {
+                        mismatchedPackages.push(new Package(bomPackage.group, bomPackage.name, bomPackage.version, bootPackage.version));
+                    }
                 }
-            }
-        }));
+            }));
 
-        console.log('Mismatched Packages', mismatchedPackages);
+            console.log('Mismatched Package Count - ', mismatchedPackages.length);
+            console.log('Mismatched Packages', mismatchedPackages);
+        } else {
+            console.log('Spring Boot default versions URL no longer exists.');
+        }
     }
 };
 
@@ -80,13 +89,12 @@ const downloadSpringDefaultVersions = async (sbVersion) => {
                     name: child.childNodes[3].rawText,
                     version: child.childNodes[5].rawText,
                 }));
-            console.log(versions.length);
             await writeFileSync(`${cachePath}/${sbVersion}.json`, JSON.stringify(versions, null, 2));
             break;
         }
-        // status "Not Found"
         case 404:
-            console.log('Not Found');
+            await writeFileSync(`${cachePath}/${sbVersion}.json`, JSON.stringify(versions, null, 2));
+            console.log('URL not found - Spring Boot default versions URL no longer exists.');
             break;
     }
 };
