@@ -45,14 +45,14 @@ export const retrieveSimilarPackages = async (bomFile) => {
             const mismatchedPackages = [];
             components.forEach(bomPackage => defaultComponents.forEach(bootPackage => {
                 if (bomPackage.group === bootPackage.group && bomPackage.name === bootPackage.name && bomPackage.version !== undefined && bomPackage.version !== bootPackage.version) {
-                    const existingMatches = mismatchedPackages.find(mismatchedPackage => mismatchedPackage.group === bomPackage.group && mismatchedPackage.name === bomPackage.name && mismatchedPackage.bomVersion === bomPackage.version && mismatchedPackage.bootVersion === bootPackage.version);
+                    const existingMatches = mismatchedPackages.find(mismatchedPackage => mismatchedPackage.group === bomPackage.group && mismatchedPackage.name === bomPackage.name && mismatchedPackage.sbomVersion === bomPackage.version && mismatchedPackage.bootVersion === bootPackage.version);
                     if (!existingMatches) {
                         mismatchedPackages.push(new Package(bomPackage.group, bomPackage.name, bomPackage.version, bootPackage.version));
                     }
                 }
             }));
 
-            console.log('Mismatched Package Count - ', mismatchedPackages.length);
+            console.log('Mismatched Package Count -', mismatchedPackages.length);
             console.log('Mismatched Packages', mismatchedPackages);
         } else {
             console.log('Spring Boot default versions URL no longer exists.');
@@ -106,10 +106,10 @@ const ensureDirExists = async () => {
 };
 
 class Package {
-    constructor(group, name, bomVersion, bootVersion) {
+    constructor(group, name, sbomVersion, bootVersion) {
         this.group = group;
         this.name = name;
-        this.bomVersion = bomVersion;
+        this.sbomVersion = sbomVersion;
         this.bootVersion = bootVersion;
 
     }
