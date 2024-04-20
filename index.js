@@ -29,7 +29,7 @@ export const getSpringBootVersion = async (components) => {
     return springBoot.version;
 };
 
-const getDefaultSpringBootComponents = async (filename) => {
+export const getDefaultSpringBootVersions = async (filename) => {
     await getSpringDefaultVersions(filename);
     return getJsonFromFile(`${cachePath}/dependencies_${filename}.json`);
 };
@@ -39,11 +39,11 @@ export const retrieveSimilarPackages = async (bomFile) => {
     const springBootVersion = await getSpringBootVersion(components);
     if (springBootVersion) {
         console.log('Detected Spring Boot Version', springBootVersion);
-        const defaultComponents = await getDefaultSpringBootComponents(springBootVersion);
+        const defaultVersions = await getDefaultSpringBootVersions(springBootVersion);
 
-        if (defaultComponents.length) {
+        if (defaultVersions.length) {
             const mismatchedPackages = [];
-            components.forEach(bomPackage => defaultComponents.forEach(bootPackage => {
+            components.forEach(bomPackage => defaultVersions.forEach(bootPackage => {
                 if (bomPackage.group === bootPackage.group && bomPackage.name === bootPackage.name && bomPackage.version !== undefined && bomPackage.version !== bootPackage.version) {
                     const existingMatches = mismatchedPackages.find(mismatchedPackage => mismatchedPackage.group === bomPackage.group && mismatchedPackage.name === bomPackage.name && mismatchedPackage.sbomVersion === bomPackage.version && mismatchedPackage.bootVersion === bootPackage.version);
                     if (!existingMatches) {
@@ -60,7 +60,7 @@ export const retrieveSimilarPackages = async (bomFile) => {
     }
 };
 
-const getSpringDefaultVersions = async (sbVersion) => {
+export const getSpringDefaultVersions = async (sbVersion) => {
     try {
         await ensureDirExists();
         if (!existsSync(`${cachePath}/dependencies_${sbVersion}.json`)) {
@@ -99,7 +99,7 @@ const downloadSpringDefaultVersions = async (sbVersion) => {
     }
 };
 
-const ensureDirExists = async () => {
+export const ensureDirExists = async () => {
     if (!existsSync(cachePath)) {
         mkdirSync(cachePath);
     }
@@ -115,8 +115,8 @@ class Package {
     }
 }
 
-// (async () => {
-//     const start = Date.now();
-//     await retrieveSimilarPackages(process.argv[2]);
-//     console.log(`Process took ${Date.now() - start} ms`);
-// })();
+(async () => {
+    const start = Date.now();
+    await retrieveSimilarPackages(process.argv[2]);
+    console.log(`Process took ${Date.now() - start} ms`);
+})();
