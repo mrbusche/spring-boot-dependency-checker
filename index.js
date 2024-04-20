@@ -31,7 +31,7 @@ export const getSpringBootVersion = async (components) => {
 
 const getDefaultSpringBootComponents = async (filename) => {
     await getSpringDefaultVersions(filename);
-    return getJsonFromFile(`${cachePath}/${filename}.json`);
+    return getJsonFromFile(`${cachePath}/dependencies_${filename}.json`);
 };
 
 export const retrieveSimilarPackages = async (bomFile) => {
@@ -63,7 +63,7 @@ export const retrieveSimilarPackages = async (bomFile) => {
 const getSpringDefaultVersions = async (sbVersion) => {
     try {
         await ensureDirExists();
-        if (!existsSync(`${cachePath}/${sbVersion}.json`)) {
+        if (!existsSync(`${cachePath}/dependencies_${sbVersion}.json`)) {
             await downloadSpringDefaultVersions(sbVersion);
         } else {
             console.log('Spring Boot default versions file already exists in cache.');
@@ -89,11 +89,11 @@ const downloadSpringDefaultVersions = async (sbVersion) => {
                     name: child.childNodes[3].rawText,
                     version: child.childNodes[5].rawText,
                 }));
-            await writeFileSync(`${cachePath}/${sbVersion}.json`, JSON.stringify(versions, null, 2));
+            await writeFileSync(`${cachePath}/dependencies_${sbVersion}.json`, JSON.stringify(versions, null, 2));
             break;
         }
         case 404:
-            await writeFileSync(`${cachePath}/${sbVersion}.json`, JSON.stringify(versions, null, 2));
+            await writeFileSync(`${cachePath}/dependencies_${sbVersion}.json`, JSON.stringify(versions, null, 2));
             console.log('URL not found - Spring Boot default versions URL no longer exists.');
             break;
     }
