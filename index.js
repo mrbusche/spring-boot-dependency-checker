@@ -105,7 +105,7 @@ export const ensureDirExists = async () => {
     }
 };
 
-class Package {
+export class Package {
     constructor(group, name, sbomVersion, bootVersion) {
         this.group = group;
         this.name = name;
@@ -117,6 +117,7 @@ class Package {
 
 (async () => {
     const start = Date.now();
+    console.log('Calling index.js');
     await retrieveSimilarPackages(process.argv[2]);
     console.log(`Process took ${Date.now() - start} ms`);
 })();
