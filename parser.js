@@ -8,15 +8,16 @@ const cachePath = '.cache';
 const getXMLFromFile = async (filename) => {
     try {
         const parser = new XMLParser();
-        const xmlData = readFileSync('pom.xml', 'utf8');
+        const xmlData = readFileSync(filename, 'utf8');
         return parser.parse(xmlData);
     } catch (err) {
         return [];
     }
 };
 
-export const getProperties = async (parsedPom) => {
-    return parsedPom.project.properties;
+export const getPomProperties = async (parsedPom) => {
+    const properties = parsedPom.project.properties;
+    return Object.keys(properties);
 };
 
 const getSpringBootProperties = async (filename) => {
@@ -24,12 +25,12 @@ const getSpringBootProperties = async (filename) => {
     return getJsonFromFile(`${cachePath}/properties_${filename}.json`);
 };
 
-export const getDependenciesWithVersions = async (parsedPom) => {
+export const getPomDependenciesWithVersions = async (parsedPom) => {
     return parsedPom.project.dependencies.dependency.filter(dep => dep.version);
 };
 
 const getPomSpringBootVersion = async (parsedPom) => {
-    if (parsedPom.project.parent.groupId === 'org.springframework.boot' && parsedPom.project.parent.artifactId == 'spring-boot-starter-parent') {
+    if (parsedPom.project.parent.groupId === 'org.springframework.boot' && parsedPom.project.parent.artifactId === 'spring-boot-starter-parent') {
         return parsedPom.project.parent.version;
     }
     console.log('No Spring Boot version found.');
@@ -37,7 +38,7 @@ const getPomSpringBootVersion = async (parsedPom) => {
 };
 
 export const retrieveSimilarPomPackages = async (parsedPom) => {
-    const pomDependenciesWithVersions = await getDependenciesWithVersions(parsedPom);
+    const pomDependenciesWithVersions = await getPomDependenciesWithVersions(parsedPom);
     const springBootVersion = await getPomSpringBootVersion(parsedPom);
     if (springBootVersion) {
         console.log('Detected Spring Boot Version', springBootVersion);
@@ -47,15 +48,38 @@ export const retrieveSimilarPomPackages = async (parsedPom) => {
             const mismatchedPackages = [];
             pomDependenciesWithVersions.forEach(pomDependency => defaultVersions.forEach(bootPackage => {
                 if (pomDependency.groupId === bootPackage.group && pomDependency.artifactId === bootPackage.name && pomDependency.version !== undefined && pomDependency.version !== bootPackage.version) {
-                    const existingMatches = mismatchedPackages.find(mismatchedPackage => mismatchedPackage.group === pomDependency.group && mismatchedPackage.name === pomDependency.name && mismatchedPackage.sbomVersion === pomDependency.version && mismatchedPackage.bootVersion === bootPackage.version);
+                    const existingMatches = mismatchedPackages.find(mismatchedPackage => mismatchedPackage.group === pomDependency.groupId && mismatchedPackage.name === pomDependency.artifactId && mismatchedPackage.version === pomDependency.version && mismatchedPackage.version === bootPackage.version);
                     if (!existingMatches) {
-                        mismatchedPackages.push(new Package(pomDependency.group, pomDependency.name, pomDependency.version, bootPackage.version));
+                        mismatchedPackages.push(new Package(pomDependency.groupId, pomDependency.artifactId, pomDependency.version, bootPackage.version));
                     }
                 }
             }));
 
             console.log('Mismatched Pom Package Count -', mismatchedPackages.length);
             console.log('Mismatched Packages', mismatchedPackages);
+        } else {
+            console.log('Spring Boot default versions URL no longer exists.');
+        }
+    }
+};
+
+export const retrieveSimilarPomProperties = async (parsedPom) => {
+    const pomProperties = await getPomProperties(parsedPom);
+    const springBootVersion = await getPomSpringBootVersion(parsedPom);
+    if (springBootVersion) {
+        console.log('Detected Spring Boot Version', springBootVersion);
+        const defaultProperties = await getSpringBootProperties(springBootVersion);
+
+        if (defaultProperties.length) {
+            const declaredProperties = [];
+            pomProperties.forEach(pomProperty => defaultProperties.forEach(defaultProperty => {
+                if (pomProperty === defaultProperty.property) {
+                    declaredProperties.push(pomProperty);
+                }
+            }));
+
+            console.log('Declared Properties Count -', declaredProperties.length);
+            console.log('Declared Properties', declaredProperties);
         } else {
             console.log('Spring Boot default versions URL no longer exists.');
         }
@@ -100,22 +124,11 @@ const downloadSpringVersionProperties = async (sbVersion) => {
 };
 
 (async () => {
+    console.log('start');
     const start = Date.now();
-
     const parsedPom = await getXMLFromFile('pom.xml');
-    // const springBootVersion = await getPomSpringBootVersion(parsedPom);
-    // const pomProperties = await getProperties(parsedPom);
-    // const pomDependenciesWithVersions = await getDependenciesWithVersions(parsedPom);
-    // const defaultSpringBootVersions = await getDefaultSpringBootVersions(springBootVersion);
-    // const defaultSpringBootProperties = await getSpringBootProperties(springBootVersion);
-    // console.log('springBootVersion', springBootVersion);
-    // console.log('pomProperties', pomProperties);
-    // console.log('pomDependenciesWithVersions', pomDependenciesWithVersions);
-    // console.log('defaultSpringBootVersions', defaultSpringBootVersions);
-    // console.log('defaultSpringBootProperties', defaultSpringBootProperties);
-
-    // await downloadSpringVersionProperties(springBootVersion);
+    // const parsedPom = await getXMLFromFile(process.argv[2]);
     await retrieveSimilarPomPackages(parsedPom);
-    // await downloadSpringVersionProperties(process.argv[2]);
+    await retrieveSimilarPomProperties(parsedPom);
     console.log(`Process took ${Date.now() - start} ms`);
 })();
