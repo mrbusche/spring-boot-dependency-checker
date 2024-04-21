@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-import { retrieveSimilarPackages } from '../index.js'
+import { checkDependencies } from '../index.js';
 
 process.title = 'spring-boot-dependency-checker';
 
-await retrieveSimilarPackages(process.argv[2])
+await checkDependencies(process.argv[2]);

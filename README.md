@@ -1,6 +1,6 @@
 # spring-boot-dependency-checker
 
-A small utility that finds manually overridden dependencies in an SBOM for a Spring Boot application.
+A small utility that finds manually overridden dependencies in a Maven Pom or SBOM for a Spring Boot application.
 
 ## Usage
 
