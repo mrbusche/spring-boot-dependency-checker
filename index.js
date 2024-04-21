@@ -2,10 +2,8 @@ import { extname } from 'path';
 import { retrieveSimilarSbomPackages } from './sbom.js';
 import { getXMLFromFile, retrieveSimilarPomPackages, retrieveSimilarPomProperties } from './pom.js';
 
-
 (async () => {
     const start = Date.now();
-    console.log('Calling index.js');
     const filename = process.argv[2];
     const fileExtension = extname(filename);
     console.log('filename', filename, 'fileExtension', fileExtension);
@@ -18,7 +16,7 @@ import { getXMLFromFile, retrieveSimilarPomPackages, retrieveSimilarPomPropertie
         await retrieveSimilarPomPackages(parsedPom);
         await retrieveSimilarPomProperties(parsedPom);
     } else {
-        console.log('Unknown extenions, unable to process file.');
+        console.log('Unknown extension, unable to process file.');
     }
     console.log(`Process took ${Date.now() - start} ms`);
 })();
