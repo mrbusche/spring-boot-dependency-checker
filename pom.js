@@ -1,11 +1,9 @@
 import { XMLParser } from 'fast-xml-parser';
 import { existsSync, readFileSync, writeFileSync } from 'fs';
 import { parse } from 'node-html-parser';
-import { ensureDirExists, getDefaultSpringBootVersions, getJsonFromFile, Package } from './index.js';
+import { cachePath, ensureDirExists, getDefaultSpringBootVersions, getJsonFromFile, Package } from './shared.js';
 
-const cachePath = '.cache';
-
-const getXMLFromFile = async (filename) => {
+export const getXMLFromFile = async (filename) => {
     try {
         const parser = new XMLParser();
         const xmlData = readFileSync(filename, 'utf8');
@@ -15,7 +13,7 @@ const getXMLFromFile = async (filename) => {
     }
 };
 
-export const getPomProperties = async (parsedPom) => {
+const getPomProperties = async (parsedPom) => {
     const properties = parsedPom.project.properties;
     return Object.keys(properties);
 };
@@ -25,7 +23,7 @@ const getSpringBootProperties = async (filename) => {
     return getJsonFromFile(`${cachePath}/properties_${filename}.json`);
 };
 
-export const getPomDependenciesWithVersions = async (parsedPom) => {
+const getPomDependenciesWithVersions = async (parsedPom) => {
     return parsedPom.project.dependencies.dependency.filter(dep => dep.version);
 };
 
@@ -123,12 +121,11 @@ const downloadSpringVersionProperties = async (sbVersion) => {
     }
 };
 
-(async () => {
-    console.log('start');
-    const start = Date.now();
-    const parsedPom = await getXMLFromFile('pom.xml');
-    // const parsedPom = await getXMLFromFile(process.argv[2]);
-    await retrieveSimilarPomPackages(parsedPom);
-    await retrieveSimilarPomProperties(parsedPom);
-    console.log(`Process took ${Date.now() - start} ms`);
-})();
+// (async () => {
+//     console.log('start');
+//     const start = Date.now();
+//     const parsedPom = await getXMLFromFile(process.argv[2]);
+//     await retrieveSimilarPomPackages(parsedPom);
+//     await retrieveSimilarPomProperties(parsedPom);
+//     console.log(`Process took ${Date.now() - start} ms`);
+// })();

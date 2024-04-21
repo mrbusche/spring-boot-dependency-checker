@@ -1,7 +1,8 @@
 import { strictEqual } from 'node:assert';
 import { writeFileSync } from 'fs';
 import { unlink } from 'node:fs';
-import { getComponents, getJsonFromFile, getSpringBootVersion } from '../index.js';
+import { getJsonFromFile } from '../shared.js';
+import { getComponents, getSpringBootVersion } from '../sbom.js';
 
 describe('test file reading', () => {
     const filename = 'testFile.json';
