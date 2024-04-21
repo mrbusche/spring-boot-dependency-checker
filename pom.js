@@ -90,10 +90,10 @@ const getSpringDefaultProperties = async (sbVersion) => {
         if (!existsSync(`${cachePath}/properties_${sbVersion}.json`)) {
             await downloadSpringVersionProperties(sbVersion);
         } else {
-            console.log('Spring Boot default versions file already exists in cache.');
+            console.log('Spring Boot default properties file already exists in cache.');
         }
     } catch (err) {
-        console.error('Error retrieving spring default versions', err);
+        console.error('Error retrieving spring default properties', err);
     }
 };
 
@@ -120,12 +120,3 @@ const downloadSpringVersionProperties = async (sbVersion) => {
             break;
     }
 };
-
-// (async () => {
-//     console.log('start');
-//     const start = Date.now();
-//     const parsedPom = await getXMLFromFile(process.argv[2]);
-//     await retrieveSimilarPomPackages(parsedPom);
-//     await retrieveSimilarPomProperties(parsedPom);
-//     console.log(`Process took ${Date.now() - start} ms`);
-// })();

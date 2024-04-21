@@ -1,6 +1,4 @@
-import { cachePath, getDefaultSpringBootVersions, getJsonFromFile, Package } from './shared.js';
-import { writeFileSync } from 'fs';
-import { parse } from 'node-html-parser';
+import { getDefaultSpringBootVersions, getJsonFromFile, Package } from './shared.js';
 
 export const getComponents = async (filename) => {
     const parsedData = await getJsonFromFile(filename);
@@ -42,31 +40,5 @@ export const retrieveSimilarSbomPackages = async (bomFile) => {
         } else {
             console.log('Spring Boot default versions URL no longer exists.');
         }
-    }
-};
-
-const downloadSpringDefaultVersions = async (sbVersion) => {
-    const response = await fetch(`https://docs.spring.io/spring-boot/docs/${sbVersion}/reference/html/dependency-versions.html`);
-    const versions = [];
-    switch (response.status) {
-        // status "OK"
-        case 200: {
-            const template = await response.text();
-            const parsedTemplate = parse(template);
-            const tableBody = parsedTemplate.querySelector('table tbody');
-
-            tableBody.childNodes.forEach(child => // there's a header row we should skip
-                child.childNodes.length === 0 ? '' : versions.push({
-                    group: child.childNodes[1].rawText,
-                    name: child.childNodes[3].rawText,
-                    version: child.childNodes[5].rawText,
-                }));
-            await writeFileSync(`${cachePath}/dependencies_${sbVersion}.json`, JSON.stringify(versions, null, 2));
-            break;
-        }
-        case 404:
-            await writeFileSync(`${cachePath}/dependencies_${sbVersion}.json`, JSON.stringify(versions, null, 2));
-            console.log('URL not found - Spring Boot default versions URL no longer exists.');
-            break;
     }
 };
