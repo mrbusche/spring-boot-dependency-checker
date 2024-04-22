@@ -23,8 +23,8 @@ const getSpringDefaultVersions = async (sbVersion) => {
         await ensureDirExists();
         if (!existsSync(`${cachePath}/dependencies_${sbVersion}.json`)) {
             await downloadSpringDefaultVersions(sbVersion);
-        } else {
-            console.log('Spring Boot default versions file already exists in cache.');
+            // } else {
+            //     console.log('Spring Boot default versions file already exists in cache.');
         }
     } catch (err) {
         console.error('Error retrieving spring default versions', err);
@@ -63,10 +63,10 @@ export const getDefaultSpringBootVersions = async (filename) => {
 };
 
 export class Package {
-    constructor(group, name, sbomVersion, bootVersion) {
+    constructor(group, name, inputFileVersion, bootVersion) {
         this.group = group;
         this.name = name;
-        this.sbomVersion = sbomVersion;
+        this.inputFileVersion = inputFileVersion;
         this.bootVersion = bootVersion;
 
     }
