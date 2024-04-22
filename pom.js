@@ -14,8 +14,11 @@ export const getXMLFromFile = async (filename) => {
 };
 
 const getPomProperties = async (parsedPom) => {
-    const properties = parsedPom.project.properties;
-    return Object.keys(properties);
+    const properties = parsedPom.project?.properties;
+    if (properties) {
+        return Object.keys(properties);
+    }
+    return [];
 };
 
 const getSpringBootProperties = async (filename) => {
@@ -24,22 +27,24 @@ const getSpringBootProperties = async (filename) => {
 };
 
 const getPomDependenciesWithVersions = async (parsedPom) => {
-    return parsedPom.project.dependencies.dependency.filter(dep => dep.version);
+    // if it's not an array, a single dependency has been declared and it doesn't apply
+    if (Array.isArray(parsedPom?.project?.dependencies?.dependency)) {
+        return parsedPom.project.dependencies.dependency.filter(dep => dep.version);
+    }
+    return [];
 };
 
-const getPomSpringBootVersion = async (parsedPom) => {
-    if (parsedPom.project.parent.groupId === 'org.springframework.boot' && parsedPom.project.parent.artifactId === 'spring-boot-starter-parent') {
+export const getPomSpringBootVersion = async (parsedPom) => {
+    if (parsedPom.project?.parent?.groupId === 'org.springframework.boot' && parsedPom.project?.parent?.artifactId === 'spring-boot-starter-parent') {
         return parsedPom.project.parent.version;
     }
     console.log('No Spring Boot version found.');
     return '';
 };
 
-export const retrieveSimilarPomPackages = async (parsedPom) => {
+export const retrieveSimilarPomPackages = async (parsedPom, springBootVersion) => {
     const pomDependenciesWithVersions = await getPomDependenciesWithVersions(parsedPom);
-    const springBootVersion = await getPomSpringBootVersion(parsedPom);
     if (springBootVersion) {
-        console.log('Detected Spring Boot Version', springBootVersion);
         const defaultVersions = await getDefaultSpringBootVersions(springBootVersion);
 
         if (defaultVersions.length) {
@@ -54,18 +59,18 @@ export const retrieveSimilarPomPackages = async (parsedPom) => {
             }));
 
             console.log('Mismatched Pom Package Count -', mismatchedPackages.length);
-            console.log('Mismatched Packages', mismatchedPackages);
+            if (mismatchedPackages.length) {
+                console.log('Mismatched Pom Packages -', mismatchedPackages);
+            }
         } else {
             console.log('Spring Boot default versions URL no longer exists.');
         }
     }
 };
 
-export const retrieveSimilarPomProperties = async (parsedPom) => {
+export const retrieveSimilarPomProperties = async (parsedPom, springBootVersion) => {
     const pomProperties = await getPomProperties(parsedPom);
-    const springBootVersion = await getPomSpringBootVersion(parsedPom);
     if (springBootVersion) {
-        console.log('Detected Spring Boot Version', springBootVersion);
         const defaultProperties = await getSpringBootProperties(springBootVersion);
 
         if (defaultProperties.length) {
@@ -76,8 +81,10 @@ export const retrieveSimilarPomProperties = async (parsedPom) => {
                 }
             }));
 
-            console.log('Declared Properties Count -', declaredProperties.length);
-            console.log('Declared Properties', declaredProperties);
+            console.log('Declared Pom Properties Count -', declaredProperties.length);
+            if (declaredProperties.length) {
+                console.log('Declared Pom Properties -', declaredProperties);
+            }
         } else {
             console.log('Spring Boot default versions URL no longer exists.');
         }
@@ -89,8 +96,8 @@ const getSpringDefaultProperties = async (sbVersion) => {
         await ensureDirExists();
         if (!existsSync(`${cachePath}/properties_${sbVersion}.json`)) {
             await downloadSpringVersionProperties(sbVersion);
-        } else {
-            console.log('Spring Boot default properties file already exists in cache.');
+            // } else {
+            //     console.log('Spring Boot default properties file already exists in cache.');
         }
     } catch (err) {
         console.error('Error retrieving spring default properties', err);
@@ -107,10 +114,13 @@ const downloadSpringVersionProperties = async (sbVersion) => {
             const parsedTemplate = parse(template);
             const tableBody = parsedTemplate.getElementsByTagName('tbody')[1];
 
-            tableBody.childNodes.forEach(child => // there's a header row we should skip
-                child.childNodes.length === 0 ? '' : versions.push({
-                    property: child.childNodes[3].rawText,
-                }));
+            // older versions of Spring Boot do not have property versions listed
+            if (tableBody) {
+                tableBody.childNodes.forEach(child => // there's a header row we should skip
+                    child.childNodes.length === 0 ? '' : versions.push({
+                        property: child.childNodes[3].rawText,
+                    }));
+            }
             await writeFileSync(`${cachePath}/properties_${sbVersion}.json`, JSON.stringify(versions, null, 2));
             break;
         }
