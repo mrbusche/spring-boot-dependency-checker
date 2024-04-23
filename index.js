@@ -1,6 +1,11 @@
 import { extname } from 'path';
 import { retrieveSimilarSbomPackages } from './sbom.js';
-import { getPomSpringBootVersion, getXMLFromFile, retrieveSimilarPomPackages, retrieveSimilarPomProperties } from './pom.js';
+import {
+    getPomSpringBootVersion,
+    getXMLFromFile,
+    retrieveSimilarPomPackages,
+    retrieveSimilarPomProperties,
+} from './pom.js';
 
 export const checkDependencies = async () => {
     const start = Date.now();
