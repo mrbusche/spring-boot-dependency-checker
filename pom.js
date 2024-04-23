@@ -13,7 +13,7 @@ export const getXMLFromFile = async (filename) => {
     }
 };
 
-const getPomProperties = async (parsedPom) => {
+export const getPomProperties = async (parsedPom) => {
     const properties = parsedPom.project?.properties;
     if (properties) {
         return Object.keys(properties);
@@ -26,7 +26,7 @@ const getSpringBootProperties = async (filename) => {
     return getJsonFromFile(`${cachePath}/properties_${filename}.json`);
 };
 
-const getPomDependenciesWithVersions = async (parsedPom) => {
+export const getPomDependenciesWithVersions = async (parsedPom) => {
     // if it's not an array, a single dependency has been declared and it doesn't apply
     if (Array.isArray(parsedPom?.project?.dependencies?.dependency)) {
         return parsedPom.project.dependencies.dependency.filter(dep => dep.version);
