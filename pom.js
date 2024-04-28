@@ -50,8 +50,8 @@ export const retrieveSimilarPomPackages = async (parsedPom, springBootVersion) =
         if (defaultVersions.length) {
             const mismatchedPackages = [];
             pomDependenciesWithVersions.forEach(pomDependency => defaultVersions.forEach(bootPackage => {
-                if (pomDependency.groupId === bootPackage.group && pomDependency.artifactId === bootPackage.name && pomDependency.version !== undefined && pomDependency.version !== bootPackage.version) {
-                    const existingMatches = mismatchedPackages.find(mismatchedPackage => mismatchedPackage.group === pomDependency.groupId && mismatchedPackage.name === pomDependency.artifactId && mismatchedPackage.version === pomDependency.version && mismatchedPackage.version === bootPackage.version);
+                if (pomDependency.groupId === bootPackage.group && pomDependency.artifactId === bootPackage.name) {
+                    const existingMatches = mismatchedPackages.find(mismatchedPackage => mismatchedPackage.group === pomDependency.groupId && mismatchedPackage.name === pomDependency.artifactId);
                     if (!existingMatches) {
                         mismatchedPackages.push(new Package(pomDependency.groupId, pomDependency.artifactId, pomDependency.version, bootPackage.version));
                     }
