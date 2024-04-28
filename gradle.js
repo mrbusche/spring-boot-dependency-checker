@@ -9,19 +9,6 @@ export const getJSFromFile = async (filename) => {
     }
 };
 
-// export const getGradleProperties = async (parsedGradle) => {
-//     const properties = parsedGradle.project?.properties;
-//     if (properties) {
-//         return Object.keys(properties);
-//     }
-//     return [];
-// };
-//
-// const getSpringBootProperties = async (filename) => {
-//     await getSpringDefaultProperties(filename);
-//     return getJsonFromFile(`${cachePath}/properties_${filename}.json`);
-// };
-
 export const getGradleDependenciesWithVersions = async (parsedGradle) => {
     if (Array.isArray(parsedGradle.dependencies)) {
         return parsedGradle.dependencies.filter(dep => dep.version);
@@ -31,7 +18,7 @@ export const getGradleDependenciesWithVersions = async (parsedGradle) => {
 
 export const getGradleSpringBootVersion = async (parsedGradle) => {
     const springBootPlugin = parsedGradle?.plugins?.filter(plugin => plugin.id === 'org.springframework.boot');
-    if (Array.isArray(springBootPlugin) && springBootPlugin.length) {
+    if (Array.isArray(springBootPlugin) && springBootPlugin.length && springBootPlugin[0].version) {
         return springBootPlugin[0].version;
     }
     console.log('No Spring Boot version found.');
@@ -63,27 +50,3 @@ export const retrieveSimilarGradlePackages = async (parsedGradle, springBootVers
         }
     }
 };
-
-// export const retrieveSimilarGradleProperties = async (parsedGradle, springBootVersion) => {
-//     const pomProperties = await getGradleProperties(parsedGradle);
-//     if (springBootVersion) {
-//         const defaultProperties = await getSpringBootProperties(springBootVersion);
-//
-//         if (defaultProperties.length) {
-//             const declaredProperties = [];
-//             pomProperties.forEach(pomProperty => defaultProperties.forEach(defaultProperty => {
-//                 if (pomProperty === defaultProperty.property) {
-//                     declaredProperties.push(pomProperty);
-//                 }
-//             }));
-//
-//             console.log('Declared Gradle Properties Count -', declaredProperties.length);
-//             if (declaredProperties.length) {
-//                 console.log('Declared Gradle Properties -', declaredProperties);
-//             }
-//         } else {
-//             console.log('Spring Boot default versions URL no longer exists.');
-//         }
-//     }
-// };
-//
