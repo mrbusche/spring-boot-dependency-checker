@@ -14,8 +14,8 @@ A small utility that finds manually overridden dependencies in a Maven POM, Grad
 | Gradle - Groovy | &check;      | &cross;    | &check;  |
 | SBOM            | &check;      | &cross;    | &cross;  |
 
-Maven POM is the most accurate because it comes from the source file
+Maven POM is the most accurate because it's generated from the source file
 
-Gradle - Groovy does not support overwritten properties because those generally come from a separate file
+Gradle - Groovy does not support overwritten properties because those usually come from a separate file
 
-SBOM is accurate until you have dependencies that pull in newer versions that what Spring Boot recommends
+SBOM is accurate until you have dependencies that pull in newer versions than what Spring Boot recommends, which results in false positives
