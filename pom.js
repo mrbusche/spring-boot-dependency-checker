@@ -38,6 +38,9 @@ export const getPomSpringBootVersion = async (parsedPom) => {
     if (parsedPom.project?.parent?.groupId === 'org.springframework.boot' && parsedPom.project?.parent?.artifactId === 'spring-boot-starter-parent') {
         return parsedPom.project.parent.version;
     }
+    if (parsedPom.project?.dependencyManagement?.dependencies?.dependency?.groupId === 'org.springframework.boot' && parsedPom.project?.dependencyManagement?.dependencies?.dependency?.artifactId === 'spring-boot-dependencies') {
+        return parsedPom.project.dependencyManagement.dependencies.dependency.version;
+    }
     console.log('No Spring Boot version found.');
     return '';
 };
