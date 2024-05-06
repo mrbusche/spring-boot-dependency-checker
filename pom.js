@@ -39,7 +39,13 @@ export const getPomSpringBootVersion = async (parsedPom) => {
         return parsedPom.project.parent.version;
     }
     if (parsedPom.project?.dependencyManagement?.dependencies?.dependency?.groupId === 'org.springframework.boot' && parsedPom.project?.dependencyManagement?.dependencies?.dependency?.artifactId === 'spring-boot-dependencies') {
-        return parsedPom.project.dependencyManagement.dependencies.dependency.version;
+        const bootVersion = parsedPom.project.dependencyManagement.dependencies.dependency.version;
+        // version is in a variable
+        if (bootVersion.startsWith('${')) {
+            const variableName = bootVersion.replace('${', '').replace('}', '');
+            return parsedPom.project.properties[variableName];
+        }
+        return bootVersion;
     }
     console.log('No Spring Boot version found.');
     return '';
