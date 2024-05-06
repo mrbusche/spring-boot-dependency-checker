@@ -1,5 +1,4 @@
 import { extname } from 'path';
-import { retrieveSimilarSbomPackages } from './sbom.js';
 import {
     getPomSpringBootVersion,
     getXMLFromFile,
@@ -13,10 +12,7 @@ export const checkDependencies = async () => {
     const filename = process.argv[2];
     const fileExtension = extname(filename);
     // console.log('filename', filename, 'fileExtension', fileExtension);
-    if (fileExtension === '.json') {
-        console.log('Processing json file');
-        await retrieveSimilarSbomPackages(filename);
-    } else if (fileExtension === '.xml') {
+    if (fileExtension === '.xml') {
         console.log('Processing xml file');
         const parsedPom = await getXMLFromFile(filename);
         const springBootVersion = await getPomSpringBootVersion(parsedPom);
