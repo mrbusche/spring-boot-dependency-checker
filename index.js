@@ -22,8 +22,9 @@ export const checkDependencies = async () => {
         const springBootVersion = await getPomSpringBootVersion(parsedPom);
         if (springBootVersion) {
             console.log('Detected Spring Boot Version -', springBootVersion);
-            await retrieveSimilarPomPackages(parsedPom, springBootVersion);
-            await retrieveSimilarPomProperties(parsedPom, springBootVersion);
+            const declaredPackages = await retrieveSimilarPomPackages(parsedPom, springBootVersion);
+            const declaredProperties = await retrieveSimilarPomProperties(parsedPom, springBootVersion);
+            return { packages: declaredPackages, properties: declaredProperties };
         }
     } else if (fileExtension === '.gradle') {
         console.log('Processing gradle file');
@@ -31,8 +32,9 @@ export const checkDependencies = async () => {
         const springBootVersion = await getGradleSpringBootVersion(parsedGradle);
         if (springBootVersion) {
             console.log('Detected Spring Boot Version -', springBootVersion);
-            await retrieveSimilarGradlePackages(parsedGradle, springBootVersion);
+            const declaredPackages = await retrieveSimilarGradlePackages(parsedGradle, springBootVersion);
             //     await retrieveSimilarPomProperties(parsedPom, springBootVersion);
+            return { packages: declaredPackages, properties: [] };
         }
     } else {
         console.log('Unknown extension, unable to process file.');
