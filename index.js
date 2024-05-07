@@ -1,5 +1,4 @@
 import { extname } from 'path';
-import { retrieveSimilarSbomPackages } from './sbom.js';
 import {
     getPomSpringBootVersion,
     getXMLFromFile,
@@ -13,17 +12,15 @@ export const checkDependencies = async () => {
     const filename = process.argv[2];
     const fileExtension = extname(filename);
     // console.log('filename', filename, 'fileExtension', fileExtension);
-    if (fileExtension === '.json') {
-        console.log('Processing json file');
-        await retrieveSimilarSbomPackages(filename);
-    } else if (fileExtension === '.xml') {
+    if (fileExtension === '.xml') {
         console.log('Processing xml file');
         const parsedPom = await getXMLFromFile(filename);
         const springBootVersion = await getPomSpringBootVersion(parsedPom);
         if (springBootVersion) {
             console.log('Detected Spring Boot Version -', springBootVersion);
-            await retrieveSimilarPomPackages(parsedPom, springBootVersion);
-            await retrieveSimilarPomProperties(parsedPom, springBootVersion);
+            const declaredPackages = await retrieveSimilarPomPackages(parsedPom, springBootVersion);
+            const declaredProperties = await retrieveSimilarPomProperties(parsedPom, springBootVersion);
+            return { packages: declaredPackages, properties: declaredProperties };
         }
     } else if (fileExtension === '.gradle') {
         console.log('Processing gradle file');
@@ -31,8 +28,9 @@ export const checkDependencies = async () => {
         const springBootVersion = await getGradleSpringBootVersion(parsedGradle);
         if (springBootVersion) {
             console.log('Detected Spring Boot Version -', springBootVersion);
-            await retrieveSimilarGradlePackages(parsedGradle, springBootVersion);
+            const declaredPackages = await retrieveSimilarGradlePackages(parsedGradle, springBootVersion);
             //     await retrieveSimilarPomProperties(parsedPom, springBootVersion);
+            return { packages: declaredPackages, properties: [] };
         }
     } else {
         console.log('Unknown extension, unable to process file.');

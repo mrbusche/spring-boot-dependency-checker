@@ -31,22 +31,25 @@ export const retrieveSimilarGradlePackages = async (parsedGradle, springBootVers
         const defaultVersions = await getDefaultSpringBootVersions(springBootVersion);
 
         if (defaultVersions.length) {
-            const mismatchedPackages = [];
+            const declaredPackages = [];
             gradleDependenciesWithVersions.forEach(gradleDependency => defaultVersions.forEach(bootPackage => {
                 if (gradleDependency.group === bootPackage.group && gradleDependency.name === bootPackage.name) {
-                    const existingMatches = mismatchedPackages.find(mismatchedPackage => mismatchedPackage.group === gradleDependency.group && mismatchedPackage.name === gradleDependency.name);
+                    const existingMatches = declaredPackages.find(declaredPackage => declaredPackage.group === gradleDependency.group && declaredPackage.name === gradleDependency.name);
                     if (!existingMatches) {
-                        mismatchedPackages.push(new Package(gradleDependency.group, gradleDependency.name, gradleDependency.version, bootPackage.version));
+                        declaredPackages.push(new Package(gradleDependency.group, gradleDependency.name, gradleDependency.version, bootPackage.version));
                     }
                 }
             }));
 
-            console.log('Mismatched Gradle Package Count -', mismatchedPackages.length);
-            if (mismatchedPackages.length) {
-                console.log('Mismatched Gradle Packages -', mismatchedPackages);
+            console.log('Declared Gradle Package Count -', declaredPackages.length);
+            if (declaredPackages.length) {
+                console.log('Declared Gradle Packages -', declaredPackages);
             }
+            return declaredPackages;
         } else {
             console.log('Spring Boot default versions URL no longer exists.');
+            return [];
         }
     }
+    return [];
 };
