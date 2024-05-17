@@ -27,11 +27,15 @@ const getSpringBootProperties = async (filename) => {
 };
 
 export const getPomDependenciesWithVersions = async (parsedPom) => {
+    let allDependencies = [];
     // if it's not an array, a single dependency has been declared and it doesn't apply
     if (Array.isArray(parsedPom?.project?.dependencies?.dependency)) {
-        return parsedPom.project.dependencies.dependency.filter(dep => dep.version);
+        allDependencies = allDependencies.concat(parsedPom.project.dependencies.dependency.filter(dep => dep.version));
     }
-    return [];
+    if (Array.isArray(parsedPom?.project?.dependencyManagement?.dependencies?.dependency)) {
+        allDependencies = allDependencies.concat(parsedPom.project.dependencyManagement.dependencies.dependency.filter(dep => dep.version));
+    }
+    return allDependencies;
 };
 
 export const getPomSpringBootVersion = async (parsedPom) => {
