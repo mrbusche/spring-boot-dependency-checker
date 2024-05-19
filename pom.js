@@ -44,12 +44,7 @@ export const getPomSpringBootVersion = async (parsedPom) => {
     }
     if (parsedPom.project?.dependencyManagement?.dependencies?.dependency?.groupId === 'org.springframework.boot' && parsedPom.project?.dependencyManagement?.dependencies?.dependency?.artifactId === 'spring-boot-dependencies') {
         const bootVersion = parsedPom.project.dependencyManagement.dependencies.dependency.version;
-        // version is in a variable
-        if (bootVersion.startsWith('${')) {
-            const variableName = bootVersion.replace('${', '').replace('}', '');
-            return parsedPom.project.properties[variableName];
-        }
-        return bootVersion;
+        return replaceVariable(parsedPom.project.properties, bootVersion);
     }
     console.log('No Spring Boot version found.');
     return '';
@@ -64,9 +59,10 @@ export const retrieveSimilarPomPackages = async (parsedPom, springBootVersion) =
             const declaredPackages = [];
             pomDependenciesWithVersions.forEach(pomDependency => defaultVersions.forEach(bootPackage => {
                 if (pomDependency.groupId === bootPackage.group && pomDependency.artifactId === bootPackage.name) {
+                    const pomVersion = replaceVariable(parsedPom.project.properties, pomDependency.version);
                     const existingMatches = declaredPackages.find(declaredPackage => declaredPackage.group === pomDependency.groupId && declaredPackage.name === pomDependency.artifactId);
                     if (!existingMatches) {
-                        declaredPackages.push(new Package(pomDependency.groupId, pomDependency.artifactId, pomDependency.version, bootPackage.version));
+                        declaredPackages.push(new Package(pomDependency.groupId, pomDependency.artifactId, pomVersion, bootPackage.version));
                     }
                 }
             }));
@@ -122,6 +118,14 @@ const getSpringDefaultProperties = async (sbVersion) => {
         console.error('Error retrieving spring default properties', err);
     }
 };
+
+const replaceVariable = (properties, version) => {
+    if (version.startsWith('${')) {
+        const variableName = version.replace('${', '').replace('}', '');
+        return properties[variableName];
+    }
+    return version;
+}
 
 const downloadSpringVersionProperties = async (sbVersion) => {
     const response = await fetch(`https://docs.spring.io/spring-boot/docs/${sbVersion}/reference/html/dependency-versions.html`);
