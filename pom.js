@@ -120,7 +120,7 @@ const getSpringDefaultProperties = async (sbVersion) => {
 };
 
 const replaceVariable = (properties, version) => {
-    if (version.startsWith('${')) {
+    if (String(version).startsWith('${')) {
         const variableName = version.replace('${', '').replace('}', '');
         return properties[variableName];
     }
