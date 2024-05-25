@@ -106,11 +106,11 @@ export const retrieveSimilarPomProperties = async (parsedPom, springBootVersion)
     return [];
 };
 
-const getSpringDefaultProperties = async (sbVersion) => {
+const getSpringDefaultProperties = async (springBootVersion) => {
     try {
         await ensureDirExists();
-        if (!existsSync(`${cachePath}/properties_${sbVersion}.json`)) {
-            await downloadSpringVersionProperties(sbVersion);
+        if (!existsSync(`${cachePath}/properties_${springBootVersion}.json`)) {
+            await downloadSpringVersionProperties(springBootVersion);
             // } else {
             //     console.log('Spring Boot default properties file already exists in cache.');
         }
@@ -127,15 +127,21 @@ const replaceVariable = (properties, version) => {
     return version;
 }
 
-const downloadSpringVersionProperties = async (sbVersion) => {
-    const response = await fetch(`https://docs.spring.io/spring-boot/docs/${sbVersion}/reference/html/dependency-versions.html`);
+const downloadSpringVersionProperties = async (springBootVersion) => {
+    let url = `https://docs.spring.io/spring-boot/docs/${springBootVersion}/reference/html/dependency-versions.html`;
+    let bodyIndex = 1;
+    if (springBootVersion === '3.3.0') {
+        url = 'https://docs.spring.io/spring-boot/appendix/dependency-versions/properties.html';
+        bodyIndex = 0;
+    }
+    const response = await fetch(url);
     const versions = [];
     switch (response.status) {
         // status "OK"
         case 200: {
             const template = await response.text();
             const parsedTemplate = parse(template);
-            const tableBody = parsedTemplate.getElementsByTagName('tbody')[1];
+            const tableBody = parsedTemplate.getElementsByTagName('tbody')[bodyIndex];
 
             // older versions of Spring Boot do not have property versions listed
             if (tableBody) {
@@ -144,11 +150,11 @@ const downloadSpringVersionProperties = async (sbVersion) => {
                         property: child.childNodes[3].rawText,
                     }));
             }
-            await writeFileSync(`${cachePath}/properties_${sbVersion}.json`, JSON.stringify(versions, null, 2));
+            await writeFileSync(`${cachePath}/properties_${springBootVersion}.json`, JSON.stringify(versions, null, 2));
             break;
         }
         case 404:
-            await writeFileSync(`${cachePath}/properties_${sbVersion}.json`, JSON.stringify(versions, null, 2));
+            await writeFileSync(`${cachePath}/properties_${springBootVersion}.json`, JSON.stringify(versions, null, 2));
             console.log('URL not found - Spring Boot default versions URL no longer exists.');
             break;
     }
