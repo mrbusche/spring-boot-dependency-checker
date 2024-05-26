@@ -71,7 +71,7 @@ export const retrieveSimilarPomPackages = async (parsedPom, springBootVersion) =
             if (declaredPackages.length) {
                 console.log('Declared Pom Packages -', declaredPackages);
             }
-            return declaredPackages
+            return declaredPackages;
         } else {
             console.log('Spring Boot default versions URL no longer exists.');
             return [];
@@ -125,37 +125,33 @@ const replaceVariable = (properties, version) => {
         return properties[variableName];
     }
     return version;
-}
+};
 
 const downloadSpringVersionProperties = async (springBootVersion) => {
     let url = `https://docs.spring.io/spring-boot/docs/${springBootVersion}/reference/html/dependency-versions.html`;
     let bodyIndex = 1;
-    if (springBootVersion === '3.3.0') {
-        url = 'https://docs.spring.io/spring-boot/appendix/dependency-versions/properties.html';
+    let response = await fetch(url);
+    if (response.status === 404) {
+        url = `https://docs.spring.io/spring-boot/${springBootVersion}/appendix/dependency-versions/properties.html`;
         bodyIndex = 0;
+        response = await fetch(url);
     }
-    const response = await fetch(url);
     const versions = [];
-    switch (response.status) {
-        // status "OK"
-        case 200: {
-            const template = await response.text();
-            const parsedTemplate = parse(template);
-            const tableBody = parsedTemplate.getElementsByTagName('tbody')[bodyIndex];
+    if (response.ok) {
+        const template = await response.text();
+        const parsedTemplate = parse(template);
+        const tableBody = parsedTemplate.getElementsByTagName('tbody')[bodyIndex];
 
-            // older versions of Spring Boot do not have property versions listed
-            if (tableBody) {
-                tableBody.childNodes.forEach(child => // there's a header row we should skip
-                    child.childNodes.length === 0 ? '' : versions.push({
-                        property: child.childNodes[3].rawText,
-                    }));
-            }
-            await writeFileSync(`${cachePath}/properties_${springBootVersion}.json`, JSON.stringify(versions, null, 2));
-            break;
+        // older versions of Spring Boot do not have property versions listed
+        if (tableBody) {
+            tableBody.childNodes.forEach(child => // there's a header row we should skip
+                child.childNodes.length === 0 ? '' : versions.push({
+                    property: child.childNodes[3].rawText,
+                }));
         }
-        case 404:
-            await writeFileSync(`${cachePath}/properties_${springBootVersion}.json`, JSON.stringify(versions, null, 2));
-            console.log('URL not found - Spring Boot default versions URL no longer exists.');
-            break;
+        await writeFileSync(`${cachePath}/properties_${springBootVersion}.json`, JSON.stringify(versions, null, 2));
+    } else {
+        await writeFileSync(`${cachePath}/properties_${springBootVersion}.json`, JSON.stringify(versions, null, 2));
+        console.log('URL not found - Spring Boot default versions URL no longer exists.');
     }
 };
