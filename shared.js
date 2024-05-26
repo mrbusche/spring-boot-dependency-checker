@@ -33,31 +33,27 @@ const getSpringDefaultVersions = async (springBootVersion) => {
 
 const downloadSpringDefaultVersions = async (springBootVersion) => {
     let url = `https://docs.spring.io/spring-boot/docs/${springBootVersion}/reference/html/dependency-versions.html`;
-    if (springBootVersion === '3.3.0') {
-        url = 'https://docs.spring.io/spring-boot/appendix/dependency-versions/coordinates.html';
+    let response = await fetch(url);
+    if (response.status === 404) {
+        url = `https://docs.spring.io/spring-boot/${springBootVersion}/appendix/dependency-versions/coordinates.html`;
+        response = await fetch(url);
     }
-    const response = await fetch(url);
     const versions = [];
-    switch (response.status) {
-        // status "OK"
-        case 200: {
-            const template = await response.text();
-            const parsedTemplate = parse(template);
-            const tableBody = parsedTemplate.querySelector('table tbody');
+    if (response.ok) {
+        const template = await response.text();
+        const parsedTemplate = parse(template);
+        const tableBody = parsedTemplate.querySelector('table tbody');
 
-            tableBody.childNodes.forEach(child => // there's a header row we should skip
-                child.childNodes.length === 0 ? '' : versions.push({
-                    group: child.childNodes[1].rawText,
-                    name: child.childNodes[3].rawText,
-                    version: child.childNodes[5].rawText,
-                }));
-            await writeFileSync(`${cachePath}/dependencies_${springBootVersion}.json`, JSON.stringify(versions, null, 2));
-            break;
-        }
-        case 404:
-            await writeFileSync(`${cachePath}/dependencies_${springBootVersion}.json`, JSON.stringify(versions, null, 2));
-            console.log('URL not found - Spring Boot default versions URL no longer exists.');
-            break;
+        tableBody.childNodes.forEach(child => // there's a header row we should skip
+            child.childNodes.length === 0 ? '' : versions.push({
+                group: child.childNodes[1].rawText,
+                name: child.childNodes[3].rawText,
+                version: child.childNodes[5].rawText,
+            }));
+        await writeFileSync(`${cachePath}/dependencies_${springBootVersion}.json`, JSON.stringify(versions, null, 2));
+    } else {
+        await writeFileSync(`${cachePath}/dependencies_${springBootVersion}.json`, JSON.stringify(versions, null, 2));
+        console.log('URL not found - Spring Boot default versions URL no longer exists.');
     }
 };
 
