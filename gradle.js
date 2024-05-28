@@ -19,7 +19,8 @@ export const getGradleDependenciesWithVersions = async (parsedGradle) => {
 export const getGradleSpringBootVersion = async (parsedGradle) => {
     const springBootPlugin = parsedGradle?.plugins?.filter(plugin => plugin.id === 'org.springframework.boot');
     if (Array.isArray(springBootPlugin) && springBootPlugin.length && springBootPlugin[0].version) {
-        return springBootPlugin[0].version;
+        // Handle build.gradle, which allows 3.2.+ format
+        return springBootPlugin[0].version.replace('+', 'x');
     }
     console.log('No Spring Boot version found.');
     return '';
