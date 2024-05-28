@@ -10,10 +10,15 @@ export const getJSFromFile = async (filename) => {
 };
 
 export const getGradleDependenciesWithVersions = async (parsedGradle) => {
+    let allDependencies = [];
+    // if it's not an array, a single dependency has been declared and it doesn't apply
     if (Array.isArray(parsedGradle.dependencies)) {
-        return parsedGradle.dependencies.filter(dep => dep.version);
+        allDependencies = allDependencies.concat(parsedGradle.dependencies.filter(dep => dep.version));
     }
-    return [];
+    if (Array.isArray(parsedGradle?.subprojects?.dependencies)) {
+        allDependencies = allDependencies.concat(parsedGradle.subprojects.dependencies.filter(dep => dep.version));
+    }
+    return allDependencies;
 };
 
 export const getGradleSpringBootVersion = async (parsedGradle) => {
