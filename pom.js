@@ -131,8 +131,10 @@ const downloadSpringVersionProperties = async (springBootVersion) => {
     let url = `https://docs.spring.io/spring-boot/docs/${springBootVersion}/reference/html/dependency-versions.html`;
     let bodyIndex = 1;
     let response = await fetch(url);
-    if (response.status === 404) {
-        url = `https://docs.spring.io/spring-boot/${springBootVersion}/appendix/dependency-versions/properties.html`;
+    // Handle new Spring Boot URL, count redirects as failures, and handle 3.3.+ gradle format
+    if (response.status === 404 || response.url.includes('redirect.html')) {
+        const springMinorVersion = springBootVersion.replace('.x', '');
+        url = `https://docs.spring.io/spring-boot/${springMinorVersion}/appendix/dependency-versions/properties.html`;
         bodyIndex = 0;
         response = await fetch(url);
     }
