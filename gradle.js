@@ -27,6 +27,10 @@ export const getGradleSpringBootVersion = async (parsedGradle) => {
         // Handle build.gradle, which allows 3.2.+ format
         return springBootPlugin[0].version.replace('+', 'x');
     }
+    // there are likely more places we could search for this variable, but we'll start here
+    if (parsedGradle?.buildscript?.ext?.springBootVersion) {
+        return String(parsedGradle?.buildscript?.ext?.springBootVersion).replace('+', 'x');
+    }
     console.log('No Spring Boot version found.');
     return '';
 };
