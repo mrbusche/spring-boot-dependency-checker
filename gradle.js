@@ -31,6 +31,9 @@ export const getGradleSpringBootVersion = async (parsedGradle) => {
     if (parsedGradle?.buildscript?.ext?.springBootVersion) {
         return String(parsedGradle?.buildscript?.ext?.springBootVersion).replace('+', 'x');
     }
+    if (parsedGradle.buildscript?.["ext['springBootVersion']"]) {
+        return parsedGradle.buildscript["ext['springBootVersion']"];
+    }
     console.log('No Spring Boot version found.');
     return '';
 };
