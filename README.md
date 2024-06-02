@@ -9,7 +9,7 @@ A small utility that finds manually overridden dependencies in a Maven POM, or G
 `spring-boot-dependency-checker location/to/pom.xml`
 
 | File type      | Dependencies | Properties |
-|----------------|--------------|------------|
+| -------------- | ------------ | ---------- |
 | Maven POM      | &check;      | &check;    |
 | `build.gradle` | &check;      | &cross;    |
 

@@ -21,7 +21,7 @@
     "url": "https://github.com/mrbusche/spring-boot-dependency-checker.git"
   },
   "scripts": {
-    "prettier:fix": "prettier write .",
+    "prettier:fix": "prettier --write .",
     "test": "mocha"
   },
   "dependencies": {
@@ -35,7 +35,6 @@
   },
   "prettier": {
     "trailingComma": "all",
-    "tabWidth": 4,
     "semi": true,
     "singleQuote": true
   },
