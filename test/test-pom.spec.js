@@ -2,18 +2,18 @@ import { strictEqual } from 'node:assert';
 import { writeFileSync } from 'fs';
 import { unlink } from 'node:fs';
 import {
-    getPomDependenciesWithVersions,
-    getPomProperties,
-    getPomSpringBootVersion,
-    getXMLFromFile,
-    retrieveSimilarPomPackages,
+  getPomDependenciesWithVersions,
+  getPomProperties,
+  getPomSpringBootVersion,
+  getXMLFromFile,
+  retrieveSimilarPomPackages,
 } from '../pom.js';
 
 describe('test pom parsing', () => {
-    const filename = 'pom.xml';
+  const filename = 'pom.xml';
 
-    it('should read a properly formatted XML file', async () => {
-        const testFile = `<project>
+  it('should read a properly formatted XML file', async () => {
+    const testFile = `<project>
             <parent>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-parent</artifactId>
@@ -35,139 +35,164 @@ describe('test pom parsing', () => {
                 </dependency>
             </dependencies>
         </project>`;
-        await writeFileSync(filename, testFile);
+    await writeFileSync(filename, testFile);
 
-        const xmlData = await getXMLFromFile(filename);
+    const xmlData = await getXMLFromFile(filename);
 
-        strictEqual(xmlData.project.parent.artifactId, 'spring-boot-starter-parent');
-        strictEqual(xmlData.project.parent.groupId, 'org.springframework.boot');
-        strictEqual(xmlData.project.parent.version, '3.1.0');
+    strictEqual(
+      xmlData.project.parent.artifactId,
+      'spring-boot-starter-parent',
+    );
+    strictEqual(xmlData.project.parent.groupId, 'org.springframework.boot');
+    strictEqual(xmlData.project.parent.version, '3.1.0');
 
-        strictEqual(xmlData.project.properties['java.version'], 1.8);
-        strictEqual(xmlData.project.properties['jackson.version'], '2.10.2');
+    strictEqual(xmlData.project.properties['java.version'], 1.8);
+    strictEqual(xmlData.project.properties['jackson.version'], '2.10.2');
 
-        strictEqual(xmlData.project.dependencies.dependency.length, 2);
-        strictEqual(xmlData.project.dependencies.dependency[0].groupId, 'org.apache.httpcomponents');
-        strictEqual(xmlData.project.dependencies.dependency[0].artifactId, 'httpclient');
-        strictEqual(xmlData.project.dependencies.dependency[1].groupId, 'org.java-websocket');
-        strictEqual(xmlData.project.dependencies.dependency[1].artifactId, 'Java-WebSocket');
-        strictEqual(xmlData.project.dependencies.dependency[1].version, '2.3.1');
-    });
+    strictEqual(xmlData.project.dependencies.dependency.length, 2);
+    strictEqual(
+      xmlData.project.dependencies.dependency[0].groupId,
+      'org.apache.httpcomponents',
+    );
+    strictEqual(
+      xmlData.project.dependencies.dependency[0].artifactId,
+      'httpclient',
+    );
+    strictEqual(
+      xmlData.project.dependencies.dependency[1].groupId,
+      'org.java-websocket',
+    );
+    strictEqual(
+      xmlData.project.dependencies.dependency[1].artifactId,
+      'Java-WebSocket',
+    );
+    strictEqual(xmlData.project.dependencies.dependency[1].version, '2.3.1');
+  });
 
-    it('should return an array of pom properties when they exist', async () => {
-        const parsedPom = {
-            project: {
-                properties: {
-                    'jackson.version': '2.1.0',
-                    'snakeyaml.version': '3.0.0',
-                },
+  it('should return an array of pom properties when they exist', async () => {
+    const parsedPom = {
+      project: {
+        properties: {
+          'jackson.version': '2.1.0',
+          'snakeyaml.version': '3.0.0',
+        },
+      },
+    };
+
+    const pomProperties = await getPomProperties(parsedPom);
+
+    strictEqual(pomProperties.length, 2);
+    strictEqual(pomProperties[0], 'jackson.version');
+    strictEqual(pomProperties[1], 'snakeyaml.version');
+  });
+
+  it('should return an empty array of pom properties when they do not exist', async () => {
+    const parsedPom = {
+      project: {},
+    };
+
+    const pomProperties = await getPomProperties(parsedPom);
+
+    strictEqual(pomProperties.length, 0);
+  });
+
+  it('should return an array of pom dependencies when they exist', async () => {
+    const parsedPom = {
+      project: {
+        dependencies: {
+          dependency: [
+            {
+              groupId: 'org.apache.httpcomponents',
+              artifactId: 'httpclient',
             },
-        };
-
-        const pomProperties = await getPomProperties(parsedPom);
-
-        strictEqual(pomProperties.length, 2);
-        strictEqual(pomProperties[0], 'jackson.version');
-        strictEqual(pomProperties[1], 'snakeyaml.version');
-    });
-
-    it('should return an empty array of pom properties when they do not exist', async () => {
-        const parsedPom = {
-            project: {},
-        };
-
-        const pomProperties = await getPomProperties(parsedPom);
-
-        strictEqual(pomProperties.length, 0);
-    });
-
-    it('should return an array of pom dependencies when they exist', async () => {
-        const parsedPom = {
-            project: {
-                dependencies: {
-                    dependency: [
-                        { groupId: 'org.apache.httpcomponents', artifactId: 'httpclient' },
-                        {
-                            groupId: 'org.java-websocket',
-                            artifactId: 'Java-WebSocket',
-                            version: '2.3.1',
-                        }],
-                },
+            {
+              groupId: 'org.java-websocket',
+              artifactId: 'Java-WebSocket',
+              version: '2.3.1',
             },
-        };
+          ],
+        },
+      },
+    };
 
-        const pomDependenciesWithVersions = await getPomDependenciesWithVersions(parsedPom);
+    const pomDependenciesWithVersions =
+      await getPomDependenciesWithVersions(parsedPom);
 
-        strictEqual(pomDependenciesWithVersions.length, 1);
-        strictEqual(pomDependenciesWithVersions[0].artifactId, 'Java-WebSocket');
-        strictEqual(pomDependenciesWithVersions[0].groupId, 'org.java-websocket');
-        strictEqual(pomDependenciesWithVersions[0].version, '2.3.1');
-    });
+    strictEqual(pomDependenciesWithVersions.length, 1);
+    strictEqual(pomDependenciesWithVersions[0].artifactId, 'Java-WebSocket');
+    strictEqual(pomDependenciesWithVersions[0].groupId, 'org.java-websocket');
+    strictEqual(pomDependenciesWithVersions[0].version, '2.3.1');
+  });
 
-    it('should return an array of pom dependencies when they exist', async () => {
-        const parsedPom = {
-            project: {},
-        };
+  it('should return an array of pom dependencies when they exist', async () => {
+    const parsedPom = {
+      project: {},
+    };
 
-        const pomDependenciesWithVersions = await getPomDependenciesWithVersions(parsedPom);
+    const pomDependenciesWithVersions =
+      await getPomDependenciesWithVersions(parsedPom);
 
-        strictEqual(pomDependenciesWithVersions.length, 0);
-    });
+    strictEqual(pomDependenciesWithVersions.length, 0);
+  });
 
-    it('should get spring boot version from pom when it exists', async () => {
-        const parsedPom = {
-            project: {
-                parent: {
-                    groupId: 'org.springframework.boot',
-                    artifactId: 'spring-boot-starter-parent',
-                    version: '2.1.0',
-                },
+  it('should get spring boot version from pom when it exists', async () => {
+    const parsedPom = {
+      project: {
+        parent: {
+          groupId: 'org.springframework.boot',
+          artifactId: 'spring-boot-starter-parent',
+          version: '2.1.0',
+        },
+      },
+    };
+
+    const pomSpringBootVersion = await getPomSpringBootVersion(parsedPom);
+
+    strictEqual(pomSpringBootVersion, '2.1.0');
+  });
+
+  it("should return a value for spring boot version from pom when it doesn't exists", async () => {
+    const parsedPom = {
+      project: {
+        parent: {},
+      },
+    };
+
+    const pomSpringBootVersion = await getPomSpringBootVersion(parsedPom);
+
+    strictEqual(pomSpringBootVersion, '');
+  });
+
+  it('should output mismatched packages', async () => {
+    const parsedPom = {
+      project: {
+        parent: {
+          groupId: 'org.springframework.boot',
+          artifactId: 'spring-boot-starter-parent',
+          version: '2.1.0',
+        },
+        dependencies: {
+          dependency: [
+            {
+              groupId: 'org.apache.httpcomponents',
+              artifactId: 'httpclient',
             },
-        };
-
-        const pomSpringBootVersion = await getPomSpringBootVersion(parsedPom);
-
-        strictEqual(pomSpringBootVersion, '2.1.0');
-    });
-
-    it('should return a value for spring boot version from pom when it doesn\'t exists', async () => {
-        const parsedPom = {
-            project: {
-                parent: {},
+            {
+              groupId: 'org.java-websocket',
+              artifactId: 'Java-WebSocket',
+              version: '2.3.1',
             },
-        };
+          ],
+        },
+      },
+    };
 
-        const pomSpringBootVersion = await getPomSpringBootVersion(parsedPom);
+    await retrieveSimilarPomPackages(parsedPom);
+  });
 
-        strictEqual(pomSpringBootVersion, '');
+  after(() => {
+    unlink(filename, (err) => {
+      if (err) throw err;
     });
-
-    it('should output mismatched packages', async () => {
-        const parsedPom = {
-            project: {
-                parent: {
-                    groupId: 'org.springframework.boot',
-                    artifactId: 'spring-boot-starter-parent',
-                    version: '2.1.0',
-                },
-                'dependencies': {
-                    'dependency': [
-                        { groupId: 'org.apache.httpcomponents', artifactId: 'httpclient' },
-                        {
-                            groupId: 'org.java-websocket',
-                            artifactId: 'Java-WebSocket',
-                            version: '2.3.1',
-                        }],
-                },
-            },
-        };
-
-        await retrieveSimilarPomPackages(parsedPom);
-    });
-
-    after(() => {
-        unlink(filename, (err) => {
-            if (err) throw err;
-        });
-    });
+  });
 });
