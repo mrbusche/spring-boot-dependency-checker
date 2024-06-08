@@ -7,7 +7,7 @@ export const getJSFromFile = async (filename) => {
     // const baseGradle = await g2js.parseFile(filename);
     const parsedGradleFiles = [];
     const files = [];
-    readdirSync('./', { recursive: true }).forEach(file => {
+    readdirSync('./', { recursive: true }).forEach((file) => {
       if (file.includes('build.gradle')) {
         files.push(file);
       }
@@ -22,7 +22,7 @@ export const getJSFromFile = async (filename) => {
     let buildscript = [];
     let x = [];
     let allprojects = [];
-    parsedGradleFiles.forEach(f => {
+    parsedGradleFiles.forEach((f) => {
       dependencies = dependencies.concat(f.dependencies ?? []);
       subprojects = subprojects.concat(f.subprojects ?? []);
       plugins = plugins.concat(f.plugins ?? []);
@@ -74,13 +74,12 @@ export const getGradleSpringBootVersion = async (parsedGradle) => {
   }
   // there are likely more places we could search for this variable, but we'll start here
   if (parsedGradle?.buildscript?.[0]?.ext?.springBootVersion) {
-    return String(parsedGradle?.buildscript?.[0]?.ext?.springBootVersion).replace(
-      '+',
-      'x',
-    );
+    return String(
+      parsedGradle?.buildscript?.[0]?.ext?.springBootVersion,
+    ).replace('+', 'x');
   }
-  if (parsedGradle.buildscript?.[0]?.['ext[\'springBootVersion\']']) {
-    return parsedGradle.buildscript[0]['ext[\'springBootVersion\']'];
+  if (parsedGradle.buildscript?.[0]?.["ext['springBootVersion']"]) {
+    return parsedGradle.buildscript[0]["ext['springBootVersion']"];
   }
   console.log('No Spring Boot version found.');
   return '';
