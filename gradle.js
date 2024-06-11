@@ -8,7 +8,7 @@ export const getJSFromFile = async (filename) => {
     const parsedGradleFiles = [];
     const files = [];
     readdirSync('./', { recursive: true }).forEach((file) => {
-      if (file.includes('build.gradle')) {
+      if (file.includes(filename)) {
         files.push(file);
       }
     });
