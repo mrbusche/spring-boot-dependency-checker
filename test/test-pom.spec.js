@@ -40,42 +40,44 @@ describe('test pom parsing', () => {
     const xmlData = await getXMLFromFile(filename);
 
     strictEqual(
-      xmlData.project.parent.artifactId,
+      xmlData.project.parent[0].artifactId,
       'spring-boot-starter-parent',
     );
-    strictEqual(xmlData.project.parent.groupId, 'org.springframework.boot');
-    strictEqual(xmlData.project.parent.version, '3.1.0');
+    strictEqual(xmlData.project.parent[0].groupId, 'org.springframework.boot');
+    strictEqual(xmlData.project.parent[0].version, '3.1.0');
 
-    strictEqual(xmlData.project.properties['java.version'], 1.8);
-    strictEqual(xmlData.project.properties['jackson.version'], '2.10.2');
+    strictEqual(xmlData.project.properties[0]['java.version'], 1.8);
+    strictEqual(xmlData.project.properties[0]['jackson.version'], '2.10.2');
 
-    strictEqual(xmlData.project.dependencies.dependency.length, 2);
+    strictEqual(xmlData.project.dependencies[0].dependency.length, 2);
     strictEqual(
-      xmlData.project.dependencies.dependency[0].groupId,
+      xmlData.project.dependencies[0].dependency[0].groupId,
       'org.apache.httpcomponents',
     );
     strictEqual(
-      xmlData.project.dependencies.dependency[0].artifactId,
+      xmlData.project.dependencies[0].dependency[0].artifactId,
       'httpclient',
     );
     strictEqual(
-      xmlData.project.dependencies.dependency[1].groupId,
+      xmlData.project.dependencies[0].dependency[1].groupId,
       'org.java-websocket',
     );
     strictEqual(
-      xmlData.project.dependencies.dependency[1].artifactId,
+      xmlData.project.dependencies[0].dependency[1].artifactId,
       'Java-WebSocket',
     );
-    strictEqual(xmlData.project.dependencies.dependency[1].version, '2.3.1');
+    strictEqual(xmlData.project.dependencies[0].dependency[1].version, '2.3.1');
   });
 
   it('should return an array of pom properties when they exist', async () => {
     const parsedPom = {
       project: {
-        properties: {
-          'jackson.version': '2.1.0',
-          'snakeyaml.version': '3.0.0',
-        },
+        properties: [
+          {
+            'jackson.version': '2.1.0',
+            'snakeyaml.version': '3.0.0',
+          },
+        ],
       },
     };
 
@@ -99,19 +101,21 @@ describe('test pom parsing', () => {
   it('should return an array of pom dependencies when they exist', async () => {
     const parsedPom = {
       project: {
-        dependencies: {
-          dependency: [
-            {
-              groupId: 'org.apache.httpcomponents',
-              artifactId: 'httpclient',
-            },
-            {
-              groupId: 'org.java-websocket',
-              artifactId: 'Java-WebSocket',
-              version: '2.3.1',
-            },
-          ],
-        },
+        dependencies: [
+          {
+            dependency: [
+              {
+                groupId: 'org.apache.httpcomponents',
+                artifactId: 'httpclient',
+              },
+              {
+                groupId: 'org.java-websocket',
+                artifactId: 'Java-WebSocket',
+                version: '2.3.1',
+              },
+            ],
+          },
+        ],
       },
     };
 
@@ -126,7 +130,7 @@ describe('test pom parsing', () => {
 
   it('should return an array of pom dependencies when they exist', async () => {
     const parsedPom = {
-      project: {},
+      project: [],
     };
 
     const pomDependenciesWithVersions =
@@ -138,11 +142,13 @@ describe('test pom parsing', () => {
   it('should get spring boot version from pom when it exists', async () => {
     const parsedPom = {
       project: {
-        parent: {
-          groupId: 'org.springframework.boot',
-          artifactId: 'spring-boot-starter-parent',
-          version: '2.1.0',
-        },
+        parent: [
+          {
+            groupId: 'org.springframework.boot',
+            artifactId: 'spring-boot-starter-parent',
+            version: '2.1.0',
+          },
+        ],
       },
     };
 
@@ -154,7 +160,7 @@ describe('test pom parsing', () => {
   it("should return a value for spring boot version from pom when it doesn't exists", async () => {
     const parsedPom = {
       project: {
-        parent: {},
+        parent: [{}],
       },
     };
 

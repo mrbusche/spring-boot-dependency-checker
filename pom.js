@@ -1,5 +1,5 @@
 import { XMLParser } from 'fast-xml-parser';
-import { existsSync, readFileSync, writeFileSync } from 'fs';
+import { existsSync, readdirSync, readFileSync, writeFileSync } from 'fs';
 import { parse } from 'node-html-parser';
 import {
   cachePath,
@@ -12,19 +12,53 @@ import {
 export const getXMLFromFile = async (filename) => {
   try {
     const parser = new XMLParser();
-    const xmlData = readFileSync(filename, 'utf8');
-    return parser.parse(xmlData);
+
+    const parsedPomFiles = [];
+    const files = [];
+    readdirSync('./', { recursive: true }).forEach((file) => {
+      if (file.endsWith(filename)) {
+        files.push(file);
+      }
+    });
+    for (const file of files) {
+      const xmlData = readFileSync(file, 'utf8');
+      parsedPomFiles.push(parser.parse(xmlData));
+    }
+
+    let properties = [];
+    let dependencies = [];
+    let dependencyManagement = [];
+    let parent = [];
+    parsedPomFiles.forEach((pom) => {
+      properties = properties.concat(pom.project.properties ?? []);
+      dependencies = dependencies.concat(pom.project.dependencies ?? []);
+      dependencyManagement = dependencyManagement.concat(
+        pom.project.dependencyManagement ?? [],
+      );
+      parent = parent.concat(pom.project.parent ?? []);
+    });
+
+    return {
+      project: {
+        properties: properties,
+        dependencies: dependencies,
+        dependencyManagement: dependencyManagement,
+        parent: parent,
+      },
+    };
   } catch (err) {
     return [];
   }
 };
 
 export const getPomProperties = async (parsedPom) => {
-  const properties = parsedPom.project?.properties;
-  if (properties) {
-    return Object.keys(properties);
+  let properties = [];
+  if (Array.isArray(parsedPom.project.properties)) {
+    parsedPom.project.properties.forEach((property) => {
+      properties = properties.concat(Object.keys(property));
+    });
   }
-  return [];
+  return properties;
 };
 
 const getSpringBootProperties = async (filename) => {
@@ -34,43 +68,47 @@ const getSpringBootProperties = async (filename) => {
 
 export const getPomDependenciesWithVersions = async (parsedPom) => {
   let allDependencies = [];
-  if (parsedPom?.project?.dependencies?.dependency) {
-    allDependencies = allDependencies.concat(
-      parsedPom.project.dependencies.dependency,
-    );
+  if (Array.isArray(parsedPom.project.dependencies)) {
+    parsedPom?.project.dependencies.forEach((pom) => {
+      allDependencies = allDependencies.concat(pom.dependency);
+    });
   }
-  if (parsedPom?.project?.dependencyManagement?.dependencies?.dependency) {
-    allDependencies = allDependencies.concat(
-      parsedPom.project.dependencyManagement.dependencies.dependency,
-    );
+  if (Array.isArray(parsedPom.project.dependencyManagement)) {
+    parsedPom?.project.dependencyManagement.forEach((pom) => {
+      allDependencies = allDependencies.concat(pom.dependencies.dependency);
+    });
   }
-  return allDependencies.filter((dep) => dep.version);
+  return allDependencies.filter((dep) => dep?.version);
 };
 
 export const getPomSpringBootVersion = async (parsedPom) => {
-  if (
-    parsedPom.project?.parent?.groupId === 'org.springframework.boot' &&
-    parsedPom.project?.parent?.artifactId === 'spring-boot-starter-parent'
-  ) {
-    return parsedPom.project.parent.version;
+  let bootVersion = parsedPom.project.parent.filter(
+    (pom) =>
+      pom.groupId === 'org.springframework.boot' &&
+      pom.artifactId === 'spring-boot-starter-parent',
+  );
+  if (bootVersion.length) {
+    return bootVersion[0].version;
   }
-  if (
-    parsedPom.project?.dependencyManagement?.dependencies?.dependency
-      ?.groupId === 'org.springframework.boot' &&
-    parsedPom.project?.dependencyManagement?.dependencies?.dependency
-      ?.artifactId === 'spring-boot-dependencies'
-  ) {
-    const bootVersion =
-      parsedPom.project.dependencyManagement.dependencies.dependency.version;
-    return replaceVariable(parsedPom.project.properties, bootVersion);
+
+  bootVersion =
+    parsedPom.project.dependencyManagement?.dependencies?.dependency.filter(
+      (pom) =>
+        pom.groupId === 'org.springframework.boot' &&
+        pom.artifactId === 'spring-boot-starter-parent',
+    );
+  if (bootVersion) {
+    const tempBootVersion = bootVersion.version;
+    return replaceVariable(parsedPom.project.properties, tempBootVersion);
   }
+
   if (
     Array.isArray(
-      parsedPom.project?.dependencyManagement?.dependencies.dependency,
+      parsedPom.project?.dependencyManagement?.[0]?.dependencies.dependency,
     )
   ) {
     const bootVersion =
-      parsedPom.project?.dependencyManagement?.dependencies.dependency.find(
+      parsedPom.project?.dependencyManagement?.[0]?.dependencies.dependency.find(
         (dependency) =>
           dependency.groupId === 'org.springframework.boot' &&
           dependency.artifactId === 'spring-boot-dependencies',
@@ -78,6 +116,17 @@ export const getPomSpringBootVersion = async (parsedPom) => {
     if (bootVersion) {
       return replaceVariable(parsedPom.project.properties, bootVersion);
     }
+  }
+  if (
+    parsedPom.project?.dependencyManagement?.[0]?.dependencies.dependency
+      .groupId === 'org.springframework.boot' &&
+    parsedPom.project?.dependencyManagement?.[0]?.dependencies.dependency
+      .artifactId === 'spring-boot-dependencies'
+  ) {
+    return replaceVariable(
+      parsedPom.project.properties,
+      parsedPom.project.dependencyManagement[0].dependencies.dependency.version,
+    );
   }
   // if (parsedPom?.project?.properties['spring.boot.version']) {
   //     return parsedPom.project.properties['spring.boot.version']
@@ -190,7 +239,7 @@ const getSpringDefaultProperties = async (springBootVersion) => {
 const replaceVariable = (properties, version) => {
   if (String(version).startsWith('${')) {
     const variableName = version.replace('${', '').replace('}', '');
-    return properties[variableName];
+    return properties[0][variableName];
   }
   return version;
 };
