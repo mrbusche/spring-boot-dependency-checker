@@ -58,18 +58,10 @@ const downloadSpringDefaultVersions = async (springBootVersion) => {
               version: child.childNodes[5].rawText,
             }),
     );
-    await writeFileSync(
-      `${cachePath}/dependencies_${springBootVersion}.json`,
-      JSON.stringify(versions, null, 2),
-    );
+    await writeFileSync(`${cachePath}/dependencies_${springBootVersion}.json`, JSON.stringify(versions, null, 2));
   } else {
-    await writeFileSync(
-      `${cachePath}/dependencies_${springBootVersion}.json`,
-      JSON.stringify(versions, null, 2),
-    );
-    console.log(
-      'URL not found - Spring Boot default versions URL no longer exists.',
-    );
+    await writeFileSync(`${cachePath}/dependencies_${springBootVersion}.json`, JSON.stringify(versions, null, 2));
+    console.log('URL not found - Spring Boot default versions URL no longer exists.');
   }
 };
 
