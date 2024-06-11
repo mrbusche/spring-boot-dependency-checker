@@ -91,8 +91,7 @@ export const getPomSpringBootVersion = async (parsedPom) => {
 
   if (Array.isArray(parsedPom.project?.dependencyManagement?.[0]?.dependencies.dependency)) {
     const bootVersion = parsedPom.project?.dependencyManagement?.[0]?.dependencies.dependency.find(
-      (dependency) =>
-        dependency.groupId === 'org.springframework.boot' && dependency.artifactId === 'spring-boot-dependencies',
+      (dependency) => dependency.groupId === 'org.springframework.boot' && dependency.artifactId === 'spring-boot-dependencies',
     )?.version;
     if (bootVersion) {
       return replaceVariable(parsedPom.project.properties, bootVersion);
@@ -102,10 +101,7 @@ export const getPomSpringBootVersion = async (parsedPom) => {
     parsedPom.project?.dependencyManagement?.[0]?.dependencies.dependency.groupId === 'org.springframework.boot' &&
     parsedPom.project?.dependencyManagement?.[0]?.dependencies.dependency.artifactId === 'spring-boot-dependencies'
   ) {
-    return replaceVariable(
-      parsedPom.project.properties,
-      parsedPom.project.dependencyManagement[0].dependencies.dependency.version,
-    );
+    return replaceVariable(parsedPom.project.properties, parsedPom.project.dependencyManagement[0].dependencies.dependency.version);
   }
   // if (parsedPom?.project?.properties['spring.boot.version']) {
   //     return parsedPom.project.properties['spring.boot.version']
@@ -129,13 +125,10 @@ export const retrieveSimilarPomPackages = async (parsedPom, springBootVersion) =
           if (pomDependency.groupId === bootPackage.group && pomDependency.artifactId === bootPackage.name) {
             const pomVersion = replaceVariable(parsedPom.project.properties, pomDependency.version);
             const existingMatches = declaredPackages.find(
-              (declaredPackage) =>
-                declaredPackage.group === pomDependency.groupId && declaredPackage.name === pomDependency.artifactId,
+              (declaredPackage) => declaredPackage.group === pomDependency.groupId && declaredPackage.name === pomDependency.artifactId,
             );
             if (!existingMatches) {
-              declaredPackages.push(
-                new Package(pomDependency.groupId, pomDependency.artifactId, pomVersion, bootPackage.version),
-              );
+              declaredPackages.push(new Package(pomDependency.groupId, pomDependency.artifactId, pomVersion, bootPackage.version));
             }
           }
         }),

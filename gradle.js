@@ -84,17 +84,11 @@ export const retrieveSimilarGradlePackages = async (parsedGradle, springBootVers
         defaultVersions.forEach((bootPackage) => {
           if (gradleDependency.group === bootPackage.group && gradleDependency.name === bootPackage.name) {
             const existingMatches = declaredPackages.find(
-              (declaredPackage) =>
-                declaredPackage.group === gradleDependency.group && declaredPackage.name === gradleDependency.name,
+              (declaredPackage) => declaredPackage.group === gradleDependency.group && declaredPackage.name === gradleDependency.name,
             );
             if (!existingMatches) {
               declaredPackages.push(
-                new Package(
-                  gradleDependency.group,
-                  gradleDependency.name,
-                  gradleDependency.version,
-                  bootPackage.version,
-                ),
+                new Package(gradleDependency.group, gradleDependency.name, gradleDependency.version, bootPackage.version),
               );
             }
           }
