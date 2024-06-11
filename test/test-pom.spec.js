@@ -39,10 +39,7 @@ describe('test pom parsing', () => {
 
     const xmlData = await getXMLFromFile(filename);
 
-    strictEqual(
-      xmlData.project.parent[0].artifactId,
-      'spring-boot-starter-parent',
-    );
+    strictEqual(xmlData.project.parent[0].artifactId, 'spring-boot-starter-parent');
     strictEqual(xmlData.project.parent[0].groupId, 'org.springframework.boot');
     strictEqual(xmlData.project.parent[0].version, '3.1.0');
 
@@ -50,22 +47,10 @@ describe('test pom parsing', () => {
     strictEqual(xmlData.project.properties[0]['jackson.version'], '2.10.2');
 
     strictEqual(xmlData.project.dependencies[0].dependency.length, 2);
-    strictEqual(
-      xmlData.project.dependencies[0].dependency[0].groupId,
-      'org.apache.httpcomponents',
-    );
-    strictEqual(
-      xmlData.project.dependencies[0].dependency[0].artifactId,
-      'httpclient',
-    );
-    strictEqual(
-      xmlData.project.dependencies[0].dependency[1].groupId,
-      'org.java-websocket',
-    );
-    strictEqual(
-      xmlData.project.dependencies[0].dependency[1].artifactId,
-      'Java-WebSocket',
-    );
+    strictEqual(xmlData.project.dependencies[0].dependency[0].groupId, 'org.apache.httpcomponents');
+    strictEqual(xmlData.project.dependencies[0].dependency[0].artifactId, 'httpclient');
+    strictEqual(xmlData.project.dependencies[0].dependency[1].groupId, 'org.java-websocket');
+    strictEqual(xmlData.project.dependencies[0].dependency[1].artifactId, 'Java-WebSocket');
     strictEqual(xmlData.project.dependencies[0].dependency[1].version, '2.3.1');
   });
 
@@ -119,8 +104,7 @@ describe('test pom parsing', () => {
       },
     };
 
-    const pomDependenciesWithVersions =
-      await getPomDependenciesWithVersions(parsedPom);
+    const pomDependenciesWithVersions = await getPomDependenciesWithVersions(parsedPom);
 
     strictEqual(pomDependenciesWithVersions.length, 1);
     strictEqual(pomDependenciesWithVersions[0].artifactId, 'Java-WebSocket');
@@ -133,8 +117,7 @@ describe('test pom parsing', () => {
       project: [],
     };
 
-    const pomDependenciesWithVersions =
-      await getPomDependenciesWithVersions(parsedPom);
+    const pomDependenciesWithVersions = await getPomDependenciesWithVersions(parsedPom);
 
     strictEqual(pomDependenciesWithVersions.length, 0);
   });
