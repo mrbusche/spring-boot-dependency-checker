@@ -53,9 +53,11 @@ export const getXMLFromFile = async (filename) => {
 
 export const getPomProperties = async (parsedPom) => {
   let properties = [];
-  parsedPom.project?.properties.forEach((property) => {
-    properties = properties.concat(Object.keys(property));
-  });
+  if (Array.isArray(parsedPom.project.properties)) {
+    parsedPom.project.properties.forEach((property) => {
+      properties = properties.concat(Object.keys(property));
+    });
+  }
   return properties;
 };
 
@@ -66,12 +68,16 @@ const getSpringBootProperties = async (filename) => {
 
 export const getPomDependenciesWithVersions = async (parsedPom) => {
   let allDependencies = [];
-  parsedPom?.project?.dependencies?.forEach((pom) => {
-    allDependencies = allDependencies.concat(pom.dependency);
-  });
-  parsedPom?.project?.dependencyManagement?.forEach((pom) => {
-    allDependencies = allDependencies.concat(pom.dependencies.dependency);
-  });
+  if (Array.isArray(parsedPom.project.dependencies)) {
+    parsedPom?.project.dependencies.forEach((pom) => {
+      allDependencies = allDependencies.concat(pom.dependency);
+    });
+  }
+  if (Array.isArray(parsedPom.project.dependencyManagement)) {
+    parsedPom?.project.dependencyManagement.forEach((pom) => {
+      allDependencies = allDependencies.concat(pom.dependencies.dependency);
+    });
+  }
   return allDependencies.filter((dep) => dep?.version);
 };
 
