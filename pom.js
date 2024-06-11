@@ -98,8 +98,8 @@ export const getPomSpringBootVersion = async (parsedPom) => {
     }
   }
   if (
-    parsedPom.project?.dependencyManagement?.[0]?.dependencies.dependency.groupId === 'org.springframework.boot' &&
-    parsedPom.project?.dependencyManagement?.[0]?.dependencies.dependency.artifactId === 'spring-boot-dependencies'
+    parsedPom.project?.dependencyManagement?.[0]?.dependencies?.dependency?.groupId === 'org.springframework.boot' &&
+    parsedPom.project?.dependencyManagement?.[0]?.dependencies?.dependency?.artifactId === 'spring-boot-dependencies'
   ) {
     return replaceVariable(parsedPom.project.properties, parsedPom.project.dependencyManagement[0].dependencies.dependency.version);
   }
@@ -120,8 +120,8 @@ export const retrieveSimilarPomPackages = async (parsedPom, springBootVersion) =
 
     if (defaultVersions.length) {
       const declaredPackages = [];
-      pomDependenciesWithVersions.forEach((pomDependency) =>
-        defaultVersions.forEach((bootPackage) => {
+      for (const pomDependency of pomDependenciesWithVersions) {
+        for (const bootPackage of defaultVersions) {
           if (pomDependency.groupId === bootPackage.group && pomDependency.artifactId === bootPackage.name) {
             const pomVersion = replaceVariable(parsedPom.project.properties, pomDependency.version);
             const existingMatches = declaredPackages.find(
@@ -129,10 +129,11 @@ export const retrieveSimilarPomPackages = async (parsedPom, springBootVersion) =
             );
             if (!existingMatches) {
               declaredPackages.push(new Package(pomDependency.groupId, pomDependency.artifactId, pomVersion, bootPackage.version));
+              break;
             }
           }
-        }),
-      );
+        }
+      }
 
       console.log('Declared Pom Package Count -', declaredPackages.length);
       if (declaredPackages.length) {
@@ -154,13 +155,14 @@ export const retrieveSimilarPomProperties = async (parsedPom, springBootVersion)
 
     if (defaultProperties.length) {
       const declaredProperties = [];
-      pomProperties.forEach((pomProperty) =>
-        defaultProperties.forEach((defaultProperty) => {
+      for (const pomProperty of pomProperties) {
+        for (const defaultProperty of defaultProperties) {
           if (pomProperty === defaultProperty.property) {
             declaredProperties.push(pomProperty);
+            break;
           }
-        }),
-      );
+        }
+      }
 
       console.log('Declared Pom Properties Count -', declaredProperties.length);
       if (declaredProperties.length) {
@@ -190,8 +192,14 @@ const getSpringDefaultProperties = async (springBootVersion) => {
 
 const replaceVariable = (properties, version) => {
   if (String(version).startsWith('${')) {
+    const flatProperties = {};
+    properties.forEach((property) => {
+      for (const [key, value] of Object.entries(property)) {
+        flatProperties[key] = value;
+      }
+    });
     const variableName = version.replace('${', '').replace('}', '');
-    return properties[0][variableName];
+    return flatProperties[variableName];
   }
   return version;
 };

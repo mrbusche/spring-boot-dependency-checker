@@ -4,7 +4,6 @@ import { readdirSync } from 'fs';
 
 export const getJSFromFile = async (filename) => {
   try {
-    // const baseGradle = await g2js.parseFile(filename);
     const parsedGradleFiles = [];
     const files = [];
     readdirSync('./', { recursive: true }).forEach((file) => {
@@ -80,8 +79,8 @@ export const retrieveSimilarGradlePackages = async (parsedGradle, springBootVers
 
     if (defaultVersions.length) {
       const declaredPackages = [];
-      gradleDependenciesWithVersions.forEach((gradleDependency) =>
-        defaultVersions.forEach((bootPackage) => {
+      for (const gradleDependency of gradleDependenciesWithVersions) {
+        for (const bootPackage of defaultVersions) {
           if (gradleDependency.group === bootPackage.group && gradleDependency.name === bootPackage.name) {
             const existingMatches = declaredPackages.find(
               (declaredPackage) => declaredPackage.group === gradleDependency.group && declaredPackage.name === gradleDependency.name,
@@ -90,10 +89,11 @@ export const retrieveSimilarGradlePackages = async (parsedGradle, springBootVers
               declaredPackages.push(
                 new Package(gradleDependency.group, gradleDependency.name, gradleDependency.version, bootPackage.version),
               );
+              break;
             }
           }
-        }),
-      );
+        }
+      }
 
       console.log('Declared Gradle Package Count -', declaredPackages.length);
       if (declaredPackages.length) {
