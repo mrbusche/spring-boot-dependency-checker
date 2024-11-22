@@ -206,18 +206,20 @@ const replaceVariable = (properties, version) => {
 
 const downloadSpringVersionProperties = async (springBootVersion) => {
   let url = `https://docs.spring.io/spring-boot/docs/${springBootVersion}/reference/html/dependency-versions.html`;
+  let bodyIndex = 1;
   let response = await fetch(url);
   // Handle new Spring Boot URL, count redirects as failures, and handle 3.3.+ gradle format
   if (response.status === 404 || response.url.includes('redirect.html')) {
     const springMinorVersion = springBootVersion.replace('.x', '');
     url = `https://docs.spring.io/spring-boot/${springMinorVersion}/appendix/dependency-versions/properties.html`;
+    bodyIndex = 0;
     response = await fetch(url);
   }
   const versions = [];
   if (response.ok) {
     const template = await response.text();
     const parsedTemplate = parse(template);
-    const tableBody = parsedTemplate.querySelector('table.tableblock tbody');
+    const tableBody = parsedTemplate.querySelectorAll('table.tableblock tbody')[bodyIndex];
 
     // older versions of Spring Boot do not have property versions listed
     if (tableBody) {
