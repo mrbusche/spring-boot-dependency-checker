@@ -44,7 +44,7 @@ const downloadSpringDefaultVersions = async (springBootVersion) => {
   if (response.ok) {
     const template = await response.text();
     const parsedTemplate = parse(template);
-    const tableBody = parsedTemplate.querySelector('table tbody');
+    const tableBody = parsedTemplate.querySelector('table.tableblock tbody');
 
     tableBody.childNodes.forEach(
       (
