@@ -157,7 +157,7 @@ export const retrieveSimilarPomProperties = async (parsedPom, springBootVersion)
       const declaredProperties = [];
       for (const pomProperty of pomProperties) {
         for (const defaultProperty of defaultProperties) {
-          if (pomProperty === defaultProperty.property) {
+          if (pomProperty === defaultProperty.property || pomProperty.replace('.version', '') === defaultProperty.property) {
             declaredProperties.push(pomProperty);
             break;
           }
@@ -206,20 +206,18 @@ const replaceVariable = (properties, version) => {
 
 const downloadSpringVersionProperties = async (springBootVersion) => {
   let url = `https://docs.spring.io/spring-boot/docs/${springBootVersion}/reference/html/dependency-versions.html`;
-  let bodyIndex = 1;
   let response = await fetch(url);
   // Handle new Spring Boot URL, count redirects as failures, and handle 3.3.+ gradle format
   if (response.status === 404 || response.url.includes('redirect.html')) {
     const springMinorVersion = springBootVersion.replace('.x', '');
     url = `https://docs.spring.io/spring-boot/${springMinorVersion}/appendix/dependency-versions/properties.html`;
-    bodyIndex = 0;
     response = await fetch(url);
   }
   const versions = [];
   if (response.ok) {
     const template = await response.text();
     const parsedTemplate = parse(template);
-    const tableBody = parsedTemplate.getElementsByTagName('tbody')[bodyIndex];
+    const tableBody = parsedTemplate.querySelector('table.tableblock tbody');
 
     // older versions of Spring Boot do not have property versions listed
     if (tableBody) {
