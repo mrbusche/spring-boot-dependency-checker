@@ -30,7 +30,7 @@
     "node-html-parser": "6.1.13"
   },
   "devDependencies": {
-    "mocha": "10.8.2",
+    "mocha": "11.0.1",
     "prettier": "3.4.1"
   },
   "prettier": {
