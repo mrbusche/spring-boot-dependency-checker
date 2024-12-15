@@ -25,7 +25,7 @@
     "test": "mocha"
   },
   "dependencies": {
-    "fast-xml-parser": "4.5.0",
+    "fast-xml-parser": "4.5.1",
     "gradle-to-js": "github:mrbusche/gradle-to-js#8960d1c3f9dab922c9545289abf7b29b25a26f54",
     "node-html-parser": "6.1.13"
   },
