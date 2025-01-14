@@ -78,6 +78,11 @@ export const getPomSpringBootVersion = async (parsedPom) => {
     (pom) => pom.groupId === 'org.springframework.boot' && pom.artifactId === 'spring-boot-starter-parent',
   );
   if (bootVersion.length) {
+    // handle formats such as [3.4.0,3.5.0) and return 3.4.x
+    if (bootVersion[0].version.includes(',')) {
+      const parts = bootVersion[0].version.split(",");
+      return parts[0].substring(1).replace(/\d$/, 'x');
+    }
     return bootVersion[0].version;
   }
 
