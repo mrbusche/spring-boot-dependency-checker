@@ -1,6 +1,6 @@
 {
   "name": "spring-boot-dependency-checker",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "Spring Boot Dependency Checker - validate that you're using the versions Spring Boot has approved with your project.",
   "keywords": [
     "spring boot",
