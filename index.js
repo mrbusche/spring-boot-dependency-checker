@@ -1,6 +1,6 @@
-import { extname } from 'path';
-import { getPomSpringBootVersion, getXMLFromFile, retrieveSimilarPomPackages, retrieveSimilarPomProperties } from './pom.js';
+import { extname } from 'node:path';
 import { getGradleSpringBootVersion, getJSFromFile, retrieveSimilarGradlePackages } from './gradle.js';
+import { getPomSpringBootVersion, getXMLFromFile, retrieveSimilarPomPackages, retrieveSimilarPomProperties } from './pom.js';
 
 export const checkDependencies = async () => {
   const start = Date.now();

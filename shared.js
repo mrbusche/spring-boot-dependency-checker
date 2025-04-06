@@ -1,4 +1,4 @@
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { parse } from 'node-html-parser';
 
 export const cachePath = '.cache';
@@ -46,21 +46,19 @@ const downloadSpringDefaultVersions = async (springBootVersion) => {
     const parsedTemplate = parse(template);
     const tableBody = parsedTemplate.querySelector('table.tableblock tbody');
 
-    tableBody.childNodes.forEach(
-      (
-        child, // there's a header row we should skip
-      ) =>
-        child.childNodes.length === 0
-          ? ''
-          : versions.push({
-              group: child.childNodes[1].rawText,
-              name: child.childNodes[3].rawText,
-              version: child.childNodes[5].rawText,
-            }),
-    );
-    await writeFileSync(`${cachePath}/dependencies_${springBootVersion}.json`, JSON.stringify(versions, null, 2));
+    for (const child of tableBody.childNodes) {
+      // there's a header row we should skip
+      if (child.childNodes.length !== 0) {
+        versions.push({
+          group: child.childNodes[1].rawText,
+          name: child.childNodes[3].rawText,
+          version: child.childNodes[5].rawText,
+        });
+      }
+    }
+    writeFileSync(`${cachePath}/dependencies_${springBootVersion}.json`, JSON.stringify(versions, null, 2));
   } else {
-    await writeFileSync(`${cachePath}/dependencies_${springBootVersion}.json`, JSON.stringify(versions, null, 2));
+    writeFileSync(`${cachePath}/dependencies_${springBootVersion}.json`, JSON.stringify(versions, null, 2));
     console.log('URL not found - Spring Boot default versions URL no longer exists.');
   }
 };
@@ -70,11 +68,9 @@ export const getDefaultSpringBootVersions = async (filename) => {
   return getJsonFromFile(`${cachePath}/dependencies_${filename}.json`);
 };
 
-export class Package {
-  constructor(group, name, inputFileVersion, bootVersion) {
-    this.group = group;
-    this.name = name;
-    this.inputFileVersion = inputFileVersion;
-    this.bootVersion = bootVersion;
-  }
-}
+export const createPackage = (group, name, inputFileVersion, bootVersion) => ({
+  group,
+  name,
+  inputFileVersion,
+  bootVersion,
+});
