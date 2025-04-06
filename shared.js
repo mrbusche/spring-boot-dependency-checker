@@ -68,7 +68,7 @@ export const getDefaultSpringBootVersions = async (filename) => {
   return getJsonFromFile(`${cachePath}/dependencies_${filename}.json`);
 };
 
-export const createPackage = (group, name, inputFileVersion, bootVersion) => ({
+export const Package = (group, name, inputFileVersion, bootVersion) => ({
   group,
   name,
   inputFileVersion,
