@@ -68,9 +68,11 @@ export const getDefaultSpringBootVersions = async (filename) => {
   return getJsonFromFile(`${cachePath}/dependencies_${filename}.json`);
 };
 
-export const Package = (group, name, inputFileVersion, bootVersion) => ({
-  group,
-  name,
-  inputFileVersion,
-  bootVersion,
-});
+export class Package {
+  constructor(group, name, inputFileVersion, bootVersion) {
+    this.group = group;
+    this.name = name;
+    this.inputFileVersion = inputFileVersion;
+    this.bootVersion = bootVersion;
+  }
+}
