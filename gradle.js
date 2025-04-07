@@ -1,16 +1,16 @@
+import { readdirSync } from 'node:fs';
 import g2js from 'gradle-to-js/lib/parser.js';
-import { getDefaultSpringBootVersions, Package } from './shared.js';
-import { readdirSync } from 'fs';
+import { Package, getDefaultSpringBootVersions } from './shared.js';
 
 export const getJSFromFile = async (filename) => {
   try {
     const parsedGradleFiles = [];
     const files = [];
-    readdirSync('./', { recursive: true }).forEach((file) => {
+    for (const file of readdirSync('./', { recursive: true })) {
       if (file.includes(filename)) {
         files.push(file);
       }
-    });
+    }
     for (const file of files) {
       parsedGradleFiles.push(await g2js.parseFile(file));
     }
@@ -21,14 +21,14 @@ export const getJSFromFile = async (filename) => {
     let buildscript = [];
     let x = [];
     let allprojects = [];
-    parsedGradleFiles.forEach((f) => {
+    for (const f of parsedGradleFiles) {
       dependencies = dependencies.concat(f.dependencies ?? []);
       subprojects = subprojects.concat(f.subprojects ?? []);
       plugins = plugins.concat(f.plugins ?? []);
       buildscript = buildscript.concat(f.buildscript ?? []);
       x = x.concat(f.x ?? []);
       allprojects = allprojects.concat(f.allprojects ?? []);
-    });
+    }
 
     return {
       dependencies: dependencies,
@@ -100,10 +100,8 @@ export const retrieveSimilarGradlePackages = async (parsedGradle, springBootVers
         console.log('Declared Gradle Packages -', declaredPackages);
       }
       return declaredPackages;
-    } else {
-      console.log('Spring Boot default versions URL no longer exists.');
-      return [];
     }
   }
+  console.log('Spring Boot default versions URL no longer exists.');
   return [];
 };

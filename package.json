@@ -2,10 +2,7 @@
   "name": "spring-boot-dependency-checker",
   "version": "0.8.2",
   "description": "Spring Boot Dependency Checker - validate that you're using the versions Spring Boot has approved with your project.",
-  "keywords": [
-    "spring boot",
-    "managed dependencies"
-  ],
+  "keywords": ["spring boot", "managed dependencies"],
   "homepage": "https://github.com/mrbusche/spring-boot-dependency-checker",
   "bugs": {
     "url": "https://github.com/mrbusche/spring-boot-dependency-checker/issues/"
@@ -21,7 +18,7 @@
     "url": "https://github.com/mrbusche/spring-boot-dependency-checker.git"
   },
   "scripts": {
-    "prettier:fix": "prettier --write .",
+    "prettier:fix": "npx @biomejs/biome check --write .",
     "test": "mocha"
   },
   "dependencies": {
@@ -30,14 +27,8 @@
     "node-html-parser": "7.0.1"
   },
   "devDependencies": {
-    "mocha": "11.1.0",
-    "prettier": "3.5.3"
-  },
-  "prettier": {
-    "trailingComma": "all",
-    "printWidth": 140,
-    "semi": true,
-    "singleQuote": true
+    "@biomejs/biome": "1.9.4",
+    "mocha": "11.1.0"
   },
   "type": "module"
 }

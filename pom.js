@@ -1,7 +1,7 @@
+import { existsSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { XMLParser } from 'fast-xml-parser';
-import { existsSync, readdirSync, readFileSync, writeFileSync } from 'fs';
 import { parse } from 'node-html-parser';
-import { cachePath, ensureDirExists, getDefaultSpringBootVersions, getJsonFromFile, Package } from './shared.js';
+import { Package, cachePath, ensureDirExists, getDefaultSpringBootVersions, getJsonFromFile } from './shared.js';
 
 export const getXMLFromFile = async (filename) => {
   try {
@@ -9,11 +9,11 @@ export const getXMLFromFile = async (filename) => {
 
     const parsedPomFiles = [];
     const files = [];
-    readdirSync('./', { recursive: true }).forEach((file) => {
+    for (const file of readdirSync('./', { recursive: true })) {
       if (file.endsWith(filename)) {
         files.push(file);
       }
-    });
+    }
     for (const file of files) {
       const xmlData = readFileSync(file, 'utf8');
       parsedPomFiles.push(parser.parse(xmlData));
@@ -23,12 +23,12 @@ export const getXMLFromFile = async (filename) => {
     let dependencies = [];
     let dependencyManagement = [];
     let parent = [];
-    parsedPomFiles.forEach((pom) => {
+    for (const pom of parsedPomFiles) {
       properties = properties.concat(pom.project.properties ?? []);
       dependencies = dependencies.concat(pom.project.dependencies ?? []);
       dependencyManagement = dependencyManagement.concat(pom.project.dependencyManagement ?? []);
       parent = parent.concat(pom.project.parent ?? []);
-    });
+    }
 
     return {
       project: {
@@ -46,9 +46,9 @@ export const getXMLFromFile = async (filename) => {
 export const getPomProperties = async (parsedPom) => {
   let properties = [];
   if (Array.isArray(parsedPom.project.properties)) {
-    parsedPom.project.properties.forEach((property) => {
+    for (const property of parsedPom.project.properties) {
       properties = properties.concat(Object.keys(property));
-    });
+    }
   }
   return properties;
 };
@@ -61,14 +61,14 @@ const getSpringBootProperties = async (filename) => {
 export const getPomDependenciesWithVersions = async (parsedPom) => {
   let allDependencies = [];
   if (Array.isArray(parsedPom.project.dependencies)) {
-    parsedPom?.project.dependencies.forEach((pom) => {
+    for (const pom of parsedPom?.project.dependencies || []) {
       allDependencies = allDependencies.concat(pom.dependency);
-    });
+    }
   }
   if (Array.isArray(parsedPom.project.dependencyManagement)) {
-    parsedPom?.project.dependencyManagement.forEach((pom) => {
+    for (const pom of parsedPom?.project.dependencyManagement || []) {
       allDependencies = allDependencies.concat(pom.dependencies.dependency);
-    });
+    }
   }
   return allDependencies.filter((dep) => dep?.version);
 };
@@ -108,12 +108,6 @@ export const getPomSpringBootVersion = async (parsedPom) => {
   ) {
     return replaceVariable(parsedPom.project.properties, parsedPom.project.dependencyManagement[0].dependencies.dependency.version);
   }
-  // if (parsedPom?.project?.properties['spring.boot.version']) {
-  //     return parsedPom.project.properties['spring.boot.version']
-  // }
-  // if (parsedPom?.project?.properties['spring-boot.version']) {
-  //     return parsedPom.project.properties['spring-boot.version']
-  // }
   console.log('No Spring Boot version found.');
   return '';
 };
@@ -145,11 +139,9 @@ export const retrieveSimilarPomPackages = async (parsedPom, springBootVersion) =
         console.log('Declared Pom Packages -', declaredPackages);
       }
       return declaredPackages;
-    } else {
-      console.log('Spring Boot default versions URL no longer exists.');
-      return [];
     }
   }
+  console.log('Spring Boot default versions URL no longer exists.');
   return [];
 };
 
@@ -174,11 +166,9 @@ export const retrieveSimilarPomProperties = async (parsedPom, springBootVersion)
         console.log('Declared Pom Properties -', declaredProperties);
       }
       return declaredProperties;
-    } else {
-      console.log('Spring Boot default versions URL no longer exists.');
-      return [];
     }
   }
+  console.log('Spring Boot default versions URL no longer exists.');
   return [];
 };
 
@@ -198,11 +188,11 @@ const getSpringDefaultProperties = async (springBootVersion) => {
 const replaceVariable = (properties, version) => {
   if (String(version).startsWith('${')) {
     const flatProperties = {};
-    properties.forEach((property) => {
+    for (const property of properties) {
       for (const [key, value] of Object.entries(property)) {
         flatProperties[key] = value;
       }
-    });
+    }
     const variableName = version.replace('${', '').replace('}', '');
     return flatProperties[variableName];
   }
@@ -228,20 +218,18 @@ const downloadSpringVersionProperties = async (springBootVersion) => {
 
     // older versions of Spring Boot do not have property versions listed
     if (tableBody) {
-      tableBody.childNodes.forEach(
-        (
-          child, // there's a header row we should skip
-        ) =>
-          child.childNodes.length === 0
-            ? ''
-            : versions.push({
-                property: child.childNodes[3].rawText,
-              }),
-      );
+      for (const child of tableBody.childNodes) {
+        // there's a header row we should skip
+        if (child.childNodes.length !== 0) {
+          versions.push({
+            property: child.childNodes[3].rawText,
+          });
+        }
+      }
     }
-    await writeFileSync(`${cachePath}/properties_${springBootVersion}.json`, JSON.stringify(versions, null, 2));
+    writeFileSync(`${cachePath}/properties_${springBootVersion}.json`, JSON.stringify(versions, null, 2));
   } else {
-    await writeFileSync(`${cachePath}/properties_${springBootVersion}.json`, JSON.stringify(versions, null, 2));
+    writeFileSync(`${cachePath}/properties_${springBootVersion}.json`, JSON.stringify(versions, null, 2));
     console.log('URL not found - Spring Boot default versions URL no longer exists.');
   }
 };
