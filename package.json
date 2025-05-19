@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
-    "mocha": "11.3.0"
+    "mocha": "11.4.0"
   },
   "type": "module"
 }
