@@ -139,6 +139,42 @@ describe('test pom parsing', () => {
     strictEqual(pomSpringBootVersion, '2.1.0');
   });
 
+  it('should get spring boot version from pom when version is a range without space', async () => {
+    const parsedPom = {
+      project: {
+        parent: [
+          {
+            groupId: 'org.springframework.boot',
+            artifactId: 'spring-boot-starter-parent',
+            version: '[3.1.0,3.2.0)',
+          },
+        ],
+      },
+    };
+
+    const pomSpringBootVersion = await getPomSpringBootVersion(parsedPom);
+
+    strictEqual(pomSpringBootVersion, '3.1.x');
+  });
+
+  it('should get spring boot version from pom when version is a range with space', async () => {
+    const parsedPom = {
+      project: {
+        parent: [
+          {
+            groupId: 'org.springframework.boot',
+            artifactId: 'spring-boot-starter-parent',
+            version: '[2.7.5, 2.8.0)',
+          },
+        ],
+      },
+    };
+
+    const pomSpringBootVersion = await getPomSpringBootVersion(parsedPom);
+
+    strictEqual(pomSpringBootVersion, '2.7.x');
+  });
+
   it("should return a value for spring boot version from pom when it doesn't exists", async () => {
     const parsedPom = {
       project: {
