@@ -1,6 +1,6 @@
 import { readdirSync } from 'node:fs';
 import g2js from 'gradle-to-js/lib/parser.js';
-import { Package, getDefaultSpringBootVersions } from './shared.js';
+import { getDefaultSpringBootVersions, Package } from './shared.js';
 
 export const getJSFromFile = async (filename) => {
   try {
@@ -38,7 +38,7 @@ export const getJSFromFile = async (filename) => {
       x: x,
       allprojects: allprojects,
     };
-  } catch (err) {
+  } catch (_err) {
     return [];
   }
 };
