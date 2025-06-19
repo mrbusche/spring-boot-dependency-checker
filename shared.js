@@ -13,7 +13,7 @@ export const getJsonFromFile = async (filename) => {
   try {
     const data = readFileSync(filename, 'utf8');
     return JSON.parse(data);
-  } catch (err) {
+  } catch (_err) {
     return [];
   }
 };

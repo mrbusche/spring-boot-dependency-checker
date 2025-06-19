@@ -1,7 +1,7 @@
-import { existsSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { XMLParser } from 'fast-xml-parser';
 import { parse } from 'node-html-parser';
-import { Package, cachePath, ensureDirExists, getDefaultSpringBootVersions, getJsonFromFile } from './shared.js';
+import { cachePath, ensureDirExists, getDefaultSpringBootVersions, getJsonFromFile, Package } from './shared.js';
 
 export const getXMLFromFile = async (filename) => {
   try {
@@ -38,7 +38,7 @@ export const getXMLFromFile = async (filename) => {
         parent: parent,
       },
     };
-  } catch (err) {
+  } catch (_err) {
     return [];
   }
 };
