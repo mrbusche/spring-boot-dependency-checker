@@ -1,5 +1,9 @@
 {
-  "extends": ["config:base"],
-  "assignees": ["@mrbusche"],
+  "extends": [
+    "config:recommended"
+  ],
+  "assignees": [
+    "@mrbusche"
+  ],
   "ignoreUnstable": false
 }
