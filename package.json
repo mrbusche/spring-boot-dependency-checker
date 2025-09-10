@@ -30,7 +30,7 @@
     "node-html-parser": "7.0.1"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.2.3",
+    "@biomejs/biome": "2.2.4",
     "mocha": "11.7.2"
   },
   "type": "module"
