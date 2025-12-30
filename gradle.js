@@ -4,13 +4,19 @@ import { getDefaultSpringBootVersions, Package } from './shared.js';
 
 export const getJSFromFile = async (filename) => {
   try {
-    const parsedGradleFiles = [];
     const files = [];
-    for (const file of readdirSync('./', { recursive: true })) {
-      if (file.includes(filename)) {
-        files.push(file);
+
+    if (existsSync(filename)) {
+      files.push(filename);
+    } else {
+      for (const file of readdirSync('./', { recursive: true })) {
+        if (file.includes(filename)) {
+          files.push(file);
+        }
       }
     }
+
+    const parsedGradleFiles = [];
     for (const file of files) {
       parsedGradleFiles.push(await g2js.parseFile(file));
     }
@@ -79,18 +85,24 @@ export const retrieveSimilarGradlePackages = async (parsedGradle, springBootVers
 
     if (defaultVersions.length) {
       const declaredPackages = [];
+
+      const bootMap = new Map();
+      for (const pkg of defaultVersions) {
+        bootMap.set(`${pkg.group}:${pkg.name}`, pkg);
+      }
+
       for (const gradleDependency of gradleDependenciesWithVersions) {
-        for (const bootPackage of defaultVersions) {
-          if (gradleDependency.group === bootPackage.group && gradleDependency.name === bootPackage.name) {
-            const existingMatches = declaredPackages.find(
-              (declaredPackage) => declaredPackage.group === gradleDependency.group && declaredPackage.name === gradleDependency.name,
+        const key = `${gradleDependency.group}:${gradleDependency.name}`;
+        const bootPackage = bootMap.get(key);
+
+        if (bootPackage) {
+          const existingMatches = declaredPackages.find(
+            (declaredPackage) => declaredPackage.group === gradleDependency.group && declaredPackage.name === gradleDependency.name,
+          );
+          if (!existingMatches) {
+            declaredPackages.push(
+              new Package(gradleDependency.group, gradleDependency.name, gradleDependency.version, bootPackage.version),
             );
-            if (!existingMatches) {
-              declaredPackages.push(
-                new Package(gradleDependency.group, gradleDependency.name, gradleDependency.version, bootPackage.version),
-              );
-              break;
-            }
           }
         }
       }

@@ -6,14 +6,19 @@ import { cachePath, ensureDirExists, getDefaultSpringBootVersions, getJsonFromFi
 export const getXMLFromFile = async (filename) => {
   try {
     const parser = new XMLParser();
-
-    const parsedPomFiles = [];
     const files = [];
-    for (const file of readdirSync('./', { recursive: true })) {
-      if (file.endsWith(filename)) {
-        files.push(file);
+
+    if (existsSync(filename)) {
+      files.push(filename);
+    } else {
+      for (const file of readdirSync('./', { recursive: true })) {
+        if (file.endsWith(filename)) {
+          files.push(file);
+        }
       }
     }
+
+    const parsedPomFiles = [];
     for (const file of files) {
       const xmlData = readFileSync(file, 'utf8');
       parsedPomFiles.push(parser.parse(xmlData));
@@ -120,17 +125,25 @@ export const retrieveSimilarPomPackages = async (parsedPom, springBootVersion) =
 
     if (defaultVersions.length) {
       const declaredPackages = [];
+
+      const bootMap = new Map();
+      for (const pkg of defaultVersions) {
+        bootMap.set(`${pkg.group}:${pkg.name}`, pkg);
+      }
+
       for (const pomDependency of pomDependenciesWithVersions) {
-        for (const bootPackage of defaultVersions) {
-          if (pomDependency.groupId === bootPackage.group && pomDependency.artifactId === bootPackage.name) {
-            const pomVersion = replaceVariable(parsedPom.project.properties, pomDependency.version);
-            const existingMatches = declaredPackages.find(
-              (declaredPackage) => declaredPackage.group === pomDependency.groupId && declaredPackage.name === pomDependency.artifactId,
-            );
-            if (!existingMatches) {
-              declaredPackages.push(new Package(pomDependency.groupId, pomDependency.artifactId, pomVersion, bootPackage.version));
-              break;
-            }
+        const key = `${pomDependency.groupId}:${pomDependency.artifactId}`;
+        const bootPackage = bootMap.get(key);
+
+        if (bootPackage) {
+          const pomVersion = replaceVariable(parsedPom.project.properties, pomDependency.version);
+
+          const existingMatches = declaredPackages.find(
+            (declaredPackage) => declaredPackage.group === pomDependency.groupId && declaredPackage.name === pomDependency.artifactId,
+          );
+
+          if (!existingMatches) {
+            declaredPackages.push(new Package(pomDependency.groupId, pomDependency.artifactId, pomVersion, bootPackage.version));
           }
         }
       }
