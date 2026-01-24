@@ -1,4 +1,4 @@
-import { existsSync, readdirSync, readFileSync, unlinkSync, writeFileSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { isAbsolute, resolve, sep } from 'node:path';
 import { XMLParser } from 'fast-xml-parser';
 import { parse } from 'node-html-parser';
@@ -10,10 +10,10 @@ export const getXMLFromFile = async (filename) => {
 
     const parsedPomFiles = [];
     const files = [];
-    
+
     // Check if filename contains a path (e.g., ../pom.xml, ./pom.xml, /abs/path/pom.xml)
     const isPath = filename.includes(sep) || filename.includes('/');
-    
+
     if (isPath) {
       // Treat as a specific path - resolve it and read directly
       const resolvedPath = isAbsolute(filename) ? filename : resolve(process.cwd(), filename);
@@ -28,7 +28,7 @@ export const getXMLFromFile = async (filename) => {
         }
       }
     }
-    
+
     for (const file of files) {
       const xmlData = readFileSync(file, 'utf8');
       parsedPomFiles.push(parser.parse(xmlData));
