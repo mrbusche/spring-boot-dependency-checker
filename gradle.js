@@ -1,4 +1,5 @@
-import { readdirSync } from 'node:fs';
+import { readdirSync, existsSync } from 'node:fs';
+import { isAbsolute, resolve, sep } from 'node:path';
 import g2js from 'gradle-to-js/lib/parser.js';
 import { getDefaultSpringBootVersions, Package } from './shared.js';
 
@@ -6,11 +7,25 @@ export const getJSFromFile = async (filename) => {
   try {
     const parsedGradleFiles = [];
     const files = [];
-    for (const file of readdirSync('./', { recursive: true })) {
-      if (file.includes(filename)) {
-        files.push(file);
+    
+    // Check if filename contains a path (e.g., ../build.gradle, ./build.gradle, /abs/path/build.gradle)
+    const isPath = filename.includes(sep) || filename.includes('/');
+    
+    if (isPath) {
+      // Treat as a specific path - resolve it and read directly
+      const resolvedPath = isAbsolute(filename) ? filename : resolve(process.cwd(), filename);
+      if (existsSync(resolvedPath)) {
+        files.push(resolvedPath);
+      }
+    } else {
+      // Search recursively for files that include the filename
+      for (const file of readdirSync('./', { recursive: true })) {
+        if (file.includes(filename)) {
+          files.push(file);
+        }
       }
     }
+    
     for (const file of files) {
       parsedGradleFiles.push(await g2js.parseFile(file));
     }
