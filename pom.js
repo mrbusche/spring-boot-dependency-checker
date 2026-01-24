@@ -1,33 +1,14 @@
-import { existsSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
-import { isAbsolute, resolve, sep } from 'node:path';
+import { readFileSync, writeFileSync } from 'node:fs';
 import { XMLParser } from 'fast-xml-parser';
 import { parse } from 'node-html-parser';
-import { cachePath, ensureDirExists, getDefaultSpringBootVersions, getJsonFromFile, Package } from './shared.js';
+import { cachePath, ensureDirExists, getDefaultSpringBootVersions, getJsonFromFile, Package, resolveFilePaths } from './shared.js';
 
 export const getXMLFromFile = async (filename) => {
   try {
     const parser = new XMLParser();
 
     const parsedPomFiles = [];
-    const files = [];
-
-    // Check if filename contains a path (e.g., ../pom.xml, ./pom.xml, /abs/path/pom.xml)
-    const isPath = filename.includes(sep) || filename.includes('/');
-
-    if (isPath) {
-      // Treat as a specific path - resolve it and read directly
-      const resolvedPath = isAbsolute(filename) ? filename : resolve(process.cwd(), filename);
-      if (existsSync(resolvedPath)) {
-        files.push(resolvedPath);
-      }
-    } else {
-      // Search recursively for files ending with the filename
-      for (const file of readdirSync('./', { recursive: true })) {
-        if (file.endsWith(filename)) {
-          files.push(file);
-        }
-      }
-    }
+    const files = resolveFilePaths(filename, (file) => file.endsWith(filename));
 
     for (const file of files) {
       const xmlData = readFileSync(file, 'utf8');
