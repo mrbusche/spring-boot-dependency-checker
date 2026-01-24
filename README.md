@@ -2,6 +2,10 @@
 
 A small utility that finds manually overridden dependencies in a Maven POM, or Gradle file for a Spring Boot application.
 
+## Requirements
+
+- Node.js 20 or higher
+
 ## Usage
 
 `npm install -g spring-boot-dependency-checker`
