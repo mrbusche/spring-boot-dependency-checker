@@ -1,5 +1,5 @@
 import { strictEqual } from 'node:assert';
-import { unlink, writeFileSync } from 'node:fs';
+import { existsSync, unlink, unlinkSync, writeFileSync } from 'node:fs';
 import {
   getPomDependenciesWithVersions,
   getPomProperties,
@@ -34,7 +34,7 @@ describe('test pom parsing', () => {
                 </dependency>
             </dependencies>
         </project>`;
-    await writeFileSync(filename, testFile);
+    writeFileSync(filename, testFile);
 
     const xmlData = await getXMLFromFile(filename);
 
@@ -228,14 +228,16 @@ describe('test pom parsing', () => {
     const parentDir = '../test-parent-dir-pom.xml';
     writeFileSync(parentDir, testFile);
 
-    const xmlData = await getXMLFromFile(parentDir);
+    try {
+      const xmlData = await getXMLFromFile(parentDir);
 
-    strictEqual(xmlData.project.parent[0].artifactId, 'spring-boot-starter-parent');
-    strictEqual(xmlData.project.parent[0].version, '2.3.12.RELEASE');
-
-    unlink(parentDir, (err) => {
-      if (err) throw err;
-    });
+      strictEqual(xmlData.project.parent[0].artifactId, 'spring-boot-starter-parent');
+      strictEqual(xmlData.project.parent[0].version, '2.3.12.RELEASE');
+    } finally {
+      if (existsSync(parentDir)) {
+        unlinkSync(parentDir);
+      }
+    }
   });
 
   it('should read XML file from current directory with ./ prefix', async () => {
@@ -249,14 +251,16 @@ describe('test pom parsing', () => {
     const currentDirFile = './test-current-dir-pom.xml';
     writeFileSync(currentDirFile, testFile);
 
-    const xmlData = await getXMLFromFile(currentDirFile);
+    try {
+      const xmlData = await getXMLFromFile(currentDirFile);
 
-    strictEqual(xmlData.project.parent[0].artifactId, 'spring-boot-starter-parent');
-    strictEqual(xmlData.project.parent[0].version, '2.5.0');
-
-    unlink(currentDirFile, (err) => {
-      if (err) throw err;
-    });
+      strictEqual(xmlData.project.parent[0].artifactId, 'spring-boot-starter-parent');
+      strictEqual(xmlData.project.parent[0].version, '2.5.0');
+    } finally {
+      if (existsSync(currentDirFile)) {
+        unlinkSync(currentDirFile);
+      }
+    }
   });
 
   after(() => {

@@ -1,5 +1,5 @@
-import { existsSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
-import { basename, dirname, isAbsolute, resolve, sep } from 'node:path';
+import { existsSync, readdirSync, readFileSync, unlinkSync, writeFileSync } from 'node:fs';
+import { isAbsolute, resolve, sep } from 'node:path';
 import { XMLParser } from 'fast-xml-parser';
 import { parse } from 'node-html-parser';
 import { cachePath, ensureDirExists, getDefaultSpringBootVersions, getJsonFromFile, Package } from './shared.js';
