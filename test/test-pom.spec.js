@@ -226,7 +226,7 @@ describe('test pom parsing', () => {
             </properties>
         </project>`;
     const parentDir = '../test-parent-dir-pom.xml';
-    await writeFileSync(parentDir, testFile);
+    writeFileSync(parentDir, testFile);
 
     const xmlData = await getXMLFromFile(parentDir);
 
@@ -247,7 +247,7 @@ describe('test pom parsing', () => {
             </parent>
         </project>`;
     const currentDirFile = './test-current-dir-pom.xml';
-    await writeFileSync(currentDirFile, testFile);
+    writeFileSync(currentDirFile, testFile);
 
     const xmlData = await getXMLFromFile(currentDirFile);
 
