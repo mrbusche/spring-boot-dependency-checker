@@ -1,5 +1,5 @@
-import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
-import { isAbsolute, resolve, sep } from 'node:path';
+import { existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
+import { isAbsolute, join, resolve, sep } from 'node:path';
 import { parse } from 'node-html-parser';
 
 export const cachePath = '.cache';
@@ -25,8 +25,14 @@ export const resolveFilePaths = (filename, matchFn) => {
   } else {
     // Search recursively for files matching the criteria
     for (const file of readdirSync('./', { recursive: true })) {
-      if (matchFn(file)) {
-        files.push(file);
+      try {
+        const fullPath = join('./', file);
+        // Only add actual files, not directories
+        if (statSync(fullPath).isFile() && matchFn(file)) {
+          files.push(file);
+        }
+      } catch (_err) {
+        // Skip files that can't be accessed (e.g., broken symlinks)
       }
     }
   }
