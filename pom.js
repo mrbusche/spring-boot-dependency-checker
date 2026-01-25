@@ -8,7 +8,7 @@ export const getXMLFromFile = async (filename) => {
     const parser = new XMLParser();
 
     const parsedPomFiles = [];
-    const files = resolveFilePaths(filename, (file) => file.endsWith(filename));
+    const files = resolveFilePaths(filename);
 
     for (const file of files) {
       const xmlData = readFileSync(file, 'utf8');

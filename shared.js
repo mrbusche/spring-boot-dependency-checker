@@ -1,5 +1,5 @@
 import { existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
-import { isAbsolute, join, resolve, sep } from 'node:path';
+import { basename, isAbsolute, join, resolve, sep } from 'node:path';
 import { parse } from 'node-html-parser';
 
 export const cachePath = '.cache';
@@ -7,10 +7,9 @@ export const cachePath = '.cache';
 /**
  * Resolves file paths and returns an array of matching file paths.
  * @param {string} filename - The filename or path to resolve
- * @param {Function} matchFn - Function to match files when searching recursively (e.g., file => file.endsWith(filename))
  * @returns {string[]} Array of resolved file paths
  */
-export const resolveFilePaths = (filename, matchFn) => {
+export const resolveFilePaths = (filename) => {
   const files = [];
 
   // Check if filename contains a path (e.g., ../pom.xml, ./pom.xml, /abs/path/pom.xml)
@@ -23,12 +22,12 @@ export const resolveFilePaths = (filename, matchFn) => {
       files.push(resolvedPath);
     }
   } else {
-    // Search recursively for files matching the criteria
+    // Search recursively for files with exact filename match
     for (const file of readdirSync('./', { recursive: true })) {
       try {
         const fullPath = join('./', file);
-        // Only add actual files, not directories
-        if (statSync(fullPath).isFile() && matchFn(file)) {
+        // Only add actual files that exactly match the filename
+        if (statSync(fullPath).isFile() && basename(file) === filename) {
           files.push(file);
         }
       } catch (_err) {

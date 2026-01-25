@@ -4,7 +4,7 @@ import { getDefaultSpringBootVersions, Package, resolveFilePaths } from './share
 export const getJSFromFile = async (filename) => {
   try {
     const parsedGradleFiles = [];
-    const files = resolveFilePaths(filename, (file) => file.includes(filename));
+    const files = resolveFilePaths(filename);
 
     for (const file of files) {
       parsedGradleFiles.push(await g2js.parseFile(file));
