@@ -1,7 +1,43 @@
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
+import { basename, isAbsolute, join, resolve, sep } from 'node:path';
 import { parse } from 'node-html-parser';
 
 export const cachePath = '.cache';
+
+/**
+ * Resolves file paths and returns an array of matching file paths.
+ * @param {string} filename - The filename or path to resolve
+ * @returns {string[]} Array of resolved file paths
+ */
+export const resolveFilePaths = (filename) => {
+  const files = [];
+
+  // Check if filename contains a path (e.g., ../pom.xml, ./pom.xml, /abs/path/pom.xml)
+  const isPath = filename.includes(sep) || filename.includes('/');
+
+  if (isPath) {
+    // Treat as a specific path - resolve it and read directly
+    const resolvedPath = isAbsolute(filename) ? filename : resolve(process.cwd(), filename);
+    if (existsSync(resolvedPath)) {
+      files.push(resolvedPath);
+    }
+  } else {
+    // Search recursively for files with exact filename match
+    for (const file of readdirSync('./', { recursive: true })) {
+      try {
+        const fullPath = join('./', file);
+        // Only add actual files that exactly match the filename
+        if (statSync(fullPath).isFile() && basename(file) === filename) {
+          files.push(file);
+        }
+      } catch (_err) {
+        // Skip files that can't be accessed (e.g., broken symlinks)
+      }
+    }
+  }
+
+  return files;
+};
 
 export const ensureDirExists = async () => {
   if (!existsSync(cachePath)) {

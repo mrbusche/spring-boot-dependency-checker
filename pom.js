@@ -1,19 +1,15 @@
-import { existsSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync } from 'node:fs';
 import { XMLParser } from 'fast-xml-parser';
 import { parse } from 'node-html-parser';
-import { cachePath, ensureDirExists, getDefaultSpringBootVersions, getJsonFromFile, Package } from './shared.js';
+import { cachePath, ensureDirExists, getDefaultSpringBootVersions, getJsonFromFile, Package, resolveFilePaths } from './shared.js';
 
 export const getXMLFromFile = async (filename) => {
   try {
     const parser = new XMLParser();
 
     const parsedPomFiles = [];
-    const files = [];
-    for (const file of readdirSync('./', { recursive: true })) {
-      if (file.endsWith(filename)) {
-        files.push(file);
-      }
-    }
+    const files = resolveFilePaths(filename);
+
     for (const file of files) {
       const xmlData = readFileSync(file, 'utf8');
       parsedPomFiles.push(parser.parse(xmlData));

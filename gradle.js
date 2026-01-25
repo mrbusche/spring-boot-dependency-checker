@@ -1,16 +1,11 @@
-import { readdirSync } from 'node:fs';
 import g2js from 'gradle-to-js/lib/parser.js';
-import { getDefaultSpringBootVersions, Package } from './shared.js';
+import { getDefaultSpringBootVersions, Package, resolveFilePaths } from './shared.js';
 
 export const getJSFromFile = async (filename) => {
   try {
     const parsedGradleFiles = [];
-    const files = [];
-    for (const file of readdirSync('./', { recursive: true })) {
-      if (file.includes(filename)) {
-        files.push(file);
-      }
-    }
+    const files = resolveFilePaths(filename);
+
     for (const file of files) {
       parsedGradleFiles.push(await g2js.parseFile(file));
     }
