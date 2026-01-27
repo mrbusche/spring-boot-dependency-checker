@@ -1,0 +1,6 @@
+.editorconfig
+.github
+.vscode
+biome.json
+renovate.json
+test/**

@@ -1,6 +1,6 @@
 {
   "name": "spring-boot-dependency-checker",
-  "version": "0.15.0",
+  "version": "0.15.1",
   "description": "Spring Boot Dependency Checker - validate that you're using the versions Spring Boot has approved with your project.",
   "keywords": [
     "spring boot",
@@ -18,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/mrbusche/spring-boot-dependency-checker.git"
+    "url": "git+https://github.com/mrbusche/spring-boot-dependency-checker.git"
   },
   "scripts": {
     "prettier:fix": "npx @biomejs/biome check --write .",
