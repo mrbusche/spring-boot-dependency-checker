@@ -30,7 +30,7 @@ export const resolveFilePaths = (filename) => {
         if (statSync(fullPath).isFile() && basename(file) === filename) {
           files.push(file);
         }
-      } catch (_err) {
+      } catch {
         // Skip files that can't be accessed (e.g., broken symlinks)
       }
     }
@@ -49,7 +49,7 @@ export const getJsonFromFile = async (filename) => {
   try {
     const data = readFileSync(filename, 'utf8');
     return JSON.parse(data);
-  } catch (_err) {
+  } catch {
     return [];
   }
 };

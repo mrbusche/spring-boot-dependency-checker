@@ -34,7 +34,7 @@ export const getXMLFromFile = async (filename) => {
         parent: parent,
       },
     };
-  } catch (_err) {
+  } catch {
     return [];
   }
 };

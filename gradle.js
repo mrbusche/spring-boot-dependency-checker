@@ -33,7 +33,7 @@ export const getJSFromFile = async (filename) => {
       x: x,
       allprojects: allprojects,
     };
-  } catch (_err) {
+  } catch {
     return [];
   }
 };
