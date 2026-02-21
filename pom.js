@@ -105,7 +105,6 @@ export const getPomSpringBootVersion = async (parsedPom) => {
   ) {
     return replaceVariable(parsedPom.project.properties, parsedPom.project.dependencyManagement[0].dependencies.dependency.version);
   }
-  console.log('No Spring Boot version found.');
   return '';
 };
 
@@ -131,14 +130,9 @@ export const retrieveSimilarPomPackages = async (parsedPom, springBootVersion) =
         }
       }
 
-      console.log('Declared Pom Package Count -', declaredPackages.length);
-      if (declaredPackages.length) {
-        console.log('Declared Pom Packages -', declaredPackages);
-      }
       return declaredPackages;
     }
   }
-  console.log('Spring Boot default versions URL no longer exists.');
   return [];
 };
 
@@ -158,14 +152,9 @@ export const retrieveSimilarPomProperties = async (parsedPom, springBootVersion)
         }
       }
 
-      console.log('Declared Pom Properties Count -', declaredProperties.length);
-      if (declaredProperties.length) {
-        console.log('Declared Pom Properties -', declaredProperties);
-      }
       return declaredProperties;
     }
   }
-  console.log('Spring Boot default versions URL no longer exists.');
   return [];
 };
 
@@ -174,8 +163,6 @@ const getSpringDefaultProperties = async (springBootVersion) => {
     await ensureDirExists();
     if (!existsSync(`${cachePath}/properties_${springBootVersion}.json`)) {
       await downloadSpringVersionProperties(springBootVersion);
-      // } else {
-      //     console.log('Spring Boot default properties file already exists in cache.');
     }
   } catch (err) {
     console.error('Error retrieving spring default properties', err);
@@ -227,6 +214,5 @@ const downloadSpringVersionProperties = async (springBootVersion) => {
     writeFileSync(`${cachePath}/properties_${springBootVersion}.json`, JSON.stringify(versions, null, 2));
   } else {
     writeFileSync(`${cachePath}/properties_${springBootVersion}.json`, JSON.stringify(versions, null, 2));
-    console.log('URL not found - Spring Boot default versions URL no longer exists.');
   }
 };

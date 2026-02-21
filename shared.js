@@ -59,8 +59,6 @@ const getSpringDefaultVersions = async (springBootVersion) => {
     await ensureDirExists();
     if (!existsSync(`${cachePath}/dependencies_${springBootVersion}.json`)) {
       await downloadSpringDefaultVersions(springBootVersion);
-      // } else {
-      //     console.log('Spring Boot default versions file already exists in cache.');
     }
   } catch (err) {
     console.error('Error retrieving spring default versions', err);
@@ -94,8 +92,7 @@ const downloadSpringDefaultVersions = async (springBootVersion) => {
     }
     writeFileSync(`${cachePath}/dependencies_${springBootVersion}.json`, JSON.stringify(versions, null, 2));
   } else {
-    writeFileSync(`${cachePath}/dependencies_${springBootVersion}.json`, JSON.stringify(versions, null, 2));
-    console.log('URL not found - Spring Boot default versions URL no longer exists.');
+    console.warn('URL not found - Spring Boot default versions URL no longer exists.');
   }
 };
 
