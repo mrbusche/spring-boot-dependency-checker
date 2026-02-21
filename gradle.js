@@ -33,7 +33,7 @@ export const getJSFromFile = async (filename) => {
       x: x,
       allprojects: allprojects,
     };
-  } catch (_err) {
+  } catch {
     return [];
   }
 };
@@ -63,7 +63,6 @@ export const getGradleSpringBootVersion = async (parsedGradle) => {
   if (parsedGradle.buildscript?.[0]?.["ext['springBootVersion']"]) {
     return parsedGradle.buildscript[0]["ext['springBootVersion']"];
   }
-  console.log('No Spring Boot version found.');
   return '';
 };
 
@@ -90,13 +89,8 @@ export const retrieveSimilarGradlePackages = async (parsedGradle, springBootVers
         }
       }
 
-      console.log('Declared Gradle Package Count -', declaredPackages.length);
-      if (declaredPackages.length) {
-        console.log('Declared Gradle Packages -', declaredPackages);
-      }
       return declaredPackages;
     }
   }
-  console.log('Spring Boot default versions URL no longer exists.');
   return [];
 };
