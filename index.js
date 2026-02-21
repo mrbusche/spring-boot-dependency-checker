@@ -13,6 +13,8 @@ export const checkDependencies = async () => {
     elapsedMs: 0,
     packages: [],
     properties: [],
+    packageLength: 0,
+    propertyLength: 0,
   };
 
   if (fileExtension === '.xml') {
@@ -26,6 +28,8 @@ export const checkDependencies = async () => {
         springBootVersion: springBootVersion,
         packages: declaredPackages,
         properties: declaredProperties,
+        packageLength: declaredPackages.length,
+        propertyLength: declaredProperties.length,
       };
     }
   } else if (fileExtension === '.gradle') {
@@ -38,6 +42,8 @@ export const checkDependencies = async () => {
         springBootVersion: springBootVersion,
         packages: declaredPackages,
         properties: [],
+        packageLength: declaredPackages.length,
+        propertyLength: 0,
       };
     }
   }

@@ -14,6 +14,8 @@ A small utility that finds manually overridden dependencies in a Maven POM, or G
 
 Package entries in the JSON output include `versionComparison` with one of: `older`, `same`, or `newer` (comparing `inputFileVersion` against `bootVersion`).
 
+Top-level output also includes `packageLength` and `propertyLength` for quick counts.
+
 | File type      | Dependencies | Properties |
 | -------------- | ------------ | ---------- |
 | Maven POM      | &check;      | &check;    |
