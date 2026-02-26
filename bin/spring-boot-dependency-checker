@@ -4,4 +4,7 @@ import { checkDependencies } from '../index.js';
 
 process.title = 'spring-boot-dependency-checker';
 
-await checkDependencies(process.argv[2]);
+const output = await checkDependencies(process.argv[2]);
+if (output) {
+    console.log(JSON.stringify(output, null, 2));
+}

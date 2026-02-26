@@ -30,7 +30,7 @@ export const resolveFilePaths = (filename) => {
         if (statSync(fullPath).isFile() && basename(file) === filename) {
           files.push(file);
         }
-      } catch (_err) {
+      } catch {
         // Skip files that can't be accessed (e.g., broken symlinks)
       }
     }
@@ -49,7 +49,7 @@ export const getJsonFromFile = async (filename) => {
   try {
     const data = readFileSync(filename, 'utf8');
     return JSON.parse(data);
-  } catch (_err) {
+  } catch {
     return [];
   }
 };
@@ -59,8 +59,6 @@ const getSpringDefaultVersions = async (springBootVersion) => {
     await ensureDirExists();
     if (!existsSync(`${cachePath}/dependencies_${springBootVersion}.json`)) {
       await downloadSpringDefaultVersions(springBootVersion);
-      // } else {
-      //     console.log('Spring Boot default versions file already exists in cache.');
     }
   } catch (err) {
     console.error('Error retrieving spring default versions', err);
@@ -94,8 +92,7 @@ const downloadSpringDefaultVersions = async (springBootVersion) => {
     }
     writeFileSync(`${cachePath}/dependencies_${springBootVersion}.json`, JSON.stringify(versions, null, 2));
   } else {
-    writeFileSync(`${cachePath}/dependencies_${springBootVersion}.json`, JSON.stringify(versions, null, 2));
-    console.log('URL not found - Spring Boot default versions URL no longer exists.');
+    console.warn('URL not found - Spring Boot default versions URL no longer exists.');
   }
 };
 
@@ -104,11 +101,109 @@ export const getDefaultSpringBootVersions = async (filename) => {
   return getJsonFromFile(`${cachePath}/dependencies_${filename}.json`);
 };
 
+const normalizeQualifier = (value) => {
+  const normalized = String(value).toLowerCase();
+  if (['ga', 'final', 'release'].includes(normalized)) {
+    return '';
+  }
+  return normalized;
+};
+
+const qualifierRank = (value) => {
+  const qualifier = normalizeQualifier(value);
+  if (qualifier === 'snapshot') {
+    return 0;
+  }
+  if (['alpha', 'a'].includes(qualifier)) {
+    return 1;
+  }
+  if (['beta', 'b'].includes(qualifier)) {
+    return 2;
+  }
+  if (['milestone', 'm'].includes(qualifier)) {
+    return 3;
+  }
+  if (['rc', 'cr'].includes(qualifier)) {
+    return 4;
+  }
+  if (qualifier === '') {
+    return 5;
+  }
+  if (qualifier === 'sp') {
+    return 6;
+  }
+  return 7;
+};
+
+const splitVersionParts = (version) =>
+  String(version)
+    .trim()
+    .replace(/\+/g, '')
+    .replace(/\.x$/i, '')
+    .split(/[._-]+/)
+    .filter((part) => part !== '');
+
+const comparePart = (left, right) => {
+  const leftIsNumber = /^\d+$/.test(left);
+  const rightIsNumber = /^\d+$/.test(right);
+
+  if (leftIsNumber && rightIsNumber) {
+    const leftNumber = Number.parseInt(left, 10);
+    const rightNumber = Number.parseInt(right, 10);
+    if (leftNumber < rightNumber) {
+      return -1;
+    }
+    if (leftNumber > rightNumber) {
+      return 1;
+    }
+    return 0;
+  }
+
+  if (leftIsNumber && !rightIsNumber) {
+    return 1;
+  }
+
+  if (!leftIsNumber && rightIsNumber) {
+    return -1;
+  }
+
+  const leftRank = qualifierRank(left);
+  const rightRank = qualifierRank(right);
+  if (leftRank < rightRank) {
+    return -1;
+  }
+  if (leftRank > rightRank) {
+    return 1;
+  }
+  return normalizeQualifier(left).localeCompare(normalizeQualifier(right));
+};
+
+export const compareDependencyVersion = (inputFileVersion, bootVersion) => {
+  const leftParts = splitVersionParts(inputFileVersion);
+  const rightParts = splitVersionParts(bootVersion);
+  const maxLength = Math.max(leftParts.length, rightParts.length);
+
+  for (let index = 0; index < maxLength; index++) {
+    const leftPart = leftParts[index] ?? '0';
+    const rightPart = rightParts[index] ?? '0';
+    const comparison = comparePart(leftPart, rightPart);
+    if (comparison < 0) {
+      return 'older';
+    }
+    if (comparison > 0) {
+      return 'newer';
+    }
+  }
+
+  return 'same';
+};
+
 export class Package {
   constructor(group, name, inputFileVersion, bootVersion) {
     this.group = group;
     this.name = name;
     this.inputFileVersion = inputFileVersion;
     this.bootVersion = bootVersion;
+    this.versionComparison = compareDependencyVersion(inputFileVersion, bootVersion);
   }
 }
