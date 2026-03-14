@@ -4,7 +4,7 @@ A small utility that finds manually overridden dependencies in a Maven POM, or G
 
 ## Requirements
 
-- Node.js 20 or higher
+- Node.js 22 or higher
 
 ## Usage
 
