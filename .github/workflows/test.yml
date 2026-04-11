@@ -20,8 +20,8 @@ jobs:
       - run: npm ci
       - run: npm test
 
-  prettier:
-    name: Test biome
+  formatter:
+    name: Test formatter
     runs-on: ubuntu-latest
 
     steps:
@@ -31,16 +31,13 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: '24'
+          node-version: .nvmrc
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Make biome executable
-        run: chmod +x ./node_modules/@biomejs/cli-linux-x64/biome
-
-      - name: Run Prettier
-        run: npm run prettier:fix
+      - name: Run Formatter
+        run: npm run fmt
 
       - name: Check for changes
         run: git diff --exit-code
