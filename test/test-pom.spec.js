@@ -1,5 +1,6 @@
 import { strictEqual } from 'node:assert';
 import { existsSync, unlink, unlinkSync, writeFileSync } from 'node:fs';
+
 import {
   getPomDependenciesWithVersions,
   getPomProperties,

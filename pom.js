@@ -1,6 +1,8 @@
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
+
 import { XMLParser } from 'fast-xml-parser';
 import { parse } from 'node-html-parser';
+
 import { cachePath, ensureDirExists, getDefaultSpringBootVersions, getJsonFromFile, Package, resolveFilePaths } from './shared.js';
 
 export const getXMLFromFile = async (filename) => {
