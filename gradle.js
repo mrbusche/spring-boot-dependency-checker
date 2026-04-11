@@ -1,4 +1,5 @@
 import g2js from 'gradle-to-js/lib/parser.js';
+
 import { getDefaultSpringBootVersions, Package, resolveFilePaths } from './shared.js';
 
 export const getJSFromFile = async (filename) => {

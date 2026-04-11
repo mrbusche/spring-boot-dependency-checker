@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "Spring Boot Dependency Checker - validate that you're using the versions Spring Boot has approved with your project.",
   "keywords": [
-    "spring boot",
-    "managed dependencies"
+    "managed dependencies",
+    "spring boot"
   ],
   "homepage": "https://github.com/mrbusche/spring-boot-dependency-checker",
   "bugs": {
@@ -12,16 +12,18 @@
   },
   "license": "\tGPL-3.0-or-later",
   "author": "Matt Busche <mrbusche@gmail.com>",
-  "main": "index.js",
-  "bin": {
-    "spring-boot-dependency-checker": "bin/spring-boot-dependency-checker"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mrbusche/spring-boot-dependency-checker.git"
   },
+  "bin": {
+    "spring-boot-dependency-checker": "bin/spring-boot-dependency-checker"
+  },
+  "type": "module",
+  "main": "index.js",
   "scripts": {
-    "prettier:fix": "npx @biomejs/biome check --write .",
+    "fmt": "oxfmt .",
+    "lint": "oxlint .",
     "test": "mocha"
   },
   "dependencies": {
@@ -30,10 +32,10 @@
     "node-html-parser": "7.1.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.4.11",
-    "mocha": "11.7.5"
+    "mocha": "11.7.5",
+    "oxfmt": "0.44.0",
+    "oxlint": "1.59.0"
   },
-  "type": "module",
   "engines": {
     "node": ">=22"
   }

@@ -1,5 +1,6 @@
 import { strictEqual } from 'node:assert';
 import { unlink, writeFileSync } from 'node:fs';
+
 import { compareDependencyVersion, getJsonFromFile, Package } from '../shared.js';
 
 describe('test file reading', () => {

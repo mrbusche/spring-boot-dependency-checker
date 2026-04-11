@@ -1,5 +1,6 @@
 import { existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
 import { basename, isAbsolute, join, resolve, sep } from 'node:path';
+
 import { parse } from 'node-html-parser';
 
 export const cachePath = '.cache';

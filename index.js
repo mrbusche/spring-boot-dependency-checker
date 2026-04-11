@@ -1,4 +1,5 @@
 import { extname } from 'node:path';
+
 import { getGradleSpringBootVersion, getJSFromFile, retrieveSimilarGradlePackages } from './gradle.js';
 import { getPomSpringBootVersion, getXMLFromFile, retrieveSimilarPomPackages, retrieveSimilarPomProperties } from './pom.js';
 
