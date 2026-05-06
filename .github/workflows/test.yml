@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [20, 22, 24, 25]
+        node-version: [20, 22, 24, 25, 26]
 
     steps:
       - uses: actions/checkout@v6
@@ -41,3 +41,17 @@ jobs:
 
       - name: Check for changes
         run: git diff --exit-code
+
+  all-checks-passed:
+    runs-on: ubuntu-latest
+    needs: [build]
+    if: always()
+    steps:
+      - name: Check status of all required jobs
+        run: |
+          if [[ "${{ contains(needs.*.result, 'failure') ||
+            contains(needs.*.result, 'cancelled') }}" == "true" ]]; then
+            echo "One or more dynamic checks failed."
+            exit 1
+          fi
+          echo "All checks passed!"
