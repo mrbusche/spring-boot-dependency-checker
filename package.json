@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "mocha": "11.7.5",
-    "oxfmt": "0.48.0",
+    "oxfmt": "0.49.0",
     "oxlint": "1.64.0"
   },
   "engines": {
