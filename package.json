@@ -28,13 +28,13 @@
   },
   "dependencies": {
     "fast-xml-parser": "5.8.0",
-    "gradle-to-js": "github:mrbusche/gradle-to-js#8960d1c3f9dab922c9545289abf7b29b25a26f54",
+    "gradle-to-js": "github:mrbusche/gradle-to-js#7c8c9c8b1f6fcc72dda66996481654e25c280ab2",
     "node-html-parser": "7.1.0"
   },
   "devDependencies": {
-    "mocha": "11.7.5",
-    "oxfmt": "0.49.0",
-    "oxlint": "1.64.0"
+    "mocha": "11.7.6",
+    "oxfmt": "0.51.0",
+    "oxlint": "1.66.0"
   },
   "engines": {
     "node": ">=22"
