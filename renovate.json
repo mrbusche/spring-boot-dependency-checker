@@ -19,6 +19,7 @@
     }
   ],
   "assignees": ["@mrbusche"],
+  "ignoreDeps": ["gradle-to-js"],
   "ignoreUnstable": false,
   "commitMessagePrefix": "chore(deps): "
 }
