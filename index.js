@@ -22,8 +22,10 @@ export const checkDependencies = async () => {
     const parsedPom = await getXMLFromFile(filename);
     const springBootVersion = await getPomSpringBootVersion(parsedPom);
     if (springBootVersion) {
-      const declaredPackages = await retrieveSimilarPomPackages(parsedPom, springBootVersion);
-      const declaredProperties = await retrieveSimilarPomProperties(parsedPom, springBootVersion);
+      const [declaredPackages, declaredProperties] = await Promise.all([
+        retrieveSimilarPomPackages(parsedPom, springBootVersion),
+        retrieveSimilarPomProperties(parsedPom, springBootVersion),
+      ]);
       result = {
         fileType: 'Maven POM',
         springBootVersion: springBootVersion,

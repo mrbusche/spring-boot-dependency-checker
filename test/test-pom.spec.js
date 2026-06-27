@@ -1,5 +1,6 @@
-import { strictEqual } from 'node:assert';
-import { existsSync, unlink, unlinkSync, writeFileSync } from 'node:fs';
+import { existsSync, unlinkSync, writeFileSync } from 'node:fs';
+
+import { afterAll, describe, expect, it } from 'vitest';
 
 import {
   getPomDependenciesWithVersions,
@@ -39,19 +40,19 @@ describe('test pom parsing', () => {
 
     const xmlData = await getXMLFromFile(filename);
 
-    strictEqual(xmlData.project.parent[0].artifactId, 'spring-boot-starter-parent');
-    strictEqual(xmlData.project.parent[0].groupId, 'org.springframework.boot');
-    strictEqual(xmlData.project.parent[0].version, '3.1.0');
+    expect(xmlData.project.parent[0].artifactId).toBe('spring-boot-starter-parent');
+    expect(xmlData.project.parent[0].groupId).toBe('org.springframework.boot');
+    expect(xmlData.project.parent[0].version).toBe('3.1.0');
 
-    strictEqual(xmlData.project.properties[0]['java.version'], 1.8);
-    strictEqual(xmlData.project.properties[0]['jackson.version'], '2.10.2');
+    expect(xmlData.project.properties[0]['java.version']).toBe(1.8);
+    expect(xmlData.project.properties[0]['jackson.version']).toBe('2.10.2');
 
-    strictEqual(xmlData.project.dependencies[0].dependency.length, 2);
-    strictEqual(xmlData.project.dependencies[0].dependency[0].groupId, 'org.apache.httpcomponents');
-    strictEqual(xmlData.project.dependencies[0].dependency[0].artifactId, 'httpclient');
-    strictEqual(xmlData.project.dependencies[0].dependency[1].groupId, 'org.java-websocket');
-    strictEqual(xmlData.project.dependencies[0].dependency[1].artifactId, 'Java-WebSocket');
-    strictEqual(xmlData.project.dependencies[0].dependency[1].version, '2.3.1');
+    expect(xmlData.project.dependencies[0].dependency.length).toBe(2);
+    expect(xmlData.project.dependencies[0].dependency[0].groupId).toBe('org.apache.httpcomponents');
+    expect(xmlData.project.dependencies[0].dependency[0].artifactId).toBe('httpclient');
+    expect(xmlData.project.dependencies[0].dependency[1].groupId).toBe('org.java-websocket');
+    expect(xmlData.project.dependencies[0].dependency[1].artifactId).toBe('Java-WebSocket');
+    expect(xmlData.project.dependencies[0].dependency[1].version).toBe('2.3.1');
   });
 
   it('should return an array of pom properties when they exist', async () => {
@@ -68,9 +69,9 @@ describe('test pom parsing', () => {
 
     const pomProperties = await getPomProperties(parsedPom);
 
-    strictEqual(pomProperties.length, 2);
-    strictEqual(pomProperties[0], 'jackson.version');
-    strictEqual(pomProperties[1], 'snakeyaml.version');
+    expect(pomProperties.length).toBe(2);
+    expect(pomProperties[0]).toBe('jackson.version');
+    expect(pomProperties[1]).toBe('snakeyaml.version');
   });
 
   it('should return an empty array of pom properties when they do not exist', async () => {
@@ -80,7 +81,7 @@ describe('test pom parsing', () => {
 
     const pomProperties = await getPomProperties(parsedPom);
 
-    strictEqual(pomProperties.length, 0);
+    expect(pomProperties.length).toBe(0);
   });
 
   it('should return an array of pom dependencies when they exist', async () => {
@@ -106,10 +107,10 @@ describe('test pom parsing', () => {
 
     const pomDependenciesWithVersions = await getPomDependenciesWithVersions(parsedPom);
 
-    strictEqual(pomDependenciesWithVersions.length, 1);
-    strictEqual(pomDependenciesWithVersions[0].artifactId, 'Java-WebSocket');
-    strictEqual(pomDependenciesWithVersions[0].groupId, 'org.java-websocket');
-    strictEqual(pomDependenciesWithVersions[0].version, '2.3.1');
+    expect(pomDependenciesWithVersions.length).toBe(1);
+    expect(pomDependenciesWithVersions[0].artifactId).toBe('Java-WebSocket');
+    expect(pomDependenciesWithVersions[0].groupId).toBe('org.java-websocket');
+    expect(pomDependenciesWithVersions[0].version).toBe('2.3.1');
   });
 
   it('should return an array of pom dependencies when they exist', async () => {
@@ -119,7 +120,7 @@ describe('test pom parsing', () => {
 
     const pomDependenciesWithVersions = await getPomDependenciesWithVersions(parsedPom);
 
-    strictEqual(pomDependenciesWithVersions.length, 0);
+    expect(pomDependenciesWithVersions.length).toBe(0);
   });
 
   it('should get spring boot version from pom when it exists', async () => {
@@ -137,7 +138,7 @@ describe('test pom parsing', () => {
 
     const pomSpringBootVersion = await getPomSpringBootVersion(parsedPom);
 
-    strictEqual(pomSpringBootVersion, '2.1.0');
+    expect(pomSpringBootVersion).toBe('2.1.0');
   });
 
   it('should get spring boot version from pom when version is a range without space', async () => {
@@ -155,7 +156,7 @@ describe('test pom parsing', () => {
 
     const pomSpringBootVersion = await getPomSpringBootVersion(parsedPom);
 
-    strictEqual(pomSpringBootVersion, '3.1.x');
+    expect(pomSpringBootVersion).toBe('3.1.x');
   });
 
   it('should get spring boot version from pom when version is a range with space', async () => {
@@ -173,7 +174,7 @@ describe('test pom parsing', () => {
 
     const pomSpringBootVersion = await getPomSpringBootVersion(parsedPom);
 
-    strictEqual(pomSpringBootVersion, '2.7.x');
+    expect(pomSpringBootVersion).toBe('2.7.x');
   });
 
   it("should return a value for spring boot version from pom when it doesn't exists", async () => {
@@ -185,7 +186,7 @@ describe('test pom parsing', () => {
 
     const pomSpringBootVersion = await getPomSpringBootVersion(parsedPom);
 
-    strictEqual(pomSpringBootVersion, '');
+    expect(pomSpringBootVersion).toBe('');
   });
 
   it('should output mismatched packages', async () => {
@@ -232,8 +233,8 @@ describe('test pom parsing', () => {
     try {
       const xmlData = await getXMLFromFile(parentDir);
 
-      strictEqual(xmlData.project.parent[0].artifactId, 'spring-boot-starter-parent');
-      strictEqual(xmlData.project.parent[0].version, '2.3.12.RELEASE');
+      expect(xmlData.project.parent[0].artifactId).toBe('spring-boot-starter-parent');
+      expect(xmlData.project.parent[0].version).toBe('2.3.12.RELEASE');
     } finally {
       if (existsSync(parentDir)) {
         unlinkSync(parentDir);
@@ -255,8 +256,8 @@ describe('test pom parsing', () => {
     try {
       const xmlData = await getXMLFromFile(currentDirFile);
 
-      strictEqual(xmlData.project.parent[0].artifactId, 'spring-boot-starter-parent');
-      strictEqual(xmlData.project.parent[0].version, '2.5.0');
+      expect(xmlData.project.parent[0].artifactId).toBe('spring-boot-starter-parent');
+      expect(xmlData.project.parent[0].version).toBe('2.5.0');
     } finally {
       if (existsSync(currentDirFile)) {
         unlinkSync(currentDirFile);
@@ -264,9 +265,9 @@ describe('test pom parsing', () => {
     }
   });
 
-  after(() => {
-    unlink(filename, (err) => {
-      if (err) throw err;
-    });
+  afterAll(() => {
+    if (existsSync(filename)) {
+      unlinkSync(filename);
+    }
   });
 });
