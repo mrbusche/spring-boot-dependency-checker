@@ -41,9 +41,7 @@ export const resolveFilePaths = (filename) => {
 };
 
 export const ensureDirExists = async () => {
-  if (!existsSync(cachePath)) {
-    mkdirSync(cachePath);
-  }
+  mkdirSync(cachePath, { recursive: true });
 };
 
 export const getJsonFromFile = async (filename) => {
@@ -55,18 +53,7 @@ export const getJsonFromFile = async (filename) => {
   }
 };
 
-const getSpringDefaultVersions = async (springBootVersion) => {
-  try {
-    await ensureDirExists();
-    if (!existsSync(`${cachePath}/dependencies_${springBootVersion}.json`)) {
-      await downloadSpringDefaultVersions(springBootVersion);
-    }
-  } catch (err) {
-    console.error('Error retrieving spring default versions', err);
-  }
-};
-
-const downloadSpringDefaultVersions = async (springBootVersion) => {
+const downloadSpringDefaultVersions = async (springBootVersion, wantedCoordinates = []) => {
   let url = `https://docs.spring.io/spring-boot/docs/${springBootVersion}/reference/html/dependency-versions.html`;
   let response = await fetch(url);
   // Handle new Spring Boot URL, count redirects as failures, and handle 3.3.+ gradle format
@@ -75,6 +62,8 @@ const downloadSpringDefaultVersions = async (springBootVersion) => {
     url = `https://docs.spring.io/spring-boot/${springMinorVersion}/appendix/dependency-versions/coordinates.html`;
     response = await fetch(url);
   }
+  const wantedCoordinateSet = new Set(wantedCoordinates);
+  const shouldCacheFullList = wantedCoordinateSet.size === 0;
   const versions = [];
   if (response.ok) {
     const template = await response.text();
@@ -84,22 +73,56 @@ const downloadSpringDefaultVersions = async (springBootVersion) => {
     for (const child of tableBody.childNodes) {
       // there's a header row we should skip
       if (child.childNodes.length !== 0) {
-        versions.push({
-          group: child.childNodes[1].rawText,
-          name: child.childNodes[3].rawText,
-          version: child.childNodes[5].rawText,
-        });
+        const group = child.childNodes[1].rawText;
+        const name = child.childNodes[3].rawText;
+        const version = child.childNodes[5].rawText;
+        const coordinate = `${group}:${name}`;
+
+        if (shouldCacheFullList || wantedCoordinateSet.has(coordinate)) {
+          versions.push({
+            group: group,
+            name: name,
+            version: version,
+          });
+        }
+
+        if (!shouldCacheFullList && wantedCoordinateSet.has(coordinate)) {
+          wantedCoordinateSet.delete(coordinate);
+          if (wantedCoordinateSet.size === 0) {
+            break;
+          }
+        }
       }
     }
-    writeFileSync(`${cachePath}/dependencies_${springBootVersion}.json`, JSON.stringify(versions, null, 2));
+
+    if (shouldCacheFullList) {
+      writeFileSync(`${cachePath}/dependencies_${springBootVersion}.json`, JSON.stringify(versions, null, 2));
+    }
   } else {
     console.warn('URL not found - Spring Boot default versions URL no longer exists.');
   }
+
+  return versions;
 };
 
-export const getDefaultSpringBootVersions = async (filename) => {
-  await getSpringDefaultVersions(filename);
-  return getJsonFromFile(`${cachePath}/dependencies_${filename}.json`);
+export const getDefaultSpringBootVersions = async (filename, wantedCoordinates = []) => {
+  await ensureDirExists();
+  const cacheFile = `${cachePath}/dependencies_${filename}.json`;
+
+  if (!wantedCoordinates.length) {
+    if (!existsSync(cacheFile)) {
+      await downloadSpringDefaultVersions(filename);
+    }
+    return getJsonFromFile(cacheFile);
+  }
+
+  if (existsSync(cacheFile)) {
+    const defaultVersions = await getJsonFromFile(cacheFile);
+    const wantedCoordinateSet = new Set(wantedCoordinates);
+    return defaultVersions.filter((bootPackage) => wantedCoordinateSet.has(`${bootPackage.group}:${bootPackage.name}`));
+  }
+
+  return downloadSpringDefaultVersions(filename, wantedCoordinates);
 };
 
 const normalizeQualifier = (value) => {

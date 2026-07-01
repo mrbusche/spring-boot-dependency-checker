@@ -113,22 +113,28 @@ export const getPomSpringBootVersion = async (parsedPom) => {
 export const retrieveSimilarPomPackages = async (parsedPom, springBootVersion) => {
   const pomDependenciesWithVersions = await getPomDependenciesWithVersions(parsedPom);
   if (springBootVersion) {
-    const defaultVersions = await getDefaultSpringBootVersions(springBootVersion);
+    const requestedCoordinates = pomDependenciesWithVersions.map((pomDependency) => `${pomDependency.groupId}:${pomDependency.artifactId}`);
+    const defaultVersions = await getDefaultSpringBootVersions(springBootVersion, requestedCoordinates);
 
     if (defaultVersions.length) {
+      const bootVersionMap = new Map();
+      for (const bootPackage of defaultVersions) {
+        bootVersionMap.set(`${bootPackage.group}:${bootPackage.name}`, bootPackage.version);
+      }
+
       const declaredPackages = [];
+      const seenPackages = new Set();
       for (const pomDependency of pomDependenciesWithVersions) {
-        for (const bootPackage of defaultVersions) {
-          if (pomDependency.groupId === bootPackage.group && pomDependency.artifactId === bootPackage.name) {
-            const pomVersion = replaceVariable(parsedPom.project.properties, pomDependency.version);
-            const existingMatches = declaredPackages.find(
-              (declaredPackage) => declaredPackage.group === pomDependency.groupId && declaredPackage.name === pomDependency.artifactId,
-            );
-            if (!existingMatches) {
-              declaredPackages.push(new Package(pomDependency.groupId, pomDependency.artifactId, pomVersion, bootPackage.version));
-              break;
-            }
-          }
+        const key = `${pomDependency.groupId}:${pomDependency.artifactId}`;
+        if (seenPackages.has(key)) {
+          continue;
+        }
+
+        const bootVersion = bootVersionMap.get(key);
+        if (bootVersion) {
+          const pomVersion = replaceVariable(parsedPom.project.properties, pomDependency.version);
+          declaredPackages.push(new Package(pomDependency.groupId, pomDependency.artifactId, pomVersion, bootVersion));
+          seenPackages.add(key);
         }
       }
 
@@ -140,22 +146,21 @@ export const retrieveSimilarPomPackages = async (parsedPom, springBootVersion) =
 
 export const retrieveSimilarPomProperties = async (parsedPom, springBootVersion) => {
   const pomProperties = await getPomProperties(parsedPom);
-  if (springBootVersion) {
-    const defaultProperties = await getSpringBootProperties(springBootVersion);
+  if (!pomProperties.length || !springBootVersion) {
+    return [];
+  }
 
-    if (defaultProperties.length) {
-      const declaredProperties = [];
-      for (const pomProperty of pomProperties) {
-        for (const defaultProperty of defaultProperties) {
-          if (pomProperty === defaultProperty.property || pomProperty.replace('.version', '') === defaultProperty.property) {
-            declaredProperties.push(pomProperty);
-            break;
-          }
-        }
+  const defaultProperties = await getSpringBootProperties(springBootVersion);
+  if (defaultProperties.length) {
+    const defaultPropertySet = new Set(defaultProperties.map((property) => property.property));
+    const declaredProperties = [];
+    for (const pomProperty of pomProperties) {
+      if (defaultPropertySet.has(pomProperty) || defaultPropertySet.has(pomProperty.replace('.version', ''))) {
+        declaredProperties.push(pomProperty);
       }
-
-      return declaredProperties;
     }
+
+    return declaredProperties;
   }
   return [];
 };

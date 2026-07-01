@@ -4,12 +4,8 @@ import { getDefaultSpringBootVersions, Package, resolveFilePaths } from './share
 
 export const getJSFromFile = async (filename) => {
   try {
-    const parsedGradleFiles = [];
     const files = resolveFilePaths(filename);
-
-    for (const file of files) {
-      parsedGradleFiles.push(await g2js.parseFile(file));
-    }
+    const parsedGradleFiles = await Promise.all(files.map((file) => g2js.parseFile(file)));
 
     let dependencies = [];
     let subprojects = [];
@@ -70,23 +66,29 @@ export const getGradleSpringBootVersion = async (parsedGradle) => {
 export const retrieveSimilarGradlePackages = async (parsedGradle, springBootVersion) => {
   const gradleDependenciesWithVersions = await getGradleDependenciesWithVersions(parsedGradle);
   if (springBootVersion) {
-    const defaultVersions = await getDefaultSpringBootVersions(springBootVersion);
+    const requestedCoordinates = gradleDependenciesWithVersions.map(
+      (gradleDependency) => `${gradleDependency.group}:${gradleDependency.name}`,
+    );
+    const defaultVersions = await getDefaultSpringBootVersions(springBootVersion, requestedCoordinates);
 
     if (defaultVersions.length) {
+      const bootVersionMap = new Map();
+      for (const bootPackage of defaultVersions) {
+        bootVersionMap.set(`${bootPackage.group}:${bootPackage.name}`, bootPackage.version);
+      }
+
       const declaredPackages = [];
+      const seenPackages = new Set();
       for (const gradleDependency of gradleDependenciesWithVersions) {
-        for (const bootPackage of defaultVersions) {
-          if (gradleDependency.group === bootPackage.group && gradleDependency.name === bootPackage.name) {
-            const existingMatches = declaredPackages.find(
-              (declaredPackage) => declaredPackage.group === gradleDependency.group && declaredPackage.name === gradleDependency.name,
-            );
-            if (!existingMatches) {
-              declaredPackages.push(
-                new Package(gradleDependency.group, gradleDependency.name, gradleDependency.version, bootPackage.version),
-              );
-              break;
-            }
-          }
+        const key = `${gradleDependency.group}:${gradleDependency.name}`;
+        if (seenPackages.has(key)) {
+          continue;
+        }
+
+        const bootVersion = bootVersionMap.get(key);
+        if (bootVersion) {
+          declaredPackages.push(new Package(gradleDependency.group, gradleDependency.name, gradleDependency.version, bootVersion));
+          seenPackages.add(key);
         }
       }
 
